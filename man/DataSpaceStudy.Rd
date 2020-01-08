@@ -4,13 +4,12 @@
 \name{DataSpaceStudy}
 \alias{DataSpaceStudy}
 \title{The DataSpaceStudy class}
-\usage{
-DataSpaceStudy
-}
 \value{
 an instance of \code{DataSpaceStudy}
 }
 \description{
+The DataSpaceStudy class
+
 The DataSpaceStudy class
 }
 \section{Constructor}{
@@ -46,6 +45,10 @@ The DataSpaceStudy class
   \item{\code{studyInfo}}{
     A list. Stores the information about the study.
   }
+  \item{\code{dataDir}}{
+    A character. Default directory for storing nonstandard datasets. Set with
+    \code{setDataDir(dataDir)}.
+  }
 }
 }
 
@@ -60,8 +63,8 @@ The DataSpaceStudy class
   \item{\code{print()}}{
     Print \code{DataSpaceStudy} class.
   }
-  \item{\code{getDataset(datasetName, colFilter = NULL,
-  reload = FALSE, ...)}}{
+  \item{\code{getDataset(datasetName, mergeExtra = FALSE, colFilter = NULL,
+  reload = FALSE, outputDir = NULL, ...)}}{
     Get a dataset from the connection.
 
     \code{datasetName}: A character. Name of the dataset to retrieve.
@@ -74,6 +77,11 @@ The DataSpaceStudy class
     \code{reload}: A logical. If set to TRUE, download the dataset, whether
     a cached version exist or not.
 
+    \code{outputDir}: A character. Optional, specifies directory to download
+    nonstandard datasets. If \code{NULL}, data will be downloaded to \code{dataDir},
+    set with \code{setDataDir(dataDir)}. If \code{dataDir} is not set, and
+    \code{outputDir} is \code{NULL}, a tmp directory will be used.
+
     \code{...}: Extra arguments to be passed to
     \code{\link[Rlabkey]{labkey.selectRows}}
   }
@@ -84,6 +92,13 @@ The DataSpaceStudy class
     Get variable information.
 
     \code{datasetName}: A character. Name of the dataset to retrieve.
+  }
+  \item{\code{setDataDir(dataDir)}}{
+    Set default directory to download non-integrated datasets. If no
+    dataDir is set, a tmp directory will be used.
+
+    \code{dataDir}: A character. Directory path.
+
   }
   \item{\code{refresh()}}{
     Refresh the study object to update available datasets and treatment info.
@@ -128,4 +143,96 @@ cvd$refresh()
 \seealso{
 \code{\link{connectDS}} \code{\link{DataSpaceConnection}}
 }
-\keyword{datasets}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{DataSpaceStudy$new()}}
+\item \href{#method-print}{\code{DataSpaceStudy$print()}}
+\item \href{#method-getDataset}{\code{DataSpaceStudy$getDataset()}}
+\item \href{#method-clearCache}{\code{DataSpaceStudy$clearCache()}}
+\item \href{#method-getDatasetDescription}{\code{DataSpaceStudy$getDatasetDescription()}}
+\item \href{#method-refresh}{\code{DataSpaceStudy$refresh()}}
+\item \href{#method-setDataDir}{\code{DataSpaceStudy$setDataDir()}}
+\item \href{#method-clone}{\code{DataSpaceStudy$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DataSpaceStudy$new(study = NULL, config = NULL, group = NULL, studyInfo = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DataSpaceStudy$print()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDataset"></a>}}
+\subsection{Method \code{getDataset()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DataSpaceStudy$getDataset(
+  datasetName,
+  mergeExtra = FALSE,
+  colFilter = NULL,
+  reload = FALSE,
+  outputDir = NULL,
+  ...
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clearCache"></a>}}
+\subsection{Method \code{clearCache()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DataSpaceStudy$clearCache()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getDatasetDescription"></a>}}
+\subsection{Method \code{getDatasetDescription()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DataSpaceStudy$getDatasetDescription(datasetName, outputDir = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-refresh"></a>}}
+\subsection{Method \code{refresh()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DataSpaceStudy$refresh()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-setDataDir"></a>}}
+\subsection{Method \code{setDataDir()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DataSpaceStudy$setDataDir(dataDir)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{DataSpaceStudy$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

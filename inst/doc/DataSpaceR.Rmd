@@ -11,6 +11,8 @@ vignette: >
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+STAGING <- identical(tolower(Sys.getenv("STAGING")), "true")
+labkey.url.base <- ifelse(STAGING, "https://dataspace-staging.cavd.org", "https://dataspace.cavd.org")
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -79,7 +81,7 @@ The call to `connectDS` instantiates the connection. Printing the object shows w
 knitr::kable(head(con$availableStudies))
 ```
 
-`con$availableStudies` shows the available studies in the CAVD DataSpace. Check out [the reference page](https://ropensci.github.io/DataSpaceR/reference/DataSpaceConnection.html) of `DataSpaceConnection` for all available fields and methods.
+`con$availableStudies` shows the available studies in the CAVD DataSpace. Check out [the reference page](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceConnection.html) of `DataSpaceConnection` for all available fields and methods.
 
 ```{r getStudy}
 cvd256 <- con$getStudy("cvd256")
@@ -151,7 +153,7 @@ dim(human)
 colnames(human)
 ```
 
-Check out [the reference page](https://ropensci.github.io/DataSpaceR/reference/DataSpaceStudy.html) of `DataSpaceStudy` for all available fields and methods.
+Check out [the reference page](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceStudy.html) of `DataSpaceStudy` for all available fields and methods.
 
 
 ## Connect to a saved group
@@ -216,9 +218,11 @@ The followings are the tables of all fields and methods that work on `DataSpaceC
 | `group` | The group name. |
 | `availableDatasets` | The table of datasets available in the study object. |
 | `treatmentArm` | The table of treatment arm information for the connected study. Not available for all study connection. |
+| `dataDir` | The default target directory for downloading non-integrated datasets. |
 | `studyInfo` | Stores the information about the study. |
 | `getDataset` | Get a dataset from the connection. |
 | `getDatasetDescription` | Get variable information. |
+| `setDataDir` | Set default target directory for downloading non-integrated datasets. |
 
 ### `DataSpaceMab`
 

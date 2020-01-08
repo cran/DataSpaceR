@@ -35,6 +35,13 @@ from the user, and it allows the users to access the study-specific
 datasets via [an object-oriented
 paradigm](https://cran.r-project.org/package=R6/readme/README.html).
 
+## Examples & Documentation
+
+For more detailed examples and detailed documentation, see [the
+introductory
+vignette](https://docs.ropensci.org/DataSpaceR/articles/DataSpaceR.html)
+and [the pkgdown site](https://docs.ropensci.org/DataSpaceR/).
+
 ## Installation
 
 Install from CRAN:
@@ -119,9 +126,9 @@ con
 #> <DataSpaceConnection>
 #>   URL: https://dataspace.cavd.org
 #>   User: jkim2345@scharp.org
-#>   Available studies: 253
-#>     - 70 studies with data
-#>     - 4815 subjects
+#>   Available studies: 254
+#>     - 72 studies with data
+#>     - 4872 subjects
 #>     - 407558 data points
 #>   Available groups: 6
 ```
@@ -135,14 +142,14 @@ DataSpace.
 knitr::kable(head(con$availableStudies))
 ```
 
-| study\_name | short\_name                    | title                                                                                      | type               | status   | stage            | species            | start\_date | strategy                             | network | data\_availability                                |
-| :---------- | :----------------------------- | :----------------------------------------------------------------------------------------- | :----------------- | :------- | :--------------- | :----------------- | :---------- | :----------------------------------- | :------ | :------------------------------------------------ |
-| cvd232      | Parks\_RV\_232                 | ​Limiting Dose Vaginal SIVmac239 Challenge of RhCMV-SIV vaccinated Indian rhesus macaques. | Pre-Clinical NHP   | Inactive | Assays Completed | Rhesus macaque     | 2009-11-24  | Vector vaccines (viral or bacterial) | CAVD    | NA                                                |
-| cvd234      | Zolla-Pazner\_Mab\_test1 Study | Zolla-Pazner\_Mab\_Test1                                                                   | Antibody Screening | Inactive | Assays Completed | Non-Organism Study | 2009-02-03  | Prophylactic neutralizing Ab         | CAVD    | NA                                                |
-| cvd235      | mAbs potency                   | Weiss mAbs potency                                                                         | Antibody Screening | Inactive | Assays Completed | Non-Organism Study | 2008-08-21  | Prophylactic neutralizing Ab         | CAVD    | NA                                                |
-| cvd236      | neutralization assays          | neutralization assays                                                                      | Antibody Screening | Active   | In Progress      | Non-Organism Study | 2009-02-03  | Prophylactic neutralizing Ab         | CAVD    | NA                                                |
-| cvd238      | Gallo\_PA\_238                 | HIV-1 neutralization responses in chronically infected individuals                         | Antibody Screening | Inactive | Assays Completed | Non-Organism Study | 2009-01-08  | Prophylactic neutralizing Ab         | CAVD    | NA                                                |
-| cvd239      | CAVIMC-015                     | Lehner\_Thorstensson\_Allovac                                                              | Pre-Clinical NHP   | Inactive | Assays Completed | Rhesus macaque     | 2009-01-08  | Protein and peptide vaccines         | CAVD    | This study has assay data (NAB) in the DataSpace. |
+| study\_name | short\_name                    | title                                                                                     | type               | status   | stage            | species            | start\_date | strategy                             | network | data\_availability                                |
+| :---------- | :----------------------------- | :---------------------------------------------------------------------------------------- | :----------------- | :------- | :--------------- | :----------------- | :---------- | :----------------------------------- | :------ | :------------------------------------------------ |
+| cvd232      | Parks\_RV\_232                 | Limiting Dose Vaginal SIVmac239 Challenge of RhCMV-SIV vaccinated Indian rhesus macaques. | Pre-Clinical NHP   | Inactive | Assays Completed | Rhesus macaque     | 2009-11-24  | Vector vaccines (viral or bacterial) | CAVD    | NA                                                |
+| cvd234      | Zolla-Pazner\_Mab\_test1 Study | Zolla-Pazner\_Mab\_Test1                                                                  | Antibody Screening | Inactive | Assays Completed | Non-Organism Study | 2009-02-03  | Prophylactic neutralizing Ab         | CAVD    | NA                                                |
+| cvd235      | mAbs potency                   | Weiss mAbs potency                                                                        | Antibody Screening | Inactive | Assays Completed | Non-Organism Study | 2008-08-21  | Prophylactic neutralizing Ab         | CAVD    | NA                                                |
+| cvd236      | neutralization assays          | neutralization assays                                                                     | Antibody Screening | Active   | In Progress      | Non-Organism Study | 2009-02-03  | Prophylactic neutralizing Ab         | CAVD    | NA                                                |
+| cvd238      | Gallo\_PA\_238                 | HIV-1 neutralization responses in chronically infected individuals                        | Antibody Screening | Inactive | Assays Completed | Non-Organism Study | 2009-01-08  | Prophylactic neutralizing Ab         | CAVD    | NA                                                |
+| cvd239      | CAVIMC-015                     | Lehner\_Thorstensson\_Allovac                                                             | Pre-Clinical NHP   | Inactive | Assays Completed | Rhesus macaque     | 2009-01-08  | Protein and peptide vaccines         | CAVD    | This study has assay data (NAB) in the DataSpace. |
 
 ### available groups can be listed by `availableGroups` field
 
@@ -165,7 +172,7 @@ created in [the DataSpace
 App](https://dataspace.cavd.org/cds/CAVD/app.view).
 
 Check out [the reference
-page](https://ropensci.github.io/DataSpaceR/reference/DataSpaceConnection.html)
+page](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceConnection.html)
 of `DataSpaceConnection` for all available fields and methods.
 
 ### create an instance of `cvd408`
@@ -181,6 +188,7 @@ cvd408
 #>     - Demographics
 #>     - ICS
 #>     - NAb
+#>   Available non-integrated datasets:
 class(cvd408)
 #> [1] "DataSpaceStudy" "R6"
 ```
@@ -191,12 +199,12 @@ class(cvd408)
 knitr::kable(cvd408$availableDatasets)
 ```
 
-| name         | label                           |    n |
-| :----------- | :------------------------------ | ---: |
-| BAMA         | Binding Ab multiplex assay      | 1080 |
-| Demographics | Demographics                    |   20 |
-| ICS          | Intracellular Cytokine Staining | 3720 |
-| NAb          | Neutralizing antibody           |  540 |
+| name         | label                           |    n | integrated |
+| :----------- | :------------------------------ | ---: | :--------- |
+| BAMA         | Binding Ab multiplex assay      | 1080 | TRUE       |
+| Demographics | Demographics                    |   20 | TRUE       |
+| ICS          | Intracellular Cytokine Staining | 3720 | TRUE       |
+| NAb          | Neutralizing antibody           |  540 | TRUE       |
 
 which will print names of available datasets.
 
@@ -207,38 +215,26 @@ NAb <- cvd408$getDataset("NAb")
 dim(NAb)
 #> [1] 540  29
 colnames(NAb)
-#>  [1] "ParticipantId"          "ParticipantVisit/Visit"
-#>  [3] "visit_day"              "assay_identifier"      
-#>  [5] "summary_level"          "specimen_type"         
-#>  [7] "antigen"                "antigen_type"          
-#>  [9] "virus"                  "virus_type"            
-#> [11] "virus_insert_name"      "clade"                 
-#> [13] "neutralization_tier"    "tier_clade_virus"      
-#> [15] "target_cell"            "initial_dilution"      
-#> [17] "titer_ic50"             "titer_ic80"            
-#> [19] "response_call"          "nab_lab_source_key"    
-#> [21] "lab_code"               "exp_assayid"           
-#> [23] "titer_ID50"             "titer_ID80"            
-#> [25] "nab_response_ID50"      "nab_response_ID80"     
-#> [27] "slope"                  "vaccine_matched"       
-#> [29] "study_prot"
+#>  [1] "ParticipantId"          "ParticipantVisit/Visit" "visit_day"             
+#>  [4] "assay_identifier"       "summary_level"          "specimen_type"         
+#>  [7] "antigen"                "antigen_type"           "virus"                 
+#> [10] "virus_type"             "virus_insert_name"      "clade"                 
+#> [13] "neutralization_tier"    "tier_clade_virus"       "target_cell"           
+#> [16] "initial_dilution"       "titer_ic50"             "titer_ic80"            
+#> [19] "response_call"          "nab_lab_source_key"     "lab_code"              
+#> [22] "exp_assayid"            "titer_ID50"             "titer_ID80"            
+#> [25] "nab_response_ID50"      "nab_response_ID80"      "slope"                 
+#> [28] "vaccine_matched"        "study_prot"
 ```
 
 Check out [the reference
-page](https://ropensci.github.io/DataSpaceR/reference/DataSpaceStudy.html)
+page](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceStudy.html)
 of `DataSpaceStudy` for all available fields and methods.
 
 ***Note***: The package uses a
 [R6](https://cran.r-project.org/package=R6) class to represent the
 connection to a study and get around some of R’s copy-on-change
 behavior.
-
-## Examples & Documentation
-
-For more detailed examples and detailed documentation, see [the
-introductory
-vignette](https://ropensci.github.io/DataSpaceR/articles/Intro_to_DataSpaceR.html)
-and [the pkgdown site](https://ropensci.github.io/DataSpaceR/).
 
 ## Meta
 

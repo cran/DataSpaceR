@@ -4,8 +4,13 @@
 \alias{writeNetrc}
 \title{Write a netrc file}
 \usage{
-writeNetrc(login, password, netrcFile = NULL, onStaging = FALSE,
-  overwrite = FALSE)
+writeNetrc(
+  login,
+  password,
+  netrcFile = NULL,
+  onStaging = FALSE,
+  overwrite = FALSE
+)
 }
 \arguments{
 \item{login}{A character. Email address used for logging in on DataSpace.}
@@ -29,7 +34,7 @@ Write a netrc file that is valid for accessing DataSpace.
 \details{
 The database is accessed with the user's credentials.
 A netrc file storing login and password information is required.
-See \href{https://ropensci.github.io/DataSpaceR/}{here}
+See \href{https://docs.ropensci.org/DataSpaceR/}{here}
 for instruction on how to register and set DataSpace credential.
 By default \code{curl} will look for the file in your home directory.
 }
