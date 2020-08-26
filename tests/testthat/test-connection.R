@@ -10,13 +10,16 @@ test_that("can connect to DataSpace", {
 if ("DataSpaceConnection" %in% class(con)) {
   con_names <- c(
     ".__enclos_env__",
+    "virusMetadata",
     "mabGrid",
     "mabGridSummary",
+    "availablePublications",
     "availableGroups",
     "availableStudies",
     "config",
     "clone",
     "refresh",
+    "downloadPublicationData",
     "getMab",
     "resetMabGrid",
     "filterMabGrid",
@@ -32,9 +35,9 @@ if ("DataSpaceConnection" %in% class(con)) {
   if (identical(names(con), con_names)) {
     test_that("`print`", {
       cap_output <- capture.output(con$print())
-      expect_length(cap_output, 8)
+      expect_length(cap_output, 10)
 
-      if (length(cap_output) == 8) {
+      if (length(cap_output) == 10) {
         expect_equal(cap_output[1], "<DataSpaceConnection>")
         expect_equal(cap_output[2], paste0("  URL: ", baseUrl))
         expect_match(cap_output[3], "  User: \\S+@\\S+")
@@ -43,6 +46,8 @@ if ("DataSpaceConnection" %in% class(con)) {
         expect_match(cap_output[6], "  - \\d+ subjects")
         expect_match(cap_output[7], "  - \\d+ data points")
         expect_match(cap_output[8], "  Available groups: \\d+")
+        expect_match(cap_output[9], "  Available publications: \\d+")
+        expect_match(cap_output[10], "  - \\d+ publications")
       }
     })
 
@@ -118,6 +123,31 @@ if ("DataSpaceConnection" %in% class(con)) {
       expect_gt(nrow(con$availableGroups), 0)
     })
 
+    test_that("`availablePublications`", {
+      expect_is(con$availablePublications, "data.table")
+      expect_equal(
+        names(con$availablePublications),
+        c(
+          "publication_id", "first_author", "title", "journal", "publication_date",
+          "link", "pubmed_id", "related_studies", "studies_with_data", "publication_data_available"
+        )
+      )
+      expect_gt(nrow(con$availablePublications), 0)
+    })
+
+    test_that("`virusMetadata`", {
+      expect_is(con$virusMetadata, "data.table")
+      expect_equal(
+        names(con$virusMetadata),
+        c(
+          "assay_identifier", "virus", "virus_type", "neutralization_tier", "clade",
+          "antigen_control", "virus_full_name", "virus_name_other", "virus_species",
+          "virus_host_cell", "virus_backbone", "panel_names"
+        )
+      )
+      expect_gt(nrow(con$virusMetadata), 0)
+    })
+
     test_that("`getStudy`", {
       cavd <- try(con$getStudy(""), silent = TRUE)
 
@@ -125,6 +155,40 @@ if ("DataSpaceConnection" %in% class(con)) {
       expect_is(cavd, "R6")
 
       expect_error(con$getStudy("cvd0"))
+    })
+
+    test_that("`downloadPublicationData`", {
+      outputDir <- tempdir()
+      .availablePublications <- con$.__enclos_env__$private$.availablePublications
+
+      # unzip = FALSE
+      path <- con$downloadPublicationData(1461, outputDir = outputDir, unzip = FALSE)
+      expect_equal(length(path), 1)
+      expect_equal(dirname(path), outputDir)
+      expect_equal(basename(path), basename(.availablePublications[publication_id == 1461]$remotePath))
+      expect_true(file.exists(path))
+
+      # unzip = TRUE
+      path <- con$downloadPublicationData(1461, outputDir = outputDir, unzip = TRUE)
+      expect_gt(length(path), 1)
+      expect_true(all(file.exists(path)))
+
+      # Check messages
+      expect_message(con$downloadPublicationData(1461, outputDir = outputDir, verbose = TRUE))
+      expect_message(
+        con$downloadPublicationData(1461, outputDir = outputDir, verbose = FALSE),
+        regexp = "encoding", all = TRUE
+      )
+
+      # Check errors
+      expect_error(
+        con$downloadPublicationData("badpublicationid", outputDir = outputDir),
+        regexp = "not a valid publication"
+      )
+      expect_error(
+        con$downloadPublicationData(1461, outputDir = "badoutputdir"),
+        regexp = "badoutputdir is not a directory"
+      )
     })
 
     test_that("`refresh`", {
@@ -193,7 +257,7 @@ if ("DataSpaceConnection" %in% class(con)) {
 
       con$filterMabGrid("mab_mixture", "PGDM1400")
       mab <- con$getMab()$nabMab
-      expect_true(round(con$mabGridSummary$geometric_mean_curve_ic50, 2) == 0.05)
+      expect_true(round(con$mabGridSummary$geometric_mean_curve_ic50, 2) == 0.04)
       con$resetMabGrid()
     })
 

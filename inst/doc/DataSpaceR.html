@@ -8,21 +8,37 @@
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Ju Yeong Kim" />
 
-<meta name="date" content="2020-01-07" />
+<meta name="date" content="2020-08-20" />
 
 <title>Introduction to DataSpaceR</title>
 
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -32,14 +48,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +66,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,9 +135,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -288,7 +303,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -303,7 +319,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Introduction to DataSpaceR</h1>
 <h4 class="author">Ju Yeong Kim</h4>
-<h4 class="date">2020-01-07</h4>
+<h4 class="date">2020-08-20</h4>
 
 
 
@@ -315,11 +331,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="creating-a-netrc-file-with-writenetrc" class="section level3">
 <h3>Creating a netrc file with <code>writeNetrc</code></h3>
 <p>On your R console, create a <code>netrc</code> file using a function from <code>DataSpaceR</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">writeNetrc</span>(</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="dt">login =</span> <span class="st">&quot;yourEmail@address.com&quot;</span>, </a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="dt">password =</span> <span class="st">&quot;yourSecretPassword&quot;</span>,</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">netrcFile =</span> <span class="st">&quot;/your/home/directory/.netrc&quot;</span> <span class="co"># use getNetrcPath() to get the default path </span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">writeNetrc</span>(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="dt">login =</span> <span class="st">&quot;yourEmail@address.com&quot;</span>, </span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="dt">password =</span> <span class="st">&quot;yourSecretPassword&quot;</span>,</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="dt">netrcFile =</span> <span class="st">&quot;/your/home/directory/.netrc&quot;</span> <span class="co"># use getNetrcPath() to get the default path </span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>)</span></code></pre></div>
 <p>This will create a <code>netrc</code> file in your home directory. Make sure you have a valid login and password.</p>
 </div>
 <div id="manually-creating-a-netrc-file" class="section level3">
@@ -341,21 +357,35 @@ password supersecretpassword</code></pre>
 <div id="initiate-a-connection" class="section level2">
 <h2>Initiate a connection</h2>
 <p>We’ll be looking at study <code>cvd256</code>. If you want to use a different study, change that string. You can instantiate multiple connections to different studies simultaneously.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(DataSpaceR)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; By exporting data from the CAVD DataSpace, you agree to be bound by the Terms of Use available on the CAVD DataSpace sign-in page at https://dataspace.cavd.org</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">con &lt;-<span class="st"> </span><span class="kw">connectDS</span>()</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">con</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; &lt;DataSpaceConnection&gt;</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;   URL: https://dataspace.cavd.org</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;   User: jkim2345@scharp.org</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;   Available studies: 254</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;     - 72 studies with data</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;     - 4872 subjects</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;     - 407558 data points</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;   Available groups: 6</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(DataSpaceR)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>con &lt;-<span class="st"> </span><span class="kw">connectDS</span>()</span>
+<span id="cb3-3"><a href="#cb3-3"></a>con</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; &lt;DataSpaceConnection&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt;   User: jkim2345@scharp.org</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt;   Available studies: 260</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt;     - 76 studies with data</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt;     - 4994 subjects</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt;     - 423195 data points</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt;   Available groups: 6</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt;   Available publications: 1403</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt;     - 1 publications with data</span></span></code></pre></div>
 <p>The call to <code>connectDS</code> instantiates the connection. Printing the object shows where it’s connected and the available studies.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(con<span class="op">$</span>availableStudies))</a></code></pre></div>
-<table>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(con<span class="op">$</span>availableStudies))</span></code></pre></div>
+<table style="width:100%;">
+<colgroup>
+<col width="3%"></col>
+<col width="9%"></col>
+<col width="30%"></col>
+<col width="6%"></col>
+<col width="3%"></col>
+<col width="5%"></col>
+<col width="6%"></col>
+<col width="3%"></col>
+<col width="12%"></col>
+<col width="2%"></col>
+<col width="16%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">study_name</th>
@@ -446,25 +476,25 @@ password supersecretpassword</code></pre>
 <td align="left">Assays Completed</td>
 <td align="left">Rhesus macaque</td>
 <td align="left">2009-01-08</td>
-<td align="left">Protein and peptide vaccines</td>
+<td align="left">Protein &amp; peptide vaccines</td>
 <td align="left">CAVD</td>
 <td align="left">This study has assay data (NAB) in the DataSpace.</td>
 </tr>
 </tbody>
 </table>
 <p><code>con$availableStudies</code> shows the available studies in the CAVD DataSpace. Check out <a href="https://docs.ropensci.org/DataSpaceR/reference/DataSpaceConnection.html">the reference page</a> of <code>DataSpaceConnection</code> for all available fields and methods.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">cvd256 &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(<span class="st">&quot;cvd256&quot;</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">cvd256</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;   Study: cvd256</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD/cvd256</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;   Available datasets:</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;     - BAMA</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;     - Demographics</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt;     - NAb</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;   Available non-integrated datasets:</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>cvd256 &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(<span class="st">&quot;cvd256&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>cvd256</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt;   Study: cvd256</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD/cvd256</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt;   Available datasets:</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;     - BAMA</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt;     - Demographics</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt;     - NAb</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span></code></pre></div>
 <p><code>con$getStudy</code> creates a connection to the study <code>cvd256</code>. Printing the object shows where it’s connected, to what study, and the available datasets.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">kable</span>(cvd256<span class="op">$</span>availableDatasets)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(cvd256<span class="op">$</span>availableDatasets)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -495,8 +525,18 @@ password supersecretpassword</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">kable</span>(cvd256<span class="op">$</span>treatmentArm)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(cvd256<span class="op">$</span>treatmentArm)</span></code></pre></div>
 <table>
+<colgroup>
+<col width="7%"></col>
+<col width="4%"></col>
+<col width="5%"></col>
+<col width="4%"></col>
+<col width="7%"></col>
+<col width="8%"></col>
+<col width="4%"></col>
+<col width="55%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">arm_id</th>
@@ -537,24 +577,26 @@ password supersecretpassword</code></pre>
 <div id="fetching-datasets" class="section level2">
 <h2>Fetching datasets</h2>
 <p>We can grab any of the datasets listed in the connection (<code>availableDatasets</code>).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">NAb &lt;-<span class="st"> </span>cvd256<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;NAb&quot;</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">dim</span>(NAb)</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">#&gt; [1] 1419   29</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">colnames</span>(NAb)</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt;  [1] &quot;ParticipantId&quot;          &quot;ParticipantVisit/Visit&quot; &quot;visit_day&quot;             </span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt;  [4] &quot;assay_identifier&quot;       &quot;summary_level&quot;          &quot;specimen_type&quot;         </span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt;  [7] &quot;antigen&quot;                &quot;antigen_type&quot;           &quot;virus&quot;                 </span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt; [10] &quot;virus_type&quot;             &quot;virus_insert_name&quot;      &quot;clade&quot;                 </span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; [13] &quot;neutralization_tier&quot;    &quot;tier_clade_virus&quot;       &quot;target_cell&quot;           </span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; [16] &quot;initial_dilution&quot;       &quot;titer_ic50&quot;             &quot;titer_ic80&quot;            </span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt; [19] &quot;response_call&quot;          &quot;nab_lab_source_key&quot;     &quot;lab_code&quot;              </span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt; [22] &quot;exp_assayid&quot;            &quot;titer_ID50&quot;             &quot;titer_ID80&quot;            </span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt; [25] &quot;nab_response_ID50&quot;      &quot;nab_response_ID80&quot;      &quot;slope&quot;                 </span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt; [28] &quot;vaccine_matched&quot;        &quot;study_prot&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>NAb &lt;-<span class="st"> </span>cvd256<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;NAb&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">dim</span>(NAb)</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt; [1] 1419   29</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">colnames</span>(NAb)</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt;  [1] &quot;ParticipantId&quot;          &quot;ParticipantVisit/Visit&quot; &quot;visit_day&quot;              &quot;assay_identifier&quot;       &quot;summary_level&quot;         </span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt;  [6] &quot;specimen_type&quot;          &quot;antigen&quot;                &quot;antigen_type&quot;           &quot;virus&quot;                  &quot;virus_type&quot;            </span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt; [11] &quot;virus_insert_name&quot;      &quot;clade&quot;                  &quot;neutralization_tier&quot;    &quot;tier_clade_virus&quot;       &quot;target_cell&quot;           </span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; [16] &quot;initial_dilution&quot;       &quot;titer_ic50&quot;             &quot;titer_ic80&quot;             &quot;response_call&quot;          &quot;nab_lab_source_key&quot;    </span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#&gt; [21] &quot;lab_code&quot;               &quot;exp_assayid&quot;            &quot;titer_ID50&quot;             &quot;titer_ID80&quot;             &quot;nab_response_ID50&quot;     </span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#&gt; [26] &quot;nab_response_ID80&quot;      &quot;slope&quot;                  &quot;vaccine_matched&quot;        &quot;study_prot&quot;</span></span></code></pre></div>
 <p>The <em>cvd256</em> object is an <a href="https://cran.r-project.org/package=R6"><code>R6</code></a> class, so it behaves like a true object. Functions (like <code>getDataset</code>) are members of the object, thus the <code>$</code> semantics to access member functions.</p>
 <p>We can get detailed variable information using <code>getDatasetDescription</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">kable</span>(cvd256<span class="op">$</span><span class="kw">getDatasetDescription</span>(<span class="st">&quot;NAb&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(cvd256<span class="op">$</span><span class="kw">getDatasetDescription</span>(<span class="st">&quot;NAb&quot;</span>))</span></code></pre></div>
 <table>
+<colgroup>
+<col width="7%"></col>
+<col width="17%"></col>
+<col width="8%"></col>
+<col width="66%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">fieldName</th>
@@ -735,30 +777,31 @@ password supersecretpassword</code></pre>
 </tbody>
 </table>
 <p>To get only a subset of the data and speed up the download, filters can be passed to <code>getDataset</code>. The filters are created using the <code>makeFilter</code> function of the <code>Rlabkey</code> package.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">cvd256Filter &lt;-<span class="st"> </span><span class="kw">makeFilter</span>(<span class="kw">c</span>(<span class="st">&quot;visit_day&quot;</span>, <span class="st">&quot;EQUAL&quot;</span>, <span class="st">&quot;0&quot;</span>))</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">NAb_day0 &lt;-<span class="st"> </span>cvd256<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;NAb&quot;</span>, <span class="dt">colFilter =</span> cvd256Filter)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">dim</span>(NAb_day0)</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt; [1] 709  29</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>cvd256Filter &lt;-<span class="st"> </span><span class="kw">makeFilter</span>(<span class="kw">c</span>(<span class="st">&quot;visit_day&quot;</span>, <span class="st">&quot;EQUAL&quot;</span>, <span class="st">&quot;0&quot;</span>))</span>
+<span id="cb10-2"><a href="#cb10-2"></a>NAb_day0 &lt;-<span class="st"> </span>cvd256<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;NAb&quot;</span>, <span class="dt">colFilter =</span> cvd256Filter)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">dim</span>(NAb_day0)</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt; [1] 709  29</span></span></code></pre></div>
 <p>See <code>?makeFilter</code> for more information on the syntax.</p>
 </div>
 <div id="creating-a-connection-to-all-studies" class="section level2">
 <h2>Creating a connection to all studies</h2>
 <p>To fetch data from multiple studies, create a connection at the project level.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">cavd &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(<span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>cavd &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>This will instantiate a connection at the <code>CAVD</code> level. Most functions work cross study connections just like they do on single studies.</p>
 <p>You can get a list of datasets available across all studies.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">cavd</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;   Study: CAVD</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt;   Available datasets:</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;     - BAMA</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt;     - Demographics</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt;     - ELISPOT</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt;     - ICS</span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt;     - NAb</span></a>
-<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt;   Available non-integrated datasets:</span></a>
-<a class="sourceLine" id="cb12-12" data-line-number="12">knitr<span class="op">::</span><span class="kw">kable</span>(cavd<span class="op">$</span>availableDatasets)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>cavd</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt;   Study: CAVD</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="co">#&gt;   Available datasets:</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="co">#&gt;     - BAMA</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co">#&gt;     - Demographics</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co">#&gt;     - ELISPOT</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="co">#&gt;     - ICS</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="co">#&gt;     - NAb</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co">#&gt;     - PKMAb</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>knitr<span class="op">::</span><span class="kw">kable</span>(cavd<span class="op">$</span>availableDatasets)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -772,13 +815,13 @@ password supersecretpassword</code></pre>
 <tr class="odd">
 <td align="left">BAMA</td>
 <td align="left">Binding Ab multiplex assay</td>
-<td align="right">169071</td>
+<td align="right">170320</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Demographics</td>
 <td align="left">Demographics</td>
-<td align="right">4872</td>
+<td align="right">4994</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
@@ -790,41 +833,41 @@ password supersecretpassword</code></pre>
 <tr class="even">
 <td align="left">ICS</td>
 <td align="left">Intracellular Cytokine Staining</td>
-<td align="right">182779</td>
+<td align="right">195883</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">NAb</td>
 <td align="left">Neutralizing antibody</td>
-<td align="right">50098</td>
+<td align="right">51382</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">PKMAb</td>
+<td align="left">PK MAb</td>
+<td align="right">2041</td>
 <td align="left">TRUE</td>
 </tr>
 </tbody>
 </table>
 <p>In all-study connection, <code>getDataset</code> will combine the requested datasets. Note that in most cases, the datasets will have too many subjects for quick data transfer, making filtering of the data a necessity. The <code>colFilter</code> argument can be used here, as described in the <code>getDataset</code> section.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">conFilter &lt;-<span class="st"> </span><span class="kw">makeFilter</span>(<span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;EQUAL&quot;</span>, <span class="st">&quot;Human&quot;</span>))</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">human &lt;-<span class="st"> </span>cavd<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;Demographics&quot;</span>, <span class="dt">colFilter =</span> conFilter)</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">dim</span>(human)</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; [1] 3087   36</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">colnames</span>(human)</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt;  [1] &quot;SubjectId&quot;                       &quot;SubjectVisit/Visit&quot;             </span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt;  [3] &quot;species&quot;                         &quot;subspecies&quot;                     </span></a>
-<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co">#&gt;  [5] &quot;sexatbirth&quot;                      &quot;race&quot;                           </span></a>
-<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co">#&gt;  [7] &quot;ethnicity&quot;                       &quot;country_enrollment&quot;             </span></a>
-<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt;  [9] &quot;circumcised_enrollment&quot;          &quot;bmi_enrollment&quot;                 </span></a>
-<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; [11] &quot;agegroup_range&quot;                  &quot;agegroup_enrollment&quot;            </span></a>
-<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt; [13] &quot;age_enrollment&quot;                  &quot;study_label&quot;                    </span></a>
-<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="co">#&gt; [15] &quot;study_start_date&quot;                &quot;study_first_enr_date&quot;           </span></a>
-<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="co">#&gt; [17] &quot;study_fu_complete_date&quot;          &quot;study_public_date&quot;              </span></a>
-<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co">#&gt; [19] &quot;study_network&quot;                   &quot;study_last_vaccination_day&quot;     </span></a>
-<a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt; [21] &quot;study_type&quot;                      &quot;study_part&quot;                     </span></a>
-<a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt; [23] &quot;study_group&quot;                     &quot;study_arm&quot;                      </span></a>
-<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co">#&gt; [25] &quot;study_arm_summary&quot;               &quot;study_arm_coded_label&quot;          </span></a>
-<a class="sourceLine" id="cb13-19" data-line-number="19"><span class="co">#&gt; [27] &quot;study_randomization&quot;             &quot;study_product_class_combination&quot;</span></a>
-<a class="sourceLine" id="cb13-20" data-line-number="20"><span class="co">#&gt; [29] &quot;study_product_combination&quot;       &quot;study_short_name&quot;               </span></a>
-<a class="sourceLine" id="cb13-21" data-line-number="21"><span class="co">#&gt; [31] &quot;study_grant_pi_name&quot;             &quot;study_strategy&quot;                 </span></a>
-<a class="sourceLine" id="cb13-22" data-line-number="22"><span class="co">#&gt; [33] &quot;study_prot&quot;                      &quot;genderidentity&quot;                 </span></a>
-<a class="sourceLine" id="cb13-23" data-line-number="23"><span class="co">#&gt; [35] &quot;studycohort&quot;                     &quot;bmi_category&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>conFilter &lt;-<span class="st"> </span><span class="kw">makeFilter</span>(<span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;EQUAL&quot;</span>, <span class="st">&quot;Human&quot;</span>))</span>
+<span id="cb13-2"><a href="#cb13-2"></a>human &lt;-<span class="st"> </span>cavd<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;Demographics&quot;</span>, <span class="dt">colFilter =</span> conFilter)</span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="kw">dim</span>(human)</span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt; [1] 3087   36</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="kw">colnames</span>(human)</span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt;  [1] &quot;SubjectId&quot;                       &quot;SubjectVisit/Visit&quot;              &quot;species&quot;                        </span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#&gt;  [4] &quot;subspecies&quot;                      &quot;sexatbirth&quot;                      &quot;race&quot;                           </span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="co">#&gt;  [7] &quot;ethnicity&quot;                       &quot;country_enrollment&quot;              &quot;circumcised_enrollment&quot;         </span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="co">#&gt; [10] &quot;bmi_enrollment&quot;                  &quot;agegroup_range&quot;                  &quot;agegroup_enrollment&quot;            </span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="co">#&gt; [13] &quot;age_enrollment&quot;                  &quot;study_label&quot;                     &quot;study_start_date&quot;               </span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="co">#&gt; [16] &quot;study_first_enr_date&quot;            &quot;study_fu_complete_date&quot;          &quot;study_public_date&quot;              </span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="co">#&gt; [19] &quot;study_network&quot;                   &quot;study_last_vaccination_day&quot;      &quot;study_type&quot;                     </span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="co">#&gt; [22] &quot;study_part&quot;                      &quot;study_group&quot;                     &quot;study_arm&quot;                      </span></span>
+<span id="cb13-14"><a href="#cb13-14"></a><span class="co">#&gt; [25] &quot;study_arm_summary&quot;               &quot;study_arm_coded_label&quot;           &quot;study_randomization&quot;            </span></span>
+<span id="cb13-15"><a href="#cb13-15"></a><span class="co">#&gt; [28] &quot;study_product_class_combination&quot; &quot;study_product_combination&quot;       &quot;study_short_name&quot;               </span></span>
+<span id="cb13-16"><a href="#cb13-16"></a><span class="co">#&gt; [31] &quot;study_grant_pi_name&quot;             &quot;study_strategy&quot;                  &quot;study_prot&quot;                     </span></span>
+<span id="cb13-17"><a href="#cb13-17"></a><span class="co">#&gt; [34] &quot;genderidentity&quot;                  &quot;studycohort&quot;                     &quot;bmi_category&quot;</span></span></code></pre></div>
 <p>Check out <a href="https://docs.ropensci.org/DataSpaceR/reference/DataSpaceStudy.html">the reference page</a> of <code>DataSpaceStudy</code> for all available fields and methods.</p>
 </div>
 <div id="connect-to-a-saved-group" class="section level2">
@@ -832,8 +875,18 @@ password supersecretpassword</code></pre>
 <p>A group is a curated collection of participants from filtering of treatments, products, studies, or species, and it is created in <a href="https://dataspace.cavd.org/cds/CAVD/app.view">the DataSpace App</a>.</p>
 <p>Let’s say you are using the App to filter and visualize data and want to save them for later or explore in R with <code>DataSpaceR</code>. You can save a group by clicking the Save button on the Active Filter Panel.</p>
 <p>We can browse available the saved groups or the curated groups by DataSpace Team via <code>availableGroups</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">kable</span>(con<span class="op">$</span>availableGroups)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(con<span class="op">$</span>availableGroups)</span></code></pre></div>
 <table>
+<colgroup>
+<col width="1%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="48%"></col>
+<col width="4%"></col>
+<col width="2%"></col>
+<col width="1%"></col>
+<col width="12%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="right">id</th>
@@ -855,7 +908,7 @@ password supersecretpassword</code></pre>
 <td align="left">readjk</td>
 <td align="left">FALSE</td>
 <td align="right">75</td>
-<td align="left">c(“cvd468”, “cvd483”, “cvd316”, “cvd331”)</td>
+<td align="left">cvd468, cvd483, cvd316, cvd331</td>
 </tr>
 <tr class="even">
 <td align="right">217</td>
@@ -875,7 +928,7 @@ password supersecretpassword</code></pre>
 <td align="left">ehenrich</td>
 <td align="left">TRUE</td>
 <td align="right">78</td>
-<td align="left">c(“cvd281”, “cvd434”, “cvd259”, “cvd277”)</td>
+<td align="left">cvd281, cvd434, cvd259, cvd277</td>
 </tr>
 <tr class="even">
 <td align="right">224</td>
@@ -910,27 +963,158 @@ password supersecretpassword</code></pre>
 </tbody>
 </table>
 <p>To fetch data from a saved group, create a connection at the project level with a group ID. For example, we can connect to the “NYVAC durability comparison” group which has group ID 220 by <code>getGroup</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">nyvac &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getGroup</span>(<span class="dv">220</span>)</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">nyvac</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co">#&gt;   Group: NYVAC durability comparison</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD</span></a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">#&gt;   Available datasets:</span></a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt;     - BAMA</span></a>
-<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt;     - Demographics</span></a>
-<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt;     - ELISPOT</span></a>
-<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt;     - ICS</span></a>
-<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt;     - NAb</span></a>
-<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt;   Available non-integrated datasets:</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>nyvac &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getGroup</span>(<span class="dv">220</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>nyvac</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt;   Group: NYVAC durability comparison</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="co">#&gt;   Available datasets:</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#&gt;     - BAMA</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co">#&gt;     - Demographics</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="co">#&gt;     - ELISPOT</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#&gt;     - ICS</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="co">#&gt;     - NAb</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span></code></pre></div>
 <p>Retrieving a dataset is the same as before.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">NAb_nyvac &lt;-<span class="st"> </span>nyvac<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;NAb&quot;</span>)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">dim</span>(NAb_nyvac)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co">#&gt; [1] 4281   29</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>NAb_nyvac &lt;-<span class="st"> </span>nyvac<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;NAb&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="kw">dim</span>(NAb_nyvac)</span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co">#&gt; [1] 4281   29</span></span></code></pre></div>
+</div>
+<div id="access-virus-metadata" class="section level2">
+<h2>Access Virus Metadata</h2>
+<p>DataSpace maintains metadata about all viruses used in Neutralizing Antibody (NAb) assays. This data can be accessed through the app on the <a href="https://dataspace.cavd.org/cds/CAVD/app.view#learn/learn/Assay/NAB/antigens">NAb antigen page</a> and <a href="https://dataspace.cavd.org/cds/CAVD/app.view#learn/learn/Assay/NAB%20MAB/antigens">NAb MAb antigen page</a>.</p>
+<p>We can access this metadata in <code>DataSpaceR</code> with <code>con$virusMetadata</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(con<span class="op">$</span>virusMetadata))</span></code></pre></div>
+<table style="width:100%;">
+<colgroup>
+<col width="8%"></col>
+<col width="6%"></col>
+<col width="7%"></col>
+<col width="9%"></col>
+<col width="2%"></col>
+<col width="7%"></col>
+<col width="15%"></col>
+<col width="8%"></col>
+<col width="6%"></col>
+<col width="7%"></col>
+<col width="7%"></col>
+<col width="10%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">assay_identifier</th>
+<th align="left">virus</th>
+<th align="left">virus_type</th>
+<th align="left">neutralization_tier</th>
+<th align="left">clade</th>
+<th align="left">antigen_control</th>
+<th align="left">virus_full_name</th>
+<th align="left">virus_name_other</th>
+<th align="left">virus_species</th>
+<th align="left">virus_host_cell</th>
+<th align="left">virus_backbone</th>
+<th align="left">panel_names</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">NAB MAB</td>
+<td align="left">0013095-2.11</td>
+<td align="left">Env Pseudotype</td>
+<td align="left">2</td>
+<td align="left">NA</td>
+<td align="left">0</td>
+<td align="left">0013095-2.11 [SG3Δenv] 293T/17</td>
+<td align="left">NA</td>
+<td align="left">HIV</td>
+<td align="left">293T/17</td>
+<td align="left">SG3Δenv</td>
+<td align="left">Tiered diverse panel</td>
+</tr>
+<tr class="even">
+<td align="left">NAB MAB</td>
+<td align="left">001428-2.42</td>
+<td align="left">Env Pseudotype</td>
+<td align="left">2</td>
+<td align="left">C</td>
+<td align="left">0</td>
+<td align="left">001428-2.42 [SG3Δenv] 293T/17</td>
+<td align="left">NA</td>
+<td align="left">HIV</td>
+<td align="left">293T/17</td>
+<td align="left">SG3Δenv</td>
+<td align="left">Tiered diverse panel</td>
+</tr>
+<tr class="odd">
+<td align="left">NAB MAB</td>
+<td align="left">0041.v3.c18</td>
+<td align="left">Env Pseudotype</td>
+<td align="left">2</td>
+<td align="left">C</td>
+<td align="left">0</td>
+<td align="left">0041.v3.c18 [SG3Δenv] 293T/17</td>
+<td align="left">0041.V3.C18</td>
+<td align="left">HIV</td>
+<td align="left">293T/17</td>
+<td align="left">SG3Δenv</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">NAB MAB</td>
+<td align="left">0077.v1.c16</td>
+<td align="left">Env Pseudotype</td>
+<td align="left">2</td>
+<td align="left">C</td>
+<td align="left">0</td>
+<td align="left">0077.v1.c16 [SG3Δenv] 293T/17</td>
+<td align="left">0077.v1.c16</td>
+<td align="left">HIV</td>
+<td align="left">293T/17</td>
+<td align="left">SG3Δenv</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">NAB</td>
+<td align="left">00836-2.5</td>
+<td align="left">Env Pseudotype</td>
+<td align="left">1B</td>
+<td align="left">C</td>
+<td align="left">0</td>
+<td align="left">00836-2.5 [SG3Δenv] 293T/17</td>
+<td align="left">NA</td>
+<td align="left">HIV</td>
+<td align="left">293T/17</td>
+<td align="left">SG3Δenv</td>
+<td align="left">Tiered diverse panel</td>
+</tr>
+<tr class="even">
+<td align="left">NAB MAB</td>
+<td align="left">0260.v5.c1</td>
+<td align="left">Env Pseudotype</td>
+<td align="left">2</td>
+<td align="left">A</td>
+<td align="left">0</td>
+<td align="left">0260.v5.c1 [SG3Δenv] 293T/17</td>
+<td align="left">0260.V5.C1</td>
+<td align="left">HIV</td>
+<td align="left">293T/17</td>
+<td align="left">SG3Δenv</td>
+<td align="left">Tiered diverse panel</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="access-monoclonal-antibody-data" class="section level2">
 <h2>Access monoclonal antibody data</h2>
 <p>See other vignette for a tutorial on accessing monoclonal antibody data with <code>DataSpaceR</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">vignette</span>(<span class="st">&quot;Accessing_Monoconal_Antibody_Data&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">vignette</span>(<span class="st">&quot;Accessing_Monoconal_Antibody_Data&quot;</span>)</span></code></pre></div>
+</div>
+<div id="browse-and-download-publication-data" class="section level2">
+<h2>Browse and Download Publication Data</h2>
+<p>DataSpace maintains a curated collection of relevant publications, which can be accessed through the <a href="https://dataspace.cavd.org/cds/CAVD/app.view?#learn/learn/Publication">Publications page</a> through the app. Metadata about these publications can be accessed through <code>DataSpaceR</code> with <code>con$availablePublications</code>.</p>
+<p>See Publication Data vignette for a tutorial on accessing publication data through DataSpaceR.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">vignette</span>(<span class="st">&quot;Publication_Data&quot;</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="co">#&gt; Warning: vignette &#39;Publication_Data&#39; not found</span></span></code></pre></div>
 </div>
 <div id="reference-tables" class="section level2">
 <h2>Reference Tables</h2>
@@ -958,12 +1142,20 @@ password supersecretpassword</code></pre>
 <td>The table of available groups.</td>
 </tr>
 <tr class="odd">
+<td><code>availablePublications</code></td>
+<td>The table of available publications.</td>
+</tr>
+<tr class="even">
 <td><code>mabGrid</code></td>
 <td>The filtered mAb grid.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>mabGridSummary</code></td>
 <td>The summarized mAb grid with updated <code>n_</code> columns and <code>geometric_mean_curve_ic50</code>.</td>
+</tr>
+<tr class="even">
+<td><code>virusMetadata</code></td>
+<td>Metadata about all viruses in the DataSpace.</td>
 </tr>
 <tr class="odd">
 <td><code>filterMabGrid</code></td>
@@ -984,6 +1176,10 @@ password supersecretpassword</code></pre>
 <tr class="odd">
 <td><code>getGroup</code></td>
 <td>Create a <code>DataSpaceStudy</code> object by group.</td>
+</tr>
+<tr class="even">
+<td><code>downloadPublicationData</code></td>
+<td>Download data from a chosen publication.</td>
 </tr>
 </tbody>
 </table>
@@ -1085,31 +1281,30 @@ password supersecretpassword</code></pre>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">sessionInfo</span>()</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; R version 3.6.2 (2019-12-12)</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">#&gt; Platform: x86_64-apple-darwin15.6.0 (64-bit)</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co">#&gt; Running under: macOS Catalina 10.15.2</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co">#&gt; Matrix products: default</span></a>
-<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib</span></a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib</span></a>
-<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="co">#&gt; locale:</span></a>
-<a class="sourceLine" id="cb18-11" data-line-number="11"><span class="co">#&gt; [1] C/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></a>
-<a class="sourceLine" id="cb18-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb18-13" data-line-number="13"><span class="co">#&gt; attached base packages:</span></a>
-<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></a>
-<a class="sourceLine" id="cb18-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb18-16" data-line-number="16"><span class="co">#&gt; other attached packages:</span></a>
-<a class="sourceLine" id="cb18-17" data-line-number="17"><span class="co">#&gt; [1] DataSpaceR_0.7.3</span></a>
-<a class="sourceLine" id="cb18-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb18-19" data-line-number="19"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
-<a class="sourceLine" id="cb18-20" data-line-number="20"><span class="co">#&gt;  [1] Rcpp_1.0.3        assertthat_0.2.1  digest_0.6.23     R6_2.4.1         </span></a>
-<a class="sourceLine" id="cb18-21" data-line-number="21"><span class="co">#&gt;  [5] jsonlite_1.6      magrittr_1.5      evaluate_0.14     highr_0.8        </span></a>
-<a class="sourceLine" id="cb18-22" data-line-number="22"><span class="co">#&gt;  [9] httr_1.4.1        rlang_0.4.2       stringi_1.4.3     curl_4.3         </span></a>
-<a class="sourceLine" id="cb18-23" data-line-number="23"><span class="co">#&gt; [13] data.table_1.12.8 rmarkdown_2.0     tools_3.6.2       stringr_1.4.0    </span></a>
-<a class="sourceLine" id="cb18-24" data-line-number="24"><span class="co">#&gt; [17] Rlabkey_2.3.3     xfun_0.11         yaml_2.2.0        compiler_3.6.2   </span></a>
-<a class="sourceLine" id="cb18-25" data-line-number="25"><span class="co">#&gt; [21] htmltools_0.4.0   knitr_1.26</span></a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">sessionInfo</span>()</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="co">#&gt; R version 4.0.2 (2020-06-22)</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co">#&gt; Running under: macOS Catalina 10.15.6</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="co">#&gt; </span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="co">#&gt; Matrix products: default</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="co">#&gt; BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="co">#&gt; </span></span>
+<span id="cb20-10"><a href="#cb20-10"></a><span class="co">#&gt; locale:</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a><span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
+<span id="cb20-12"><a href="#cb20-12"></a><span class="co">#&gt; </span></span>
+<span id="cb20-13"><a href="#cb20-13"></a><span class="co">#&gt; attached base packages:</span></span>
+<span id="cb20-14"><a href="#cb20-14"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span id="cb20-15"><a href="#cb20-15"></a><span class="co">#&gt; </span></span>
+<span id="cb20-16"><a href="#cb20-16"></a><span class="co">#&gt; other attached packages:</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a><span class="co">#&gt; [1] knitr_1.29        data.table_1.13.0 testthat_2.3.2    DataSpaceR_0.7.4 </span></span>
+<span id="cb20-18"><a href="#cb20-18"></a><span class="co">#&gt; </span></span>
+<span id="cb20-19"><a href="#cb20-19"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span id="cb20-20"><a href="#cb20-20"></a><span class="co">#&gt;  [1] Rcpp_1.0.5        compiler_4.0.2    pryr_0.1.4        highr_0.8         tools_4.0.2       digest_0.6.25     jsonlite_1.7.0   </span></span>
+<span id="cb20-21"><a href="#cb20-21"></a><span class="co">#&gt;  [8] evaluate_0.14     rlang_0.4.7       cli_2.0.2         rstudioapi_0.11   crosstalk_1.1.0.1 curl_4.3          yaml_2.2.1       </span></span>
+<span id="cb20-22"><a href="#cb20-22"></a><span class="co">#&gt; [15] xfun_0.16         httr_1.4.2        stringr_1.4.0     htmlwidgets_1.5.1 DT_0.15           webshot_0.5.2     glue_1.4.1       </span></span>
+<span id="cb20-23"><a href="#cb20-23"></a><span class="co">#&gt; [22] R6_2.4.1          processx_3.4.3    fansi_0.4.1       Rlabkey_2.5.2     rmarkdown_2.3     callr_3.4.3       magrittr_1.5     </span></span>
+<span id="cb20-24"><a href="#cb20-24"></a><span class="co">#&gt; [29] codetools_0.2-16  ps_1.3.4          htmltools_0.5.0   assertthat_0.2.1  stringi_1.4.6     crayon_1.3.4</span></span></code></pre></div>
 </div>
 
 
