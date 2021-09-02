@@ -9,15 +9,26 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<style>
+table {
+    display: block;
+    max-width: 100%;
+    max-height: 600px;
+    overflow: scroll;
+}
+thead{
+    position: sticky;
+    top: 0px;
+    background-color: #fff;
+}
+</style>
+
 ```{r setup, echo = FALSE, warning=FALSE, message=FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 STAGING <- identical(tolower(Sys.getenv("STAGING")), "true")
 labkey.url.base <- ifelse(STAGING, "https://dataspace-staging.cavd.org", "https://dataspace.cavd.org")
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  purl = NOT_CRAN,
-  eval = NOT_CRAN,
   message = FALSE
 )
 ```
@@ -107,3 +118,8 @@ cd4
 This publication also includes analysis scripts used for the publication, which can allow users to reproduce the analysis and results.
 
 
+## Session information
+
+```{r session-info}
+sessionInfo()
+```

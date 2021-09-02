@@ -12,43 +12,44 @@
 
 <meta name="author" content="Helen Miller" />
 
-<meta name="date" content="2020-08-21" />
+<meta name="date" content="2021-08-30" />
 
 <title>Accessing Publication Data</title>
 
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
 
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
-});
-</script>
-
-
-<style type="text/css">code{white-space: pre;}</style>
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -68,7 +69,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,187 +126,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table {
-margin: 1em auto;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table, table th, table td {
-border-left-style: none;
-border-right-style: none;
-}
-table thead, table tr.even {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
 
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; } 
-code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
 
 
 
@@ -319,46 +141,61 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Accessing Publication Data</h1>
 <h4 class="author">Helen Miller</h4>
-<h4 class="date">2020-08-21</h4>
+<h4 class="date">2021-08-30</h4>
 
 
 
+<style>
+table {
+    display: block;
+    max-width: 100%;
+    max-height: 600px;
+    overflow: scroll;
+}
+thead{
+    position: sticky;
+    top: 0px;
+    background-color: #fff;
+}
+</style>
 <p>DataSpace maintains a curated collection of relevant publications, which can be accessed through the <a href="https://dataspace.cavd.org/cds/CAVD/app.view?#learn/learn/Publication">Publications page</a> through the app. Some publications laos include datasets which can be downloaded as a zip file. <code>DataSpaceR</code> provides an interface for browsing publications in DataSpace and downloading publication data where available.</p>
 <div id="browsing-publications-in-dataspace" class="section level2">
 <h2>Browsing publications in DataSpace</h2>
 <p>The <code>DataSpaceConnection</code> object includes methods for browsing and downloading publications and publication data.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(DataSpaceR)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(data.table)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>con &lt;-<span class="st"> </span><span class="kw">connectDS</span>()</span>
-<span id="cb1-4"><a href="#cb1-4"></a>con</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt; &lt;DataSpaceConnection&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt;   User: jkim2345@scharp.org</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt;   Available studies: 260</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt;     - 76 studies with data</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt;     - 4994 subjects</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt;     - 423195 data points</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt;   Available groups: 6</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co">#&gt;   Available publications: 1403</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="co">#&gt;     - 1 publications with data</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DataSpaceR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">connectDS</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>con</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;DataSpaceConnection&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   User: </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Available studies: 273</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     - 77 studies with data</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     - 5049 subjects</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     - 423195 data points</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Available groups: 3</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Available publications: 1530</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     - 12 publications with data</span></span></code></pre></div>
 <p>The <code>DataSpaceConnection</code> print method summarizes the publications and publication data. More details about publications can be accessed through <code>con$availablePublications</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(con<span class="op">$</span>availablePublications[, <span class="op">-</span><span class="st">&quot;link&quot;</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(con<span class="sc">$</span>availablePublications[, <span class="sc">-</span><span class="st">&quot;link&quot;</span>]))</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
-<col width="5%"></col>
-<col width="4%"></col>
-<col width="50%"></col>
-<col width="9%"></col>
-<col width="5%"></col>
-<col width="3%"></col>
-<col width="5%"></col>
-<col width="6%"></col>
-<col width="9%"></col>
+<col width="2%" />
+<col width="2%" />
+<col width="47%" />
+<col width="26%" />
+<col width="5%" />
+<col width="3%" />
+<col width="1%" />
+<col width="2%" />
+<col width="3%" />
+<col width="4%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">publication_id</th>
 <th align="left">first_author</th>
+<th align="left">all_authors</th>
 <th align="left">title</th>
 <th align="left">journal</th>
 <th align="left">publication_date</th>
@@ -372,6 +209,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <tr class="odd">
 <td align="left">1006</td>
 <td align="left">Abbink P</td>
+<td align="left">Abbink P, Maxfield LF, Ng’ang’a D, Borducchi EN, Iampietro MJ, Bricault CA, Teigler JE, Blackmore S, Parenteau L, Wagh K, Handley SA, Zhao G, Virgin HW, Korber B, Barouch DH</td>
 <td align="left">Construction and evaluation of novel rhesus monkey adenovirus vaccine vectors</td>
 <td align="left">J Virol</td>
 <td align="left">2015 Feb</td>
@@ -383,6 +221,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <tr class="even">
 <td align="left">1303</td>
 <td align="left">Abbott RK</td>
+<td align="left">Abbott RK, Lee JH, Menis S, Skog P, Rossi M, Ota T, Kulp DW, Bhullar D, Kalyuzhniy O, Havenar-Daughton C, Schief WR, Nemazee D, Crotty S</td>
 <td align="left">Precursor frequency and affinity determine B Cell competitive fitness in germinal centers, tested with germline-targeting HIV vaccine immunogens</td>
 <td align="left">Immunity</td>
 <td align="left">2018 Jan 16</td>
@@ -394,6 +233,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <tr class="odd">
 <td align="left">1136</td>
 <td align="left">Abu-Raddad LJ</td>
+<td align="left">Abu-Raddad LJ, Boily MC, Self S, Longini IM Jr</td>
 <td align="left">Analytic insights into the population level impact of imperfect prophylactic HIV vaccines</td>
 <td align="left">J Acquir Immune Defic Syndr</td>
 <td align="left">2007 Aug 1</td>
@@ -403,8 +243,21 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">FALSE</td>
 </tr>
 <tr class="even">
+<td align="left">1485</td>
+<td align="left">Abu-Raddad LJ</td>
+<td align="left">Abu-Raddad LJ, Barnabas RV, Janes H, Weiss HA, Kublin JG, Longini IM Jr, Wasserheit JN, HIV Viral Load Working Group</td>
+<td align="left">Have the explosive HIV epidemics in sub-Saharan Africa been driven by higher community viral load?</td>
+<td align="left">AIDS</td>
+<td align="left">2013 Mar 27</td>
+<td align="left">23196933</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
 <td align="left">842</td>
 <td align="left">Acharya P</td>
+<td align="left">Acharya P, Tolbert WD, Gohain N, Wu X, Yu L, Liu T, Huang W, Huang CC, Kwon YD, Louder RK, Luongo TS, McLellan JS, Pancera M, Yang Y, Zhang B, Flinko R, Foulke JS Jr, Sajadi MM, Kamin-Lewis R, Robinson JE, Martin L, Kwong PD, Guan Y, DeVico AL, Lewis GK, Pazgier M</td>
 <td align="left">Structural definition of an antibody-dependent cellular cytotoxicity response implicated in reduced risk for HIV-1 infection</td>
 <td align="left">J Virol</td>
 <td align="left">2014 Nov</td>
@@ -413,9 +266,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">NA</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">1067</td>
 <td align="left">Ackerman ME</td>
+<td align="left">Ackerman ME, Mikhailova A, Brown EP, Dowell KG, Walker BD, Bailey-Kellogg C, Suscovich TJ, Alter G</td>
 <td align="left">Polyfunctional HIV-specific antibody responses are associated with spontaneous HIV control</td>
 <td align="left">PLOS Pathog</td>
 <td align="left">2016 Jan</td>
@@ -424,39 +278,30 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">NA</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
-<td align="left">1076</td>
-<td align="left">Ackerman ME</td>
-<td align="left">Systems serology for evaluation of HIV vaccine trials</td>
-<td align="left">Immunol Rev</td>
-<td align="left">2017 Jan</td>
-<td align="left">28133810</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
 </tbody>
 </table>
 <p>This table summarizes all publications, providing some information like first author, journal where it was published, and title as a <code>data.table</code>. It also includes a pubmed url where available under <code>link</code>. Related studies under <code>related_studies</code>, and related studies with data available under <code>studies_with_data</code>. We can use <code>data.table</code> methods to filter and sort this table to browse available publications.</p>
 <p>For example, we can filter this table to view only publications related to a particular study:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>vtn096_pubs &lt;-<span class="st"> </span>con<span class="op">$</span>availablePublications[<span class="kw">grepl</span>(<span class="st">&quot;vtn096&quot;</span>, related_studies)]</span>
-<span id="cb3-2"><a href="#cb3-2"></a>knitr<span class="op">::</span><span class="kw">kable</span>(vtn096_pubs[, <span class="op">-</span><span class="st">&quot;link&quot;</span>])</span></code></pre></div>
-<table style="width:100%;">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vtn096_pubs <span class="ot">&lt;-</span> con<span class="sc">$</span>availablePublications[<span class="fu">grepl</span>(<span class="st">&quot;vtn096&quot;</span>, related_studies)]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(vtn096_pubs[, <span class="sc">-</span><span class="st">&quot;link&quot;</span>])</span></code></pre></div>
+<table>
 <colgroup>
-<col width="4%"></col>
-<col width="4%"></col>
-<col width="55%"></col>
-<col width="6%"></col>
-<col width="5%"></col>
-<col width="3%"></col>
-<col width="7%"></col>
-<col width="5%"></col>
-<col width="8%"></col>
+<col width="2%" />
+<col width="2%" />
+<col width="43%" />
+<col width="31%" />
+<col width="3%" />
+<col width="2%" />
+<col width="1%" />
+<col width="4%" />
+<col width="3%" />
+<col width="4%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">publication_id</th>
 <th align="left">first_author</th>
+<th align="left">all_authors</th>
 <th align="left">title</th>
 <th align="left">journal</th>
 <th align="left">publication_date</th>
@@ -468,8 +313,21 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">1466</td>
+<td align="left">Cram JA</td>
+<td align="left">Cram JA, Fiore-Gartland AJ, Srinivasan S, Karuna S, Pantaleo G, Tomaras GD, Fredricks DN, Kublin JG</td>
+<td align="left">Human gut microbiota is associated with HIV-reactive immunoglobulin at baseline and following HIV vaccination</td>
+<td align="left">PLoS One</td>
+<td align="left">2019</td>
+<td align="left">31869338</td>
+<td align="left">vtn096</td>
+<td align="left">NA</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
 <td align="left">250</td>
 <td align="left">Huang Y</td>
+<td align="left">Huang Y, DiazGranados C, Janes H, Huang Y, deCamp A, Metch B, Grant S, Sanchez B, Phogat S, Koutsoukos M, Kanesa-Thasan N, Bourguignon P, Collard A, Buchbinder S, Tomaras GD, McElrath J, Gray G, Kublin J, Corey L, Gilbert PB</td>
 <td align="left">Selection of HIV vaccine candidates for concurrent testing in an efficacy trial</td>
 <td align="left">Curr Opin Virol</td>
 <td align="left">2016 Jan 28</td>
@@ -478,9 +336,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">NA</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">267</td>
 <td align="left">Huang Y</td>
+<td align="left">Huang Y, Zhang L, Janes H, Frahm N, Isaacs A, Kim JH, Montefiori D, McElrath MJ, Tomaras GD, Gilbert PB</td>
 <td align="left">Predictors of durable immune responses six months after the last vaccination in preventive HIV vaccine trials</td>
 <td align="left">Vaccine</td>
 <td align="left">2017 Feb 22</td>
@@ -489,9 +348,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">NA</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">268</td>
 <td align="left">Huang Y</td>
+<td align="left">Huang Y, Gilbert P, Fu R, Janes H</td>
 <td align="left">Statistical methods for down-selection of treatment regimens based on multiple endpoints, with application to HIV vaccine trials</td>
 <td align="left">Biostatistics</td>
 <td align="left">2017 Apr 1</td>
@@ -500,20 +360,22 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">NA</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">1392</td>
 <td align="left">Pantaleo G</td>
+<td align="left">Pantaleo G, Janes H, Karuna S, Grant S, Ouedraogo GL, Allen M, Tomaras GD, Frahm N, Montefiori DC, Ferrari G, Ding S, Lee C, Robb ML, Esteban M, Wagner R, Bart PA, Rettby N, McElrath MJ, Gilbert PB, Kublin JG, Corey L, NIAID HIV Vaccine Trials Network</td>
 <td align="left">Safety and immunogenicity of a multivalent HIV vaccine comprising envelope protein with either DNA or NYVAC vectors (HVTN 096): a phase 1b, double-blind, placebo-controlled trial</td>
 <td align="left">Lancet HIV</td>
 <td align="left">2019 Oct 7</td>
 <td align="left">31601541</td>
-<td align="left">vtn096</td>
+<td align="left">mrv144, vtn096, vtn100</td>
 <td align="left">NA</td>
-<td align="left">FALSE</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">1420</td>
 <td align="left">Westling T</td>
+<td align="left">Westling T, Juraska M, Seaton KE, Tomaras GD, Gilbert PB, Janes H</td>
 <td align="left">Methods for comparing durability of immune responses between vaccine regimens in early-phase trials</td>
 <td align="left">Stat Methods Med Res</td>
 <td align="left">2019 Jan 9</td>
@@ -522,9 +384,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">NA</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">281</td>
 <td align="left">Yates NL</td>
+<td align="left">Yates NL, deCamp AC, Korber BT, Liao HX, Irene C, Pinter A, Peacock J, Harris LJ, Sawant S, Hraber P, Shen X, Rerks-Ngarm S, Pitisuttithum P, Nitayapan S, Berman PW, Robb ML, Pantaleo G, Zolla-Pazner S, Haynes BF, Alam SM, Montefiori DC, Tomaras GD</td>
 <td align="left">HIV-1 envelope glycoproteins from diverse clades differentiate antibody responses and durability among vaccinees</td>
 <td align="left">J Virol</td>
 <td align="left">2018 Mar 28</td>
@@ -536,24 +399,26 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </tbody>
 </table>
 <p>or publications that have related studies with integrated data in DataSpace:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>pubs_with_study_data &lt;-<span class="st"> </span>con<span class="op">$</span>availablePublications[<span class="op">!</span><span class="kw">is.na</span>(studies_with_data)]</span>
-<span id="cb4-2"><a href="#cb4-2"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(pubs_with_study_data[, <span class="op">-</span><span class="st">&quot;link&quot;</span>]))</span></code></pre></div>
-<table>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pubs_with_study_data <span class="ot">&lt;-</span> con<span class="sc">$</span>availablePublications[<span class="sc">!</span><span class="fu">is.na</span>(studies_with_data)]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(pubs_with_study_data[, <span class="sc">-</span><span class="st">&quot;link&quot;</span>]))</span></code></pre></div>
+<table style="width:100%;">
 <colgroup>
-<col width="4%"></col>
-<col width="3%"></col>
-<col width="43%"></col>
-<col width="5%"></col>
-<col width="4%"></col>
-<col width="2%"></col>
-<col width="22%"></col>
-<col width="5%"></col>
-<col width="7%"></col>
+<col width="2%" />
+<col width="2%" />
+<col width="50%" />
+<col width="20%" />
+<col width="2%" />
+<col width="2%" />
+<col width="1%" />
+<col width="11%" />
+<col width="2%" />
+<col width="3%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">publication_id</th>
 <th align="left">first_author</th>
+<th align="left">all_authors</th>
 <th align="left">title</th>
 <th align="left">journal</th>
 <th align="left">publication_date</th>
@@ -565,8 +430,21 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">1540</td>
+<td align="left">Andersen-Nissen E</td>
+<td align="left">Andersen-Nissen E, Fiore-Gartland A, Ballweber Fleming L, Carpp LN, Naidoo AF, Harper MS, Voillet V, Grunenberg N, Laher F, Innes C, Bekker L-G, Kublin JG, Huang Y, Ferrari G, Tomaras GD, Gray G, Gilbert PB, McElrath MJ</td>
+<td align="left">Innate immune signatures to a partially-efficacious HIV vaccine predict correlates of HIV-1 infection risk</td>
+<td align="left">PLOS Pathog</td>
+<td align="left">2021</td>
+<td align="left">NA</td>
+<td align="left">vtn097</td>
+<td align="left">vtn097</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
 <td align="left">213</td>
 <td align="left">Andrasik MP</td>
+<td align="left">Andrasik MP, Yoon R, Mooney J, Broder G, Bolton M, Votto T, Davis-Vogel A; HVTN 505 study team; NIAID HIV Vaccine Trials Network</td>
 <td align="left">Exploring barriers and facilitators to participation of male-to-female transgender persons in preventive HIV vaccine clinical trials.</td>
 <td align="left">Prev Sci</td>
 <td align="left">2014 Jun</td>
@@ -575,9 +453,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">vtn505</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">218</td>
 <td align="left">Andrasik MP</td>
+<td align="left">Andrasik MP, Karuna ST, Nebergall M, Koblin BA, Kublin JG; NIAID HIV Vaccine Trials Network</td>
 <td align="left">Behavioral risk assessment in HIV Vaccine Trials Network (HVTN) clinical trials: A qualitative study exploring HVTN staff perspectives</td>
 <td align="left">Vaccine</td>
 <td align="left">2013 Sep 13</td>
@@ -586,9 +465,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">vtn505</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">225</td>
 <td align="left">Andrasik MP</td>
+<td align="left">Andrasik MP, Chandler C, Powell B, Humes D, Wakefield S, Kripke K, Eckstein D</td>
 <td align="left">Bridging the divide: HIV prevention research and Black men who have sex with men</td>
 <td align="left">Am J Public Health</td>
 <td align="left">2014 Apr</td>
@@ -597,9 +477,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">vtn505</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">226</td>
 <td align="left">Arnold MP</td>
+<td align="left">Arnold MP, Andrasik M, Landers S, Karuna S, Mimiaga MJ, Wakefield S, Mayer K, Buchbinder S, Koblin BA</td>
 <td align="left">Sources of racial/ethnic differences in HIV vaccine trial awareness: Exposure, attention, or both?</td>
 <td align="left">Am J Public Health</td>
 <td align="left">2014 Aug</td>
@@ -608,9 +489,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">vtn505</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">7</td>
 <td align="left">Asbach B</td>
+<td align="left">Asbach B, Kliche A, Köstler J, Perdiguero B, Esteban M, Jacobs BL, Montefiori DC, LaBranche CC, Yates NL, Tomaras GD, Ferrari G, Foulds KE, Roederer M, Landucci G, Forthal DN, Seaman MS, Hawkins N, Self SG, Sato A, Gottardo R, Phogat S, Tartaglia J, Barnett SW, Burke B, Cristillo AD, Weiss DE, Francis J, Galmin L, Ding S, Heeney JL, Pantaleo G, Wagner R</td>
 <td align="left">Potential to streamline heterologous DNA prime and NYVAC/protein boost HIV vaccine regimens in rhesus macaques by employing improved antigens</td>
 <td align="left">J Virol</td>
 <td align="left">2016 Mar 28</td>
@@ -619,38 +501,29 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <td align="left">cvd277, cvd281</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
-<td align="left">1394</td>
-<td align="left">Boppana S</td>
-<td align="left">Cross-reactive CD8 T-cell responses elicited by Ad5-based HIV-1 vaccines contributed to early viral evolution in vaccine recipients who became infected</td>
-<td align="left">J Virol</td>
-<td align="left">2019 Oct 23</td>
-<td align="left">31645444</td>
-<td align="left">vtn502, vtn505</td>
-<td align="left">vtn505</td>
-<td align="left">FALSE</td>
-</tr>
 </tbody>
 </table>
 <p>We can also use this information to connect to related studies and pull integrated data. Say we are interested in this Rouphael (2019) publication:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>rouphael2019 &lt;-<span class="st"> </span>con<span class="op">$</span>availablePublications[first_author <span class="op">==</span><span class="st"> &quot;Rouphael NG&quot;</span>]</span>
-<span id="cb5-2"><a href="#cb5-2"></a>knitr<span class="op">::</span><span class="kw">kable</span>(rouphael2019[, <span class="op">-</span><span class="st">&quot;link&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rouphael2019 <span class="ot">&lt;-</span> con<span class="sc">$</span>availablePublications[first_author <span class="sc">==</span> <span class="st">&quot;Rouphael NG&quot;</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(rouphael2019[, <span class="sc">-</span><span class="st">&quot;link&quot;</span>])</span></code></pre></div>
 <table>
 <colgroup>
-<col width="6%"></col>
-<col width="5%"></col>
-<col width="41%"></col>
-<col width="6%"></col>
-<col width="7%"></col>
-<col width="4%"></col>
-<col width="7%"></col>
-<col width="8%"></col>
-<col width="12%"></col>
+<col width="2%" />
+<col width="2%" />
+<col width="58%" />
+<col width="17%" />
+<col width="2%" />
+<col width="3%" />
+<col width="1%" />
+<col width="2%" />
+<col width="3%" />
+<col width="5%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">publication_id</th>
 <th align="left">first_author</th>
+<th align="left">all_authors</th>
 <th align="left">title</th>
 <th align="left">journal</th>
 <th align="left">publication_date</th>
@@ -664,56 +537,59 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <tr class="odd">
 <td align="left">1390</td>
 <td align="left">Rouphael NG</td>
+<td align="left">Rouphael NG, Morgan C, Li SS, Jensen R, Sanchez B, Karuna S, Swann E, Sobieszczyk ME, Frank I, Wilson GJ, Tieu HV, Maenza J, Norwood A, Kobie J, Sinangil F, Pantaleo G, Ding S, McElrath MJ, De Rosa SC, Montefiori DC, Ferrari G, Tomaras GD, Keefer MC, HVTN 105 Protocol Team and the NIAID HIV Vaccine Trials Network</td>
 <td align="left">DNA priming and gp120 boosting induces HIV-specific antibodies in a randomized clinical trial</td>
 <td align="left">J Clin Invest</td>
 <td align="left">2019 Sep 30</td>
 <td align="left">31566579</td>
 <td align="left">vtn105</td>
 <td align="left">vtn105</td>
-<td align="left">FALSE</td>
+<td align="left">TRUE</td>
 </tr>
 </tbody>
 </table>
 <p>We can find this publication in the available publications table, determine related studies, and pull data for those studies where available.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>related_studies &lt;-<span class="st"> </span>rouphael2019<span class="op">$</span>related_studies</span>
-<span id="cb6-2"><a href="#cb6-2"></a>related_studies</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt; [1] &quot;vtn105&quot;</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>rouphael2019_study &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(related_studies)</span>
-<span id="cb6-5"><a href="#cb6-5"></a>rouphael2019_study</span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;   Study: vtn105</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD/vtn105</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;   Available datasets:</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;     - BAMA</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;     - Demographics</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;     - ICS</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;     - NAb</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="kw">dim</span>(rouphael2019_study<span class="op">$</span>availableDatasets)</span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; [1] 4 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>related_studies <span class="ot">&lt;-</span> rouphael2019<span class="sc">$</span>related_studies</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>related_studies</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;vtn105&quot;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>rouphael2019_study <span class="ot">&lt;-</span> con<span class="sc">$</span><span class="fu">getStudy</span>(related_studies)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>rouphael2019_study</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Study: vtn105</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD/vtn105</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Available datasets:</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     - Demographics</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     - Intracellular Cytokine Staining</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(rouphael2019_study<span class="sc">$</span>availableDatasets)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 4</span></span></code></pre></div>
 <p>We can see that there are datasets available for this study. We can pull any of them using <code>rouphael2019_study$getDataset()</code>.</p>
 </div>
 <div id="downloading-publication-data" class="section level2">
 <h2>Downloading Publication Data</h2>
 <p>DataSpace also includes publication datasets for some publications. The format of this data will vary from publication to publication, and is stored in a zip file. The <code>publication_data_available</code> field specifies publications where publication data is available.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>pubs_with_data &lt;-<span class="st"> </span>con<span class="op">$</span>availablePublications[publication_data_available <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>]</span>
-<span id="cb7-2"><a href="#cb7-2"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(pubs_with_data[, <span class="op">-</span><span class="st">&quot;link&quot;</span>]))</span></code></pre></div>
-<table>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pubs_with_data <span class="ot">&lt;-</span> con<span class="sc">$</span>availablePublications[publication_data_available <span class="sc">==</span> <span class="cn">TRUE</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(pubs_with_data[, <span class="sc">-</span><span class="st">&quot;link&quot;</span>]))</span></code></pre></div>
+<table style="width:100%;">
 <colgroup>
-<col width="6%"></col>
-<col width="5%"></col>
-<col width="11%"></col>
-<col width="5%"></col>
-<col width="7%"></col>
-<col width="4%"></col>
-<col width="38%"></col>
-<col width="7%"></col>
-<col width="11%"></col>
+<col width="2%" />
+<col width="2%" />
+<col width="57%" />
+<col width="24%" />
+<col width="2%" />
+<col width="2%" />
+<col width="1%" />
+<col width="2%" />
+<col width="2%" />
+<col width="3%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">publication_id</th>
 <th align="left">first_author</th>
+<th align="left">all_authors</th>
 <th align="left">title</th>
 <th align="left">journal</th>
 <th align="left">publication_date</th>
@@ -725,13 +601,74 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">1461</td>
-<td align="left">Westling T</td>
-<td align="left">Causal isotonic regression</td>
-<td align="left">J R Stat Soc</td>
-<td align="left">2020</td>
+<td align="left">1540</td>
+<td align="left">Andersen-Nissen E</td>
+<td align="left">Andersen-Nissen E, Fiore-Gartland A, Ballweber Fleming L, Carpp LN, Naidoo AF, Harper MS, Voillet V, Grunenberg N, Laher F, Innes C, Bekker L-G, Kublin JG, Huang Y, Ferrari G, Tomaras GD, Gray G, Gilbert PB, McElrath MJ</td>
+<td align="left">Innate immune signatures to a partially-efficacious HIV vaccine predict correlates of HIV-1 infection risk</td>
+<td align="left">PLOS Pathog</td>
+<td align="left">2021</td>
 <td align="left">NA</td>
-<td align="left">vtn044, vtn052, vtn060, vtn063, vtn064, vtn068, vtn069, vtn070, vtn080, vtn100, vtn204</td>
+<td align="left">vtn097</td>
+<td align="left">vtn097</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">136</td>
+<td align="left">Bekker LG</td>
+<td align="left">Bekker LG, Moodie Z, Grunenberg N, Laher F, Tomaras GD, Cohen KW, Allen M, Malahleha M, Mngadi K, Daniels B, Innes C, Bentley C, Frahm N, Morris DE, Morris L, Mkhize NN, Montefiori DC, Sarzotti-Kelsoe M, Grant S, Yu C, Mehra VL, Pensiero MN, Phogat S, DiazGranados CA, Barnett SW, Kanesa-thasan N, Koutsoukos M, Michael NL, Robb ML, Kublin JG, Gilbert PB, Corey L, Gray GE, McElrath MJ on behalf of the HVTN 100 Protocol Team</td>
+<td align="left">A phase 1/2 HIV-1 vaccine trial of a Subtype C ALVAC-HIV and Bivalent Subtype C gp120/MF59 vaccine regimen in low risk HIV uninfected South African adults</td>
+<td align="left">Lancet HIV</td>
+<td align="left">2018 Jul</td>
+<td align="left">29898870</td>
+<td align="left">mrv144, vtn100</td>
+<td align="left">NA</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">1466</td>
+<td align="left">Cram JA</td>
+<td align="left">Cram JA, Fiore-Gartland AJ, Srinivasan S, Karuna S, Pantaleo G, Tomaras GD, Fredricks DN, Kublin JG</td>
+<td align="left">Human gut microbiota is associated with HIV-reactive immunoglobulin at baseline and following HIV vaccination</td>
+<td align="left">PLoS One</td>
+<td align="left">2019</td>
+<td align="left">31869338</td>
+<td align="left">vtn096</td>
+<td align="left">NA</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">80</td>
+<td align="left">Fong Y</td>
+<td align="left">Fong Y, Shen X, Ashley VC, Deal A, Seaton KE, Yu C, Grant SP, Ferrari G, deCamp AC, Bailer RT, Koup RA, Montefiori D, Haynes BF, Sarzotti-Kelsoe M, Graham BS, Carpp LN, Hammer SM, Sobieszczyk M, Karuna S, Swann E, DeJesus E, Mulligan M, Frank I, Buchbinder S, Novak RM, McElrath MJ, Kalams S, Keefer M, Frahm NA, Janes HE, Gilbert PB, Tomaras GD</td>
+<td align="left">Modification of the association between T-Cell immune responses and human immunodeficiency virus type 1 infection risk by vaccine-induced antibody responses in the HVTN 505 trial</td>
+<td align="left">J Infect Dis</td>
+<td align="left">2018 Mar 28</td>
+<td align="left">29325070</td>
+<td align="left">vtn505</td>
+<td align="left">vtn505</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">79</td>
+<td align="left">Hammer SM</td>
+<td align="left">Hammer SC, Sobieszczyk ME, Janes H, Karuna ST, Mulligan MJ, Grove D, Koblin BA, Buchbinder SP, Keefer MC, Tomaras GD, Frahm N, Hural J, Anude C, Graham BS, Enama ME, Adams E, DeJesus E, Novak RM, Frank I, Bentley C, Ramirez S, Fu R, Koup RA, Mascola JR, Nabel GJ, Montefiori DC, Kublin J, McElrath MJ, Corey L, Gilbert PB</td>
+<td align="left">Efficacy trial of a DNA/rAd5 HIV-1 preventive vaccine</td>
+<td align="left">N Engl J Med</td>
+<td align="left">2013 Nov 28</td>
+<td align="left">24099601</td>
+<td align="left">vtn505</td>
+<td align="left">vtn505</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">1467</td>
+<td align="left">Hosseinipour MC</td>
+<td align="left">Hosseinipour MC, Innes C, Naidoo S, Mann P, Hutter J, Ramjee G, Sebe M, Maganga L, Herce ME, deCamp AC, Marshall K, Dintwe O, Andersen-Nissen E, Tomaras GD, Mkhize N, Morris L, Jensen R, Miner MD, Pantaleo G, Ding S, Van Der Meeren O, Barnett SW, McElrath MJ, Corey L, Kublin JG</td>
+<td align="left">Phase 1 HIV vaccine trial to evaluate the safety and immunogenicity of HIV subtype C DNA and MF59-adjuvanted subtype C Env protein</td>
+<td align="left">Clin Infect Dis</td>
+<td align="left">2020 Jan 4</td>
+<td align="left">31900486</td>
+<td align="left">vtn111</td>
 <td align="left">NA</td>
 <td align="left">TRUE</td>
 </tr>
@@ -739,52 +676,83 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </table>
 <p>Data for a publication can be accessed through <code>DataSpaceR</code> with <code>con$downloadPublicationData()</code>. The publication ID must be specified, as found under <code>publication_id</code> in <code>con$availablePublications</code>. The file is presented as a zip file. The <code>unzip</code> argument gives us the option whether to unzip this file. By default, the file will be unzipped. You may also specify the directory to download the file. By default, it will be saved to your <code>Downloads</code> directory. This function invisibly returns the paths to the downloaded files.</p>
 <p>Here, we download data for publication with ID 1461 (Westling, 2020), and view the resulting downloads.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>publicationDataFiles &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">downloadPublicationData</span>(<span class="st">&quot;1461&quot;</span>, <span class="dt">outputDir =</span> <span class="kw">tempdir</span>(), <span class="dt">unzip =</span> <span class="ot">TRUE</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">basename</span>(publicationDataFiles)</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt; [1] &quot;causal.isoreg.fns.R&quot;           &quot;CD.SuperLearner.R&quot;            </span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; [3] &quot;cd4_analysis.R&quot;                &quot;cd4_data.csv&quot;                 </span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt; [5] &quot;cd8_analysis.R&quot;                &quot;cd8_data.csv&quot;                 </span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt; [7] &quot;README.txt&quot;                    &quot;Westling_1461_file_format.pdf&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>publicationDataFiles <span class="ot">&lt;-</span> con<span class="sc">$</span><span class="fu">downloadPublicationData</span>(<span class="st">&quot;1461&quot;</span>, <span class="at">outputDir =</span> <span class="fu">tempdir</span>(), <span class="at">unzip =</span> <span class="cn">TRUE</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">basename</span>(publicationDataFiles)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;causal.isoreg.fns.R&quot;           &quot;CD.SuperLearner.R&quot;            </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;cd4_analysis.R&quot;                &quot;cd4_data.csv&quot;                 </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] &quot;cd8_analysis.R&quot;                &quot;cd8_data.csv&quot;                 </span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [7] &quot;README.txt&quot;                    &quot;Westling_1461_file_format.pdf&quot;</span></span></code></pre></div>
 <p>All zip files will include a file format document as a PDF, as well as a README. These documents will give an overview of the remaining contents of the files. In this case, data is separated by CD8+ T-cell responses and CD4+ T-cell responses, as described in the <code>README.txt</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>cd4 &lt;-<span class="st"> </span><span class="kw">fread</span>(publicationDataFiles[<span class="kw">grepl</span>(<span class="st">&quot;cd4_data&quot;</span>, publicationDataFiles)])</span>
-<span id="cb9-2"><a href="#cb9-2"></a>cd4</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;       pub_id age    sex      bmi   prot num_vacc dose response sexFemale studyHVTN052</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;   1: 069-071  23   Male 33.31000 vtn069        3  4.0        0         0            0</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;   2: 069-068  20 Female 32.74000 vtn069        3  4.0        1         1            0</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;   3: 069-020  19   Male 20.24000 vtn069        3  4.0        0         0            0</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;   4: 069-008  19   Male 29.98000 vtn069        3  4.0        0         0            0</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt;   5: 069-058  27   Male 31.48000 vtn069        3  4.0        0         0            0</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt;  ---                                                                                 </span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt; 368: 100-182  36 Female 24.32323 vtn100        4  1.5        0         1            0</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; 369: 100-034  20   Male 25.15590 vtn100        4  1.5        1         0            0</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; 370: 100-115  20   Male 22.94812 vtn100        4  1.5        1         0            0</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt; 371: 100-144  19   Male 20.95661 vtn100        4  1.5        0         0            0</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; 372: 100-189  24   Male 19.03114 vtn100        4  1.5        1         0            0</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a><span class="co">#&gt;      studyHVTN068 studyHVTN069 studyHVTN204 studyHVTN100 vacc_type vacc_typeSinglePlasmid</span></span>
-<span id="cb9-16"><a href="#cb9-16"></a><span class="co">#&gt;   1:            0            1            0            0   VRC4or6                      0</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a><span class="co">#&gt;   2:            0            1            0            0   VRC4or6                      0</span></span>
-<span id="cb9-18"><a href="#cb9-18"></a><span class="co">#&gt;   3:            0            1            0            0   VRC4or6                      0</span></span>
-<span id="cb9-19"><a href="#cb9-19"></a><span class="co">#&gt;   4:            0            1            0            0   VRC4or6                      0</span></span>
-<span id="cb9-20"><a href="#cb9-20"></a><span class="co">#&gt;   5:            0            1            0            0   VRC4or6                      0</span></span>
-<span id="cb9-21"><a href="#cb9-21"></a><span class="co">#&gt;  ---                                                                                     </span></span>
-<span id="cb9-22"><a href="#cb9-22"></a><span class="co">#&gt; 368:            0            0            0            1   VRC4or6                      0</span></span>
-<span id="cb9-23"><a href="#cb9-23"></a><span class="co">#&gt; 369:            0            0            0            1   VRC4or6                      0</span></span>
-<span id="cb9-24"><a href="#cb9-24"></a><span class="co">#&gt; 370:            0            0            0            1   VRC4or6                      0</span></span>
-<span id="cb9-25"><a href="#cb9-25"></a><span class="co">#&gt; 371:            0            0            0            1   VRC4or6                      0</span></span>
-<span id="cb9-26"><a href="#cb9-26"></a><span class="co">#&gt; 372:            0            0            0            1   VRC4or6                      0</span></span>
-<span id="cb9-27"><a href="#cb9-27"></a><span class="co">#&gt;      vacc_typeVRC4or6</span></span>
-<span id="cb9-28"><a href="#cb9-28"></a><span class="co">#&gt;   1:                1</span></span>
-<span id="cb9-29"><a href="#cb9-29"></a><span class="co">#&gt;   2:                1</span></span>
-<span id="cb9-30"><a href="#cb9-30"></a><span class="co">#&gt;   3:                1</span></span>
-<span id="cb9-31"><a href="#cb9-31"></a><span class="co">#&gt;   4:                1</span></span>
-<span id="cb9-32"><a href="#cb9-32"></a><span class="co">#&gt;   5:                1</span></span>
-<span id="cb9-33"><a href="#cb9-33"></a><span class="co">#&gt;  ---                 </span></span>
-<span id="cb9-34"><a href="#cb9-34"></a><span class="co">#&gt; 368:                1</span></span>
-<span id="cb9-35"><a href="#cb9-35"></a><span class="co">#&gt; 369:                1</span></span>
-<span id="cb9-36"><a href="#cb9-36"></a><span class="co">#&gt; 370:                1</span></span>
-<span id="cb9-37"><a href="#cb9-37"></a><span class="co">#&gt; 371:                1</span></span>
-<span id="cb9-38"><a href="#cb9-38"></a><span class="co">#&gt; 372:                1</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cd4 <span class="ot">&lt;-</span> <span class="fu">fread</span>(publicationDataFiles[<span class="fu">grepl</span>(<span class="st">&quot;cd4_data&quot;</span>, publicationDataFiles)])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cd4</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       pub_id age    sex      bmi   prot num_vacc dose response sexFemale</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1: 069-071  23   Male 33.31000 vtn069        3  4.0        0         0</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2: 069-068  20 Female 32.74000 vtn069        3  4.0        1         1</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3: 069-020  19   Male 20.24000 vtn069        3  4.0        0         0</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4: 069-008  19   Male 29.98000 vtn069        3  4.0        0         0</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5: 069-058  27   Male 31.48000 vtn069        3  4.0        0         0</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                    </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 368: 100-182  36 Female 24.32323 vtn100        4  1.5        0         1</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 369: 100-034  20   Male 25.15590 vtn100        4  1.5        1         0</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 370: 100-115  20   Male 22.94812 vtn100        4  1.5        1         0</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 371: 100-144  19   Male 20.95661 vtn100        4  1.5        0         0</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 372: 100-189  24   Male 19.03114 vtn100        4  1.5        1         0</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      studyHVTN052 studyHVTN068 studyHVTN069 studyHVTN204 studyHVTN100 vacc_type</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:            0            0            1            0            0   VRC4or6</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:            0            0            1            0            0   VRC4or6</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:            0            0            1            0            0   VRC4or6</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:            0            0            1            0            0   VRC4or6</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:            0            0            1            0            0   VRC4or6</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                           </span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 368:            0            0            0            0            1   VRC4or6</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 369:            0            0            0            0            1   VRC4or6</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 370:            0            0            0            0            1   VRC4or6</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 371:            0            0            0            0            1   VRC4or6</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 372:            0            0            0            0            1   VRC4or6</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      vacc_typeSinglePlasmid vacc_typeVRC4or6</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:                      0                1</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:                      0                1</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:                      0                1</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:                      0                1</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:                      0                1</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                        </span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 368:                      0                1</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 369:                      0                1</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 370:                      0                1</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 371:                      0                1</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 372:                      0                1</span></span></code></pre></div>
 <p>This publication also includes analysis scripts used for the publication, which can allow users to reproduce the analysis and results.</p>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session information</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; R version 4.1.0 (2021-05-18)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Running under: Ubuntu 20.04.2 LTS</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Matrix products: default</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; locale:</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; attached base packages:</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; other attached packages:</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] data.table_1.14.0 DataSpaceR_0.7.5  knitr_1.33       </span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] Rcpp_1.0.7       digest_0.6.27    assertthat_0.2.1 R6_2.5.0        </span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] jsonlite_1.7.2   magrittr_2.0.1   evaluate_0.14    highr_0.9       </span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] httr_1.4.2       stringi_1.7.3    curl_4.3.2       tools_4.1.0     </span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] stringr_1.4.0    Rlabkey_2.8.0    xfun_0.25        compiler_4.1.0</span></span></code></pre></div>
 </div>
 
 

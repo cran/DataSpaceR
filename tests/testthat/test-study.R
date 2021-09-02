@@ -30,9 +30,13 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
     cavd <- try(con$getGroup(groupId), silent = TRUE)
   }
 
+  normPath <- function(path) {
+    gsub("\\\\", "/", path)
+  }
+
   test_that("can connect to studies", {
-    expect_is(cavd, "DataSpaceStudy")
-    expect_is(cavd, "R6")
+    expect_is(cavd, "DataSpaceStudy", info = cavd[1])
+    expect_is(cavd, "R6", info = cavd[1])
   })
 
   if ("DataSpaceStudy" %in% class(cavd)) {
@@ -56,10 +60,10 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
       "initialize"
     )
     test_that("`DataSpaceStudy` contains correct fields and methods", {
-      expect_equal(names(cavd), con_names)
+      expect_equal(sort(names(cavd)), sort(con_names))
     })
 
-    if (identical(names(cavd), con_names)) {
+    if (identical(sort(names(cavd)), sort(con_names))) {
       test_that("`print`", {
         path <- ifelse(study == "", study, paste0("/", study))
         con_output <- c(
@@ -75,7 +79,11 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
           strwrap(niDatasets, prefix = "    - ")
         )
         cap_output <- capture.output(cavd$print())
-        expect_equal(cap_output, con_output)
+        expect_equal(
+          cap_output,
+          con_output,
+          info = paste(study, groupId, "connection console print does not match inputs in `test_study()`.")
+        )
       })
 
       test_that("`config`", {
@@ -99,8 +107,9 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
           c("name", "label", "n", "integrated")
         )
         expect_equal(
-          cavd$availableDatasets$name,
-          c(datasets, niDatasets)
+          cavd$availableDatasets$label,
+          c(datasets, niDatasets),
+          info = paste(study, groupId, "does not have the correct datasets arguments for `test_study()`.")
         )
       })
 
@@ -143,16 +152,16 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
 
       test_that("`setDataDir`, `getOutputDir`", {
         getOutputDir <- cavd$.__enclos_env__$private$.getOutputDir
-        expect_equal(getOutputDir(), tempdir())
-        expect_equal(getOutputDir("."), getwd())
+        expect_equal(normPath(getOutputDir()), normPath(tempdir()))
+        expect_equal(normPath(getOutputDir(getwd())), getwd())
 
-        cavd$setDataDir(".")
-        expect_equal(cavd$dataDir, getwd())
-        expect_equal(getOutputDir(), getwd())
-        expect_equal(getOutputDir(tempdir()), normalizePath(tempdir()))
+        cavd$setDataDir(getwd())
+        expect_equal(normPath(cavd$dataDir), getwd())
+        expect_equal(normPath(getOutputDir()), getwd())
+        expect_equal(normPath(getOutputDir(tempdir())), normPath(tempdir()))
 
         cavd$setDataDir(NULL)
-        expect_equal(getOutputDir(), tempdir())
+        expect_equal(normPath(getOutputDir()), normPath(tempdir()))
       })
 
       test_that("`.downloadNIDataset`", {
@@ -160,33 +169,33 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
         downloadNIDataset <- cavd$.__enclos_env__$private$.downloadNIDataset
         if (nrow(availableNIDatasets) > 0) {
           for (datasetName in availableNIDatasets$name) {
-            files <- list.files(".")
+            files <- list.files(getwd())
 
             path <- downloadNIDataset(datasetName)
-            expect_equal(dirname(path), tempdir())
+            expect_equal(dirname(path), normPath(tempdir()))
             expect_equal(path, availableNIDatasets[name == datasetName]$localPath)
-            expect_equal(cavd$.__enclos_env__$private$.getOutputDir(), dirname(path))
+            expect_equal(normPath(cavd$.__enclos_env__$private$.getOutputDir()), dirname(path))
             expect_true(dir.exists(path))
             expect_gt(length(list.files(path)), 0)
 
-            path <- downloadNIDataset(datasetName, outputDir = ".")
+            path <- downloadNIDataset(datasetName, outputDir = getwd())
             expect_equal(getwd(), dirname(path))
             expect_equal(path, availableNIDatasets[name == datasetName]$localPath)
             expect_true(dir.exists(path))
             expect_gt(length(list.files(path)), 0)
             unlink(path, recursive = TRUE)
 
-            cavd$setDataDir(".")
+            cavd$setDataDir(getwd())
             path <- downloadNIDataset(datasetName)
             expect_equal(getwd(), dirname(path))
-            expect_equal(cavd$dataDir, dirname(path))
-            expect_equal(cavd$.__enclos_env__$private$.getOutputDir(), dirname(path))
+            expect_equal(normPath(cavd$dataDir), dirname(path))
+            expect_equal(normPath(cavd$.__enclos_env__$private$.getOutputDir()), dirname(path))
             expect_equal(availableNIDatasets[name == datasetName]$localPath, path)
             expect_true(dir.exists(path))
             expect_gt(length(list.files(path)), 0)
             unlink(path, recursive = TRUE)
 
-            expect_identical(files, list.files("."))
+            expect_identical(files, list.files(getwd()))
 
             cavd$setDataDir(NULL)
           }
@@ -196,7 +205,33 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
       test_that("`getDataset`", {
         for (datasetName in cavd$availableDatasets$name) {
           dataset <- try(cavd$getDataset(datasetName), silent = TRUE)
-          expect_is(dataset, "data.table", info = datasetName)
+          expect_is(dataset, "data.table", info = paste(datasetName, study, groupId))
+          expect_gt(nrow(dataset), 0)
+          ## checking column names for study datasets
+          if (cavd$availableDatasets$integrated[cavd$availableDatasets$name == datasetName] & cavd$study != "") {
+            datasetColNames <- switch(datasetName,
+              "BAMA"    = .BAMANAMES,
+              "ELISPOT" = .ELINAMES,
+              "ICS"     = .ICSNAMES,
+              "NAb"     = .NABNAMES,
+              "PK MAb"  = .PKNAMES,
+              NULL
+            )
+            check <- names(dataset) == datasetColNames
+            expect_true(
+              all(check),
+              info = paste(
+                datasetName, "does not match set names in helper.R file for", study, groupId, "."
+              )
+            )
+          }
+        }
+      })
+
+      test_that("`getDataset` (label)", {
+        for (datasetLabel in cavd$availableDatasets$label) {
+          dataset <- try(cavd$getDataset(datasetLabel), silent = TRUE)
+          expect_is(dataset, "data.table", info = paste(datasetLabel, study, groupId))
           expect_gt(nrow(dataset), 0)
         }
       })
@@ -205,7 +240,7 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
         for (i in seq_len(nrow(cavd$availableDatasets))) {
           datasetName <- cavd$availableDatasets$name[i]
           dataset <- try(cavd$getDataset(datasetName), silent = TRUE)
-          expect_is(dataset, "data.table", info = datasetName)
+          expect_is(dataset, "data.table", info = paste(datasetName, study, groupId))
 
           if (cavd$availableDatasets$integrated[i]) {
             datasetN <- cavd$availableDatasets$n[i]
@@ -259,9 +294,23 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
         }
       })
 
+      test_that("`getDatasetDescription` (label)", {
+        for (datasetLabel in cavd$availableDatasets[integrated == TRUE]$label) {
+          dataset <- try(
+            cavd$getDatasetDescription(datasetName = datasetLabel),
+            silent = TRUE
+          )
+          expect_is(dataset, "data.table", info = datasetLabel)
+          expect_gt(nrow(dataset), 0)
+          expect_equal(
+            names(dataset),
+            c("fieldName", "caption", "type", "description")
+          )
+        }
+      })
+
       test_that("`refresh`", {
         refresh <- try(cavd$refresh(), silent = TRUE)
-
         expect_is(refresh, "logical")
         expect_true(refresh)
       })
@@ -274,14 +323,47 @@ test_study <- function(study, datasets, niDatasets = c(), groupId = NULL, groupL
 #   datasets = c("BAMA", "ICS", "ELISPOT", "Demographics", "NAb", "PKMAb")
 # )
 test_study(
+  study = "cvd277",
+  datasets = c(
+    "Binding Ab multiplex assay",
+    "Demographics",
+    "Enzyme-Linked ImmunoSpot",
+    "Intracellular Cytokine Staining",
+    "Neutralizing antibody"
+  )
+)
+test_study(
   study = "cvd408",
-  datasets = c("BAMA", "ICS", "Demographics", "NAb")
+  datasets = c(
+    "Binding Ab multiplex assay",
+    "Intracellular Cytokine Staining",
+    "Demographics",
+    "Neutralizing antibody"
+  )
+)
+test_study(
+  study = "cvd446",
+  datasets = c(
+    "Demographics",
+    "PK MAb"
+  ),
+  niDatasets = c("Demographics (Supplemental)")
 )
 test_study(
   study = "vtn505",
-  datasets = c("BAMA", "Demographics", "ICS", "NAb"),
-  niDatasets = c("ADCP", "DEM SUPP", "Fc Array")
+  datasets = c(
+    "Binding Ab multiplex assay",
+    "Intracellular Cytokine Staining",
+    "Demographics",
+    "Neutralizing antibody"
+  ),
+  niDatasets = c(
+    "ADCP",
+    "Demographics (Supplemental)",
+    "Fc Array"
+  )
 )
+
 # test_study(
 #   study = "cvd812",
 #   datasets = c(),
@@ -289,13 +371,24 @@ test_study(
 # )
 test_study(
   study = "",
-  datasets = c("BAMA", "ICS", "ELISPOT", "Demographics", "NAb"),
+  datasets = c(
+    "Binding Ab multiplex assay",
+    "Intracellular Cytokine Staining",
+    "Enzyme-Linked ImmunoSpot",
+    "Demographics",
+    "Neutralizing antibody"
+  ),
   groupId = 220,
   groupLabel = c("NYVAC_durability" = "NYVAC durability comparison")
 )
 test_study(
   study = "",
-  datasets = c("BAMA", "Demographics", "ICS", "NAb"),
+  datasets = c(
+    "Binding Ab multiplex assay",
+    "Demographics",
+    "Intracellular Cytokine Staining",
+    "Neutralizing antibody"
+  ),
   groupId = ifelse(onStaging, 226, 228),
   groupLabel = {
     if (onStaging) {
@@ -310,13 +403,13 @@ email <- DataSpaceR:::getUserEmail(baseUrl, NULL)
 if (identical(email, "jkim2345@scharp.org")) {
   test_study(
     study = "",
-    datasets = c("Demographics", "NAb"),
+    datasets = c("Demographics", "Neutralizing antibody"),
     groupId = 216,
     groupLabel = c("mice" = "mice")
   )
   test_study(
     study = "",
-    datasets = c("Demographics", "NAb"),
+    datasets = c("Demographics", "Neutralizing antibody"),
     groupId = 217,
     groupLabel = c("CAVD 242" = "CAVD 242")
   )

@@ -105,7 +105,7 @@ if ("DataSpaceConnection" %in% class(con)) {
         names(con$availableStudies),
         c(
           "study_name", "short_name", "title", "type", "status", "stage",
-          "species", "start_date", "strategy", "network", "data_availability"
+          "species", "start_date", "strategy", "network", "data_availability", "ni_data_availability"
         )
       )
       expect_gt(nrow(con$availableStudies), 0)
@@ -116,7 +116,7 @@ if ("DataSpaceConnection" %in% class(con)) {
       expect_equal(
         names(con$availableGroups),
         c(
-          "id", "label", "original_label", "description", "created_by",
+          "group_id", "label", "original_label", "description", "created_by",
           "shared", "n", "studies"
         )
       )
@@ -128,7 +128,7 @@ if ("DataSpaceConnection" %in% class(con)) {
       expect_equal(
         names(con$availablePublications),
         c(
-          "publication_id", "first_author", "title", "journal", "publication_date",
+          "publication_id", "first_author", "all_authors", "title", "journal", "publication_date",
           "link", "pubmed_id", "related_studies", "studies_with_data", "publication_data_available"
         )
       )
@@ -158,7 +158,7 @@ if ("DataSpaceConnection" %in% class(con)) {
     })
 
     test_that("`downloadPublicationData`", {
-      outputDir <- tempdir()
+      outputDir <- normalizePath(tempdir(), winslash = "/")
       .availablePublications <- con$.__enclos_env__$private$.availablePublications
 
       # unzip = FALSE
@@ -193,7 +193,6 @@ if ("DataSpaceConnection" %in% class(con)) {
 
     test_that("`refresh`", {
       refresh <- try(con$refresh(), silent = TRUE)
-
       expect_is(refresh, "logical")
       expect_true(refresh)
     })
@@ -257,7 +256,8 @@ if ("DataSpaceConnection" %in% class(con)) {
 
       con$filterMabGrid("mab_mixture", "PGDM1400")
       mab <- con$getMab()$nabMab
-      expect_true(round(con$mabGridSummary$geometric_mean_curve_ic50, 2) == 0.04)
+      expect_true(con$mabGridSummary$geometric_mean_curve_ic50 > 0)
+      expect_true(con$mabGridSummary$geometric_mean_curve_ic50 < 0.1)
       con$resetMabGrid()
     })
 

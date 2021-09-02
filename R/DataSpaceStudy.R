@@ -101,11 +101,11 @@ DataSpaceStudy <- R6Class(
       cat("\n  URL:", url)
       cat("\n  Available datasets:")
       if (nrow(private$.availableDatasets) > 0) {
-        cat(paste0("\n    - ", private$.availableDatasets$name), sep = "")
+        cat(paste0("\n    - ", private$.availableDatasets$label), sep = "")
       }
       cat("\n  Available non-integrated datasets:")
       if (nrow(private$.availableNIDatasets) > 0) {
-        cat(paste0("\n    - ", private$.availableNIDatasets$name), sep = "")
+        cat(paste0("\n    - ", private$.availableNIDatasets$label), sep = "")
       }
       cat("\n")
     },
@@ -113,6 +113,7 @@ DataSpaceStudy <- R6Class(
     #' @description
     #' Get a dataset from the connection.
     #' @param datasetName A character. Name of the dataset to retrieve.
+    #' Accepts the value in either the "name" or "label" field from \code{availableDatasets}.
     #' @param mergeExtra A logical. If set to TRUE, merge extra information.
     #' Ignored for non-integrated datasets.
     #' @param colFilter A matrix. A filter as returned by Rlabkey's
@@ -135,7 +136,7 @@ DataSpaceStudy <- R6Class(
       assert_that(is.character(datasetName))
       assert_that(length(datasetName) == 1)
       assert_that(
-        datasetName %in% self$availableDatasets$name,
+        datasetName %in% self$availableDatasets$name | datasetName %in% self$availableDatasets$label,
         msg = paste0(datasetName, " is invalid dataset")
       )
       assert_that(is.logical(mergeExtra))
@@ -144,6 +145,11 @@ DataSpaceStudy <- R6Class(
         msg = "colFilter is not a matrix"
       )
       assert_that(is.logical(reload))
+
+      # Use dataset name instead of label
+      if (datasetName %in% self$availableDatasets$label) {
+        datasetName <- self$availableDatasets[label == datasetName]$name
+      }
 
       # build a list of arguments to digest and compare
       args <- list(
@@ -188,6 +194,24 @@ DataSpaceStudy <- R6Class(
           ...
         )
 
+        ## set variable names that are returned as camel case with slash to snake case
+        setnames(
+          dataset,
+          names(dataset),
+          tolower(
+            gsub(
+              "/[A-z]+", "",
+              gsub(
+                "_+", "_",
+                gsub(
+                  "([A-z]+|[0-9]+)_?([A-Z])", "\\1_\\2",
+                  gsub("([A-Z])([A-Z])", "\\1\\L\\2", names(dataset), perl = TRUE)
+                )
+              )
+            )
+          )
+        )
+
         # convert to data.table
         setDT(dataset)
       } else {
@@ -223,8 +247,8 @@ DataSpaceStudy <- R6Class(
         # update 'n'
         private$.availableNIDatasets[name == datasetName, n := nrow(dataset)]
 
-        # change "subject_id" to "ParticipantId" to be consistent with other datasets
-        setnames(dataset, c("subject_id", "prot"), c("ParticipantId", "study_prot"), skip_absent = TRUE)
+        # change "subject_id" to "participant_id" to be consistent with other datasets
+        setnames(dataset, c("subject_id", "prot"), c("participant_id", "study_prot"), skip_absent = TRUE)
       }
 
       # merge extra information
@@ -237,11 +261,11 @@ DataSpaceStudy <- R6Class(
           if (!identical(datasetName, "Demographics")) {
             dem <- self$getDataset("Demographics")
 
-            subj <- ifelse(private$.study == "", "Subject", "Participant")
-            cols <- c(paste0(subj, "Visit/Visit"), "study_prot")
+            subj <- ifelse(private$.study == "", "subject", "participant")
+            cols <- c(paste0(subj, "_visit"), "study_prot")
             dem <- dem[, -cols, with = FALSE]
 
-            key <- paste0(subj, "Id")
+            key <- paste0(subj, "_id")
             setkeyv(dem, key)
             setkeyv(dataset, key)
 
@@ -278,14 +302,20 @@ DataSpaceStudy <- R6Class(
     #' @description
     #' Get variable information.
     #' @param datasetName A character. Name of the dataset to retrieve.
+    #' Accepts the value in either the "name" or "label" field from \code{availableDatasets}.
     #' @param outputDir A character. Directory path.
     getDatasetDescription = function(datasetName, outputDir = NULL) {
       assert_that(is.character(datasetName))
       assert_that(length(datasetName) == 1)
       assert_that(
-        datasetName %in% self$availableDatasets$name,
+        datasetName %in% self$availableDatasets$name | datasetName %in% self$availableDatasets$label,
         msg = paste0(datasetName, " is not a available dataset")
       )
+
+      # Use dataset name instead of label
+      if (datasetName %in% self$availableDatasets$label) {
+        datasetName <- self$availableDatasets[label == datasetName]$name
+      }
 
       if (self$availableDatasets[name == datasetName]$integrated) {
         varInfo <- labkey.getQueryDetails(
@@ -391,7 +421,6 @@ DataSpaceStudy <- R6Class(
       invisible(!"try-error" %in% tries)
     }
   ),
-
   active = list(
 
     #' @field study A character. The study name.
@@ -451,7 +480,6 @@ DataSpaceStudy <- R6Class(
       private$.studyInfo
     }
   ),
-
   private = list(
     .study = character(),
     .config = list(),
@@ -462,7 +490,6 @@ DataSpaceStudy <- R6Class(
     .treatmentArm = data.table(),
     .group = character(),
     .studyInfo = list(),
-
     .getAvailableDatasets = function() {
       datasetQuery <-
         paste(
@@ -504,7 +531,6 @@ DataSpaceStudy <- R6Class(
 
       private$.availableDatasets <- availableDatasets[order(name)]
     },
-
     .getAvailableNIDatasets = function() {
       document <- labkey.selectRows(
         private$.config$labkeyUrlBase,
@@ -541,7 +567,6 @@ DataSpaceStudy <- R6Class(
       ]
       private$.availableNIDatasets <- niDatasets
     },
-
     .getTreatmentArm = function() {
       colSelect <- c(
         "arm_id", "arm_part", "arm_group", "arm_name",
@@ -569,7 +594,6 @@ DataSpaceStudy <- R6Class(
 
       private$.treatmentArm <- treatmentArm
     },
-
     .downloadNIDataset = function(datasetName, outputDir = NULL) {
       remotePath <- private$.availableNIDatasets[name == datasetName]$remotePath
       outputDir <- private$.getOutputDir(outputDir)
@@ -612,11 +636,10 @@ DataSpaceStudy <- R6Class(
 
       return(fullOutputDir)
     },
-
     .getOutputDir = function(outputDir = NULL) {
       if (!is.null(outputDir)) {
         if (dir.exists(outputDir)) {
-          return(normalizePath(outputDir))
+          return(outputDir)
         } else {
           stop(paste0(outputDir, " is not a directory."))
         }
