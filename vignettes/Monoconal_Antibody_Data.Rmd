@@ -3,7 +3,7 @@ title: "Accessing Monoclonal Antibody Data"
 author:
 - Ju Yeong Kim
 - Jason Taylor
-date: "2021-08-30"
+date: "2022-06-15"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Accessing Monoclonal Antibody Data}
@@ -13,7 +13,6 @@ vignette: >
 
 <style>
 table {
-    display: block;
     max-width: 100%;
     max-height: 600px;
     overflow: scroll;
@@ -24,7 +23,6 @@ thead{
     background-color: #fff;
 }
 </style>
-
 
 
 
@@ -114,16 +112,16 @@ knitr::kable(con$mabGridSummary)
 |B9          |llama         |        |gp160         |         3|        3|       1|                 0.0386986|         1|
 |LAB5        |llama         |        |              |         4|        2|       1|                        NA|         1|
 
-Or we can use method chaining to call multiple filter methods and browse the grid. Method chaining is unique to R6 objects and related to the pipe. See Hadley Wickham's [Advanced R](https://adv-r.hadley.nz/r6.html) for more info
+Or we can use method chaining to call multiple filter methods and browse the grid. Method chaining is unique to R6 objects and related to the pipe. See Hadley Wickham's [Advanced R](https://adv-r.hadley.nz/r6.html) for more info.
 
 
 ```r
+con$resetMabGrid()
 con$
-  filterMabGrid(using = "hxb2_location", value = c("Env", "gp160"))$
+  filterMabGrid(using = "virus", value = c("242-14", "Q23.17", "6535.3", "BaL.26", "DJ263.8"))$
   filterMabGrid(using = "donor_species", value = "llama")$
   mabGridSummary
 ```
-
 
 ## Retrieve column values from the mAb grid
 
@@ -133,11 +131,11 @@ You can retrieve values from the grid by `mab_mixture`, `donor_species`, `isotyp
 ```r
 # retrieve available viruses in the filtered grid
 con$mabGrid[, unique(virus)]
-#> [1] "6535.3"  "Q23.17"  "242-14"  "BaL.26"  "DJ263.8"
+#> [1] "6535.3"  "Q23.17"  "DJ263.8" "BaL.26"  "242-14"
 
 # retrieve available clades for 1H9 mAb mixture in the filtered grid
 con$mabGrid[mab_mixture == "1H9", unique(clade)]
-#> [1] "B"        "CRF02_AG"
+#> [1] "CRF02_AG" "B"
 ```
 
 
@@ -151,7 +149,7 @@ mab <- con$getMab()
 mab
 #> <DataSpaceMab>
 #>   URL: https://dataspace.cavd.org
-#>   User: 
+#>   User: jmtaylor@scharp.org
 #>   Summary:
 #>     - 3 studies
 #>     - 14 mAb mixtures
@@ -198,7 +196,54 @@ names(mab)
 #>  [1] ".__enclos_env__"     "variableDefinitions" "assays"             
 #>  [4] "studies"             "nabMab"              "mabs"               
 #>  [7] "studyAndMabs"        "config"              "clone"              
-#> [10] "refresh"             "print"               "initialize"
+#> [10] "getLanlMetadata"     "refresh"             "print"              
+#> [13] "initialize"
+```
+
+DataSpaceR can also fetch and add metadata associated with downloaded mAbs via the `getLanlMetadata` method that is associated with the `DataSpaceMab` object.
+
+
+```r
+mab$getLanlMetadata()
+```
+
+The LANL metadata can now be found at the `mabs$lanl_metadata` variable. This is a list column and its structure can very depending on what data LANL has collected.
+    
+
+```r
+mab$mabs[mab_name_std == "B9"]$lanl_metadata
+#> [[1]]
+#> [[1]]$epitopes
+#>    accession alt_names      binding_type               cite   country dis
+#> 1:        NA        NA <data.table[1x2]> <data.table[1x25]> <list[0]>  NA
+#>    disrange donor epitope epitope_name hxb2_contig hxb2loc2end hxb2loc2start
+#> 1:       NA    NA      NA           NA          NA          NA            NA
+#>    hxb2locend hxb2locstart hxb2protein hxb2protein_id   id         immunogen
+#> 1:         NA           NA       gp160             18 3219 <data.table[1x2]>
+#>    in_catnap in_feature_db is_adcc   isotype           keyword mab_name
+#> 1:      TRUE         FALSE      NA <list[0]> <data.table[4x2]>       B9
+#>             modifydate neutralizing              note origlocend origlocstart
+#> 1: 2018-06-01 13:59:55            L <data.table[2x4]>         NA           NA
+#>    origprotein origprotein_id   patient           species strain subprotein
+#> 1:          NA              1 <list[0]> <data.table[1x2]>     NA         NA
+#>    subprotein_id           subtype table total_cite_count total_note_count
+#> 1:             1 <data.table[2x2]>    ab                1                2
+#>    vaccine_adjuvant vaccine_component    vaccine_strain      vaccine_type
+#> 1:        <list[0]> <data.table[1x2]> <data.table[2x2]> <data.table[1x2]>
+#> 
+#> [[1]]$params
+#> [[1]]$params$id
+#> [1] "3219"
+#> 
+#> [[1]]$params$table
+#> [1] "ab"
+#> 
+#> 
+#> [[1]]$timestamp
+#> [1] "2022-04-01 17:01:42z"
+#> 
+#> [[1]]$source
+#> [1] "https://www.hiv.lanl.gov/mojo/immunology/api/v1/epitope/ab?id=3219"
 ```
 
 ## Session information
@@ -206,31 +251,31 @@ names(mab)
 
 ```r
 sessionInfo()
-#> R version 4.1.0 (2021-05-18)
+#> R version 4.1.2 (2021-11-01)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
-#> Running under: Ubuntu 20.04.2 LTS
+#> Running under: Ubuntu 18.04.5 LTS
 #> 
 #> Matrix products: default
-#> BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
-#> LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+#> BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+#> LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
 #> 
 #> locale:
-#>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-#>  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-#>  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-#>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-#>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#>  [1] LC_CTYPE=en_US.utf8       LC_NUMERIC=C             
+#>  [3] LC_TIME=en_US.utf8        LC_COLLATE=en_US.utf8    
+#>  [5] LC_MONETARY=en_US.utf8    LC_MESSAGES=en_US.utf8   
+#>  [7] LC_PAPER=en_US.utf8       LC_NAME=C                
+#>  [9] LC_ADDRESS=C              LC_TELEPHONE=C           
+#> [11] LC_MEASUREMENT=en_US.utf8 LC_IDENTIFICATION=C      
 #> 
 #> attached base packages:
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] data.table_1.14.0 DataSpaceR_0.7.5  knitr_1.33       
+#> [1] data.table_1.14.2 DataSpaceR_0.7.5  knitr_1.37       
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] Rcpp_1.0.7       digest_0.6.27    assertthat_0.2.1 R6_2.5.0        
-#>  [5] jsonlite_1.7.2   magrittr_2.0.1   evaluate_0.14    highr_0.9       
-#>  [9] httr_1.4.2       stringi_1.7.3    curl_4.3.2       tools_4.1.0     
-#> [13] stringr_1.4.0    Rlabkey_2.8.0    xfun_0.25        compiler_4.1.0
+#>  [1] Rcpp_1.0.8       digest_0.6.29    assertthat_0.2.1 R6_2.5.1        
+#>  [5] jsonlite_1.8.0   magrittr_2.0.2   evaluate_0.15    highr_0.9       
+#>  [9] httr_1.4.2       stringi_1.7.6    curl_4.3.2       tools_4.1.2     
+#> [13] stringr_1.4.0    Rlabkey_2.8.3    xfun_0.29        compiler_4.1.2
 ```
