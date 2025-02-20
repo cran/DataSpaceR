@@ -16,6 +16,35 @@
 
 <title>Accessing Non-Integrated Datasets</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -27,6 +56,7 @@
     </style>
 
 
+
 <style type="text/css">
   code {
     white-space: pre;
@@ -36,26 +66,27 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -64,9 +95,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -106,13 +137,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -326,24 +364,24 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="viewing-available-non-integrated-data" class="section level2">
 <h2>Viewing available non-integrated data</h2>
 <p>Methods on the DataSpace Study object allow you to see what non-integrated data may be available before downloading it. We will be using HVTN 505 as an example.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(DataSpaceR)</a>
-<a class="sourceLine" id="cb1-2" title="2">con &lt;-<span class="st"> </span><span class="kw">connectDS</span>()</a>
-<a class="sourceLine" id="cb1-3" title="3">vtn505 &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(<span class="st">&quot;vtn505&quot;</span>)</a>
-<a class="sourceLine" id="cb1-4" title="4">vtn505</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="co">#&gt;   Study: vtn505</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD/vtn505</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt;   Available datasets:</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt;     - Binding Ab multiplex assay</span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt;     - Demographics</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt;     - Intracellular Cytokine Staining</span></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt;     - Neutralizing antibody</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt;   Available non-integrated datasets:</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt;     - ADCP</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt;     - Demographics (Supplemental)</span></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt;     - Fc Array</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(DataSpaceR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>con &lt;-<span class="st"> </span><span class="kw">connectDS</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>vtn505 &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(<span class="st">&quot;vtn505&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>vtn505</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">#&gt;   Study: vtn505</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD/vtn505</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">#&gt;   Available datasets:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">#&gt;     - Demographics</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co">#&gt;     - Intracellular Cytokine Staining</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="co">#&gt;     - ADCP</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="co">#&gt;     - Demographics (Supplemental)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="co">#&gt;     - Fc Array</span></span></code></pre></div>
 <p>The print method on the study object will list available non-integrated datasets. The <code>availableDatasets</code> property shows some more info about available datasets, with the <code>integrated</code> field indicating whether the data is integrated. The value for <code>n</code> will be <code>NA</code> for non-integrated data until the dataset has been loaded.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">knitr<span class="op">::</span><span class="kw">kable</span>(vtn505<span class="op">$</span>availableDatasets)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(vtn505<span class="op">$</span>availableDatasets)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -402,55 +440,55 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="loading-non-integrated-data" class="section level2">
 <h2>Loading non-integrated data</h2>
 <p>Non-Integrated datasets can be loaded with <code>getDataset</code> like integrated data. This will unzip the non-integrated data to a temp directory and load it into the environment.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">adcp &lt;-<span class="st"> </span>vtn505<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;ADCP&quot;</span>)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">dim</span>(adcp)</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; [1] 378  11</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw">colnames</span>(adcp)</a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt;  [1] &quot;study_prot&quot;             &quot;participant_id&quot;         &quot;study_day&quot;             </span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;  [4] &quot;lab_code&quot;               &quot;specimen_type&quot;          &quot;antigen&quot;               </span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;  [7] &quot;percent_cv&quot;             &quot;avg_phagocytosis_score&quot; &quot;positivity_threshold&quot;  </span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; [10] &quot;response&quot;               &quot;assay_identifier&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>adcp &lt;-<span class="st"> </span>vtn505<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;ADCP&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">dim</span>(adcp)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">#&gt; [1] 378  11</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">colnames</span>(adcp)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">#&gt;  [1] &quot;study_prot&quot;             &quot;participant_id&quot;         &quot;study_day&quot;             </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">#&gt;  [4] &quot;lab_code&quot;               &quot;specimen_type&quot;          &quot;antigen&quot;               </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">#&gt;  [7] &quot;percent_cv&quot;             &quot;avg_phagocytosis_score&quot; &quot;positivity_threshold&quot;  </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">#&gt; [10] &quot;response&quot;               &quot;assay_identifier&quot;</span></span></code></pre></div>
 <p>You can also view the file format info using <code>getDatasetDescription</code>. For non-integrated data, this will open a pdf into your computer’s default pdf viewer.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">vtn505<span class="op">$</span><span class="kw">getDatasetDescription</span>(<span class="st">&quot;ADCP&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>vtn505<span class="op">$</span><span class="kw">getDatasetDescription</span>(<span class="st">&quot;ADCP&quot;</span>)</span></code></pre></div>
 <p>Non-integrated data is downloaded to a temp directory by default. There are a couple of ways to override this if desired. One is to specify <code>outputDir</code> when calling <code>getDataset</code> or <code>getDatasetDescription</code>.</p>
 <p>If you will be accessing the data at another time and don’t want to have to re-download it, you can change the default directory for the whole study object with <code>setDataDir</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">vtn505<span class="op">$</span>dataDir</a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; [1] &quot;/tmp/RtmpoDO8Tc&quot;</span></a>
-<a class="sourceLine" id="cb5-3" title="3">vtn505<span class="op">$</span><span class="kw">setDataDir</span>(<span class="st">&quot;.&quot;</span>)</a>
-<a class="sourceLine" id="cb5-4" title="4">vtn505<span class="op">$</span>dataDir</a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt; [1] &quot;/home/jmtaylor/Projects/DataSpaceR/vignettes&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>vtn505<span class="op">$</span>dataDir</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpoDO8Tc&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>vtn505<span class="op">$</span><span class="kw">setDataDir</span>(<span class="st">&quot;.&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>vtn505<span class="op">$</span>dataDir</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;/home/jmtaylor/Projects/DataSpaceR/vignettes&quot;</span></span></code></pre></div>
 <p>If the dataset already exists in the specified <code>dataDir</code> or <code>outputDir</code>, it will be not be downloaded. This can be overridden with <code>reload=TRUE</code>, which forces a re-download.</p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">sessionInfo</span>()</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt; R version 4.1.2 (2021-11-01)</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; Running under: Ubuntu 18.04.5 LTS</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; Matrix products: default</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt; locale:</span></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt;  [1] LC_CTYPE=en_US.utf8       LC_NUMERIC=C             </span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt;  [3] LC_TIME=en_US.utf8        LC_COLLATE=en_US.utf8    </span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt;  [5] LC_MONETARY=en_US.utf8    LC_MESSAGES=en_US.utf8   </span></a>
-<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt;  [7] LC_PAPER=en_US.utf8       LC_NAME=C                </span></a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt;  [9] LC_ADDRESS=C              LC_TELEPHONE=C           </span></a>
-<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.utf8 LC_IDENTIFICATION=C      </span></a>
-<a class="sourceLine" id="cb6-17" title="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-18" title="18"><span class="co">#&gt; attached base packages:</span></a>
-<a class="sourceLine" id="cb6-19" title="19"><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></a>
-<a class="sourceLine" id="cb6-20" title="20"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-21" title="21"><span class="co">#&gt; other attached packages:</span></a>
-<a class="sourceLine" id="cb6-22" title="22"><span class="co">#&gt; [1] data.table_1.14.2 DataSpaceR_0.7.5  knitr_1.37       </span></a>
-<a class="sourceLine" id="cb6-23" title="23"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-24" title="24"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
-<a class="sourceLine" id="cb6-25" title="25"><span class="co">#&gt;  [1] Rcpp_1.0.8       digest_0.6.29    assertthat_0.2.1 R6_2.5.1        </span></a>
-<a class="sourceLine" id="cb6-26" title="26"><span class="co">#&gt;  [5] jsonlite_1.8.0   magrittr_2.0.2   evaluate_0.15    highr_0.9       </span></a>
-<a class="sourceLine" id="cb6-27" title="27"><span class="co">#&gt;  [9] httr_1.4.2       stringi_1.7.6    curl_4.3.2       tools_4.1.2     </span></a>
-<a class="sourceLine" id="cb6-28" title="28"><span class="co">#&gt; [13] stringr_1.4.0    Rlabkey_2.8.3    xfun_0.29        compiler_4.1.2</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">sessionInfo</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">#&gt; R version 4.1.2 (2021-11-01)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">#&gt; Running under: Ubuntu 18.04.5 LTS</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">#&gt; Matrix products: default</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co">#&gt; locale:</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co">#&gt;  [1] LC_CTYPE=en_US.utf8       LC_NUMERIC=C             </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co">#&gt;  [3] LC_TIME=en_US.utf8        LC_COLLATE=en_US.utf8    </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="co">#&gt;  [5] LC_MONETARY=en_US.utf8    LC_MESSAGES=en_US.utf8   </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="co">#&gt;  [7] LC_PAPER=en_US.utf8       LC_NAME=C                </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="co">#&gt;  [9] LC_ADDRESS=C              LC_TELEPHONE=C           </span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.utf8 LC_IDENTIFICATION=C      </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a><span class="co">#&gt; attached base packages:</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a><span class="co">#&gt; other attached packages:</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="co">#&gt; [1] data.table_1.14.2 DataSpaceR_0.7.5  knitr_1.37       </span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a><span class="co">#&gt;  [1] Rcpp_1.0.8       digest_0.6.29    assertthat_0.2.1 R6_2.5.1        </span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a><span class="co">#&gt;  [5] jsonlite_1.8.0   magrittr_2.0.2   evaluate_0.15    highr_0.9       </span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a><span class="co">#&gt;  [9] httr_1.4.2       stringi_1.7.6    curl_4.3.2       tools_4.1.2     </span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="co">#&gt; [13] stringr_1.4.0    Rlabkey_2.8.3    xfun_0.29        compiler_4.1.2</span></span></code></pre></div>
 </div>
 
 
