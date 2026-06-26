@@ -10,10 +10,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="Ju Yeong Kim" />
-<meta name="author" content="Jason Taylor" />
 
-<meta name="date" content="2022-06-15" />
+<meta name="date" content="2026-06-22" />
 
 <title>Accessing Monoclonal Antibody Data</title>
 
@@ -30,46 +28,32 @@ document.addEventListener('DOMContentLoaded', function(e) {
   }
 });
 </script>
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
-
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
-  }
-});
-</script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -81,55 +65,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -356,642 +339,74 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">Accessing Monoclonal Antibody Data</h1>
-<h4 class="author">Ju Yeong Kim</h4>
-<h4 class="author">Jason Taylor</h4>
-<h4 class="date">2022-06-15</h4>
+<h4 class="date">2026-06-22</h4>
 
 
 
 <style>
 table {
-    max-width: 100%;
-    max-height: 600px;
-    overflow: scroll;
+max-width: 100%;
+max-height: 600px;
+overflow: scroll;
 }
 thead{
-    position: sticky;
-    top: 0px;
-    background-color: #fff;
+position: sticky;
+top: 0px;
+background-color: #fff;
 }
 </style>
 <div id="workflow-overview" class="section level2">
 <h2>Workflow overview</h2>
-<p>Using the DataSpace <a href="https://dataspace.cavd.org/cds/CAVD/app.view#mabgrid">app</a>, the workflow of using the mAb grid is the following:</p>
-<ol style="list-style-type: decimal">
-<li>Navigate to the mAb Grid and browse the available mAb mixtures</li>
-<li>Select the mAb mixtures that you’d like to investigate</li>
-<li>Or filter rows by using columns:
-<ul>
-<li>mAb/Mixture</li>
-<li>donor species</li>
-<li>isotype</li>
-<li>HXB2 location</li>
-<li>tiers</li>
-<li>clades</li>
-<li>viruses</li>
-</ul></li>
-<li>Click “Neutralization Curves” or “IC50 Titer Heatmap” to visualize the mAb data</li>
-<li>Click “Export CSV” or “Export Excel” to download the mAb data</li>
-</ol>
-<p><code>DataSpaceR</code> offers a similar interface:</p>
-<ol style="list-style-type: decimal">
-<li>Browse the mAb Grid by <code>con$mabGridSummary</code></li>
-<li>Select the mAb mixtures by filtering the mAb grid using any columns found in <code>con$mabGrid</code> using <code>con$filterMabGrid()</code></li>
-<li>Use <code>con$getMab()</code> to retrieve the mAb data</li>
-</ol>
-</div>
-<div id="browse-the-mab-grid" class="section level2">
-<h2>Browse the mAb Grid</h2>
-<p>You can browse the mAb Grid by calling the <code>mabGridSummary</code> field in the connection object:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(DataSpaceR)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>con &lt;-<span class="st"> </span><span class="kw">connectDS</span>()</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(con<span class="op">$</span>mabGridSummary))</span></code></pre></div>
-<table>
-<colgroup>
-<col width="13%"></col>
-<col width="12%"></col>
-<col width="7%"></col>
-<col width="12%"></col>
-<col width="8%"></col>
-<col width="7%"></col>
-<col width="7%"></col>
-<col width="22%"></col>
-<col width="8%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">mab_mixture</th>
-<th align="left">donor_species</th>
-<th align="left">isotype</th>
-<th align="left">hxb2_location</th>
-<th align="right">n_viruses</th>
-<th align="right">n_clades</th>
-<th align="right">n_tiers</th>
-<th align="right">geometric_mean_curve_ic50</th>
-<th align="right">n_studies</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">10-1074</td>
-<td align="left">human</td>
-<td align="left">IgG</td>
-<td align="left">Env</td>
-<td align="right">7</td>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">0.0213723</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">10E8</td>
-<td align="left">human</td>
-<td align="left">IgG3</td>
-<td align="left">gp160</td>
-<td align="right">227</td>
-<td align="right">11</td>
-<td align="right">7</td>
-<td align="right">0.4843333</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">10E8 V2.0</td>
-<td align="left">human</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">28</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0.0031350</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">10E8 V2.0/iMab</td>
-<td align="left">human</td>
-<td align="left"></td>
-<td align="left">gp160</td>
-<td align="right">13</td>
-<td align="right">8</td>
-<td align="right">2</td>
-<td align="right">0.0462897</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">10E8 V4.0</td>
-<td align="left">human</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">28</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0.0024094</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">10E8 V4.0/iMab</td>
-<td align="left">human</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">119</td>
-<td align="right">12</td>
-<td align="right">6</td>
-<td align="right">0.0015396</td>
-<td align="right">1</td>
-</tr>
-</tbody>
-</table>
-<p>This table is designed to mimic the mAb grid found in the app.</p>
-<p>One can also access the unsummarized data from the mAb grid by calling <code>con$mabGrid</code>.</p>
-</div>
-<div id="filter-the-mab-grid" class="section level2">
-<h2>Filter the mAb grid</h2>
-<p>You can filter rows in the grid by specifying the values to keep in the columns found in the field <code>con$mabGrid</code>: <code>mab_mixture</code>, <code>donor_species</code>, <code>isotype</code>, <code>hxb2_location</code>, <code>tiers</code>, <code>clades</code>, <code>viruses</code>, and <code>studies</code>. <code>filterMabGrid</code> takes the column and the values and filters the underlying tables (private fields), and when you call the <code>mabGridSummary</code> or (which is actually an <a href="https://r6.r-lib.org/articles/Introduction.html#active-bindings">active binding</a>), it returns the filtered grid with updated <code>n_</code> columns and <code>geometric_mean_curve_ic50</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># filter the grid by viruses</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>con<span class="op">$</span><span class="kw">filterMabGrid</span>(<span class="dt">using =</span> <span class="st">&quot;virus&quot;</span>, <span class="dt">value =</span> <span class="kw">c</span>(<span class="st">&quot;242-14&quot;</span>, <span class="st">&quot;Q23.17&quot;</span>, <span class="st">&quot;6535.3&quot;</span>, <span class="st">&quot;BaL.26&quot;</span>, <span class="st">&quot;DJ263.8&quot;</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co"># filter the grid by donor species (llama)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>con<span class="op">$</span><span class="kw">filterMabGrid</span>(<span class="dt">using =</span> <span class="st">&quot;donor_species&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;llama&quot;</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co"># check the updated grid</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(con<span class="op">$</span>mabGridSummary)</span></code></pre></div>
-<table>
-<colgroup>
-<col width="10%"></col>
-<col width="12%"></col>
-<col width="7%"></col>
-<col width="12%"></col>
-<col width="9%"></col>
-<col width="8%"></col>
-<col width="7%"></col>
-<col width="23%"></col>
-<col width="9%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">mab_mixture</th>
-<th align="left">donor_species</th>
-<th align="left">isotype</th>
-<th align="left">hxb2_location</th>
-<th align="right">n_viruses</th>
-<th align="right">n_clades</th>
-<th align="right">n_tiers</th>
-<th align="right">geometric_mean_curve_ic50</th>
-<th align="right">n_studies</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">11F1B</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">11F1F</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">26.2961178</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">1H9</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">Env</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">5.0898322</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">2B4F</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">1.5242288</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">2H10</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">2H10/W100A</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">3E3</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">gp160</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0.9944945</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">4H73</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">5B10D</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">9B6B</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">24.3643637</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">A14</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">gp160</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1.8444582</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">B21</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">gp160</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0.0936399</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">B9</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">gp160</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0.0386986</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">LAB5</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-</tbody>
-</table>
-<p>Or we can use method chaining to call multiple filter methods and browse the grid. Method chaining is unique to R6 objects and related to the pipe. See Hadley Wickham’s <a href="https://adv-r.hadley.nz/r6.html">Advanced R</a> for more info.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>con<span class="op">$</span><span class="kw">resetMabGrid</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>con<span class="op">$</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">filterMabGrid</span>(<span class="dt">using =</span> <span class="st">&quot;virus&quot;</span>, <span class="dt">value =</span> <span class="kw">c</span>(<span class="st">&quot;242-14&quot;</span>, <span class="st">&quot;Q23.17&quot;</span>, <span class="st">&quot;6535.3&quot;</span>, <span class="st">&quot;BaL.26&quot;</span>, <span class="st">&quot;DJ263.8&quot;</span>))<span class="op">$</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">filterMabGrid</span>(<span class="dt">using =</span> <span class="st">&quot;donor_species&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;llama&quot;</span>)<span class="op">$</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="st">  </span>mabGridSummary</span></code></pre></div>
-</div>
-<div id="retrieve-column-values-from-the-mab-grid" class="section level2">
-<h2>Retrieve column values from the mAb grid</h2>
-<p>You can retrieve values from the grid by <code>mab_mixture</code>, <code>donor_species</code>, <code>isotype</code>, <code>hxb2_location</code>, <code>tier</code>, <code>clade</code>, <code>virus</code>, and <code>studies</code>, or any variables found in the <code>mabGrid</code> field in the connection object via <code>data.table</code> operations.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co"># retrieve available viruses in the filtered grid</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>con<span class="op">$</span>mabGrid[, <span class="kw">unique</span>(virus)]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;6535.3&quot;  &quot;Q23.17&quot;  &quot;DJ263.8&quot; &quot;BaL.26&quot;  &quot;242-14&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co"># retrieve available clades for 1H9 mAb mixture in the filtered grid</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>con<span class="op">$</span>mabGrid[mab_mixture <span class="op">==</span><span class="st"> &quot;1H9&quot;</span>, <span class="kw">unique</span>(clade)]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;CRF02_AG&quot; &quot;B&quot;</span></span></code></pre></div>
-</div>
-<div id="create-a-dataspacemab-object" class="section level2">
-<h2>Create a DataSpaceMab object</h2>
-<p>After filtering the grid, you can create a DataSpaceMab object that contains the filtered mAb data.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>mab &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getMab</span>()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>mab</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">#&gt; &lt;DataSpaceMab&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">#&gt;   User: jmtaylor@scharp.org</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">#&gt;   Summary:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">#&gt;     - 3 studies</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">#&gt;     - 14 mAb mixtures</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="co">#&gt;     - 1 neutralization tiers</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">#&gt;     - 3 clades</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co">#&gt;   Filters:</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="co">#&gt;     - virus: 242-14, Q23.17, 6535.3, BaL.26, DJ263.8</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="co">#&gt;     - mab_donor_species: llama</span></span></code></pre></div>
-<p>There are 6 public fields available in the <code>DataSpaceMab</code> object: <code>studyAndMabs</code>, <code>mabs</code>, <code>nabMab</code>, <code>studies</code>, <code>assays</code>, and <code>variableDefinitions</code>, and they are equivalent to the sheets in the excel file or the csv files you would download from the app via “Export Excel”/“Export CSV”.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(con<span class="op">$</span>mabGridSummary)</span></code></pre></div>
-<table>
-<colgroup>
-<col width="10%"></col>
-<col width="12%"></col>
-<col width="7%"></col>
-<col width="12%"></col>
-<col width="9%"></col>
-<col width="8%"></col>
-<col width="7%"></col>
-<col width="23%"></col>
-<col width="9%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">mab_mixture</th>
-<th align="left">donor_species</th>
-<th align="left">isotype</th>
-<th align="left">hxb2_location</th>
-<th align="right">n_viruses</th>
-<th align="right">n_clades</th>
-<th align="right">n_tiers</th>
-<th align="right">geometric_mean_curve_ic50</th>
-<th align="right">n_studies</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">11F1B</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">11F1F</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">26.2961178</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">1H9</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">Env</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">5.0898322</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">2B4F</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">1.5242288</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">2H10</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">2H10/W100A</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">3E3</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">gp160</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0.9944945</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">4H73</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">5B10D</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">9B6B</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">24.3643637</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">A14</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">gp160</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1.8444582</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">B21</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">gp160</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0.0936399</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">B9</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left">gp160</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0.0386986</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">LAB5</td>
-<td align="left">llama</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-</tr>
-</tbody>
-</table>
+<p>The workflow for getting mAb data is very similar to getting study
+data or groups. Pass the <code>availableMabs</code> object to the
+<code>getMabs</code> method. This can be filtered in a pipe as shown
+below.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">connectDS</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>pgt121 <span class="ot">&lt;-</span> con<span class="sc">$</span>availableMabs[mab_name_std <span class="sc">==</span> <span class="st">&quot;PGT121&quot;</span>] <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  con<span class="sc">$</span><span class="fu">getMabs</span>()</span></code></pre></div>
+<p>For the new mAb object, datsets are loaded automatically.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>pgt121<span class="sc">$</span>datasets <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="fu">names</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;NABMAb&quot; &quot;PKMAb&quot;</span></span></code></pre></div>
+<p>And each dataset can be accessed in the same fashion as accessing an
+item in a named list.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>pgt121<span class="sc">$</span>datasets<span class="sc">$</span>NABMAb</span></code></pre></div>
 </div>
 <div id="view-metadata-concerning-the-mab-object" class="section level2">
 <h2>View metadata concerning the mAb object</h2>
-<p>There are several metadata fields that can be exported in the mAb object.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">names</span>(mab)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="co">#&gt;  [1] &quot;.__enclos_env__&quot;     &quot;variableDefinitions&quot; &quot;assays&quot;             </span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="co">#&gt;  [4] &quot;studies&quot;             &quot;nabMab&quot;              &quot;mabs&quot;               </span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co">#&gt;  [7] &quot;studyAndMabs&quot;        &quot;config&quot;              &quot;clone&quot;              </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">#&gt; [10] &quot;getLanlMetadata&quot;     &quot;refresh&quot;             &quot;print&quot;              </span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">#&gt; [13] &quot;initialize&quot;</span></span></code></pre></div>
-<p>DataSpaceR can also fetch and add metadata associated with downloaded mAbs via the <code>getLanlMetadata</code> method that is associated with the <code>DataSpaceMab</code> object.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>mab<span class="op">$</span><span class="kw">getLanlMetadata</span>()</span></code></pre></div>
-<p>The LANL metadata can now be found at the <code>mabs$lanl_metadata</code> variable. This is a list column and its structure can very depending on what data LANL has collected.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>mab<span class="op">$</span>mabs[mab_name_std <span class="op">==</span><span class="st"> &quot;B9&quot;</span>]<span class="op">$</span>lanl_metadata</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co">#&gt; [[1]]$epitopes</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">#&gt;    accession alt_names      binding_type               cite   country dis</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co">#&gt; 1:        NA        NA &lt;data.table[1x2]&gt; &lt;data.table[1x25]&gt; &lt;list[0]&gt;  NA</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co">#&gt;    disrange donor epitope epitope_name hxb2_contig hxb2loc2end hxb2loc2start</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co">#&gt; 1:       NA    NA      NA           NA          NA          NA            NA</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co">#&gt;    hxb2locend hxb2locstart hxb2protein hxb2protein_id   id         immunogen</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="co">#&gt; 1:         NA           NA       gp160             18 3219 &lt;data.table[1x2]&gt;</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="co">#&gt;    in_catnap in_feature_db is_adcc   isotype           keyword mab_name</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co">#&gt; 1:      TRUE         FALSE      NA &lt;list[0]&gt; &lt;data.table[4x2]&gt;       B9</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="co">#&gt;             modifydate neutralizing              note origlocend origlocstart</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a><span class="co">#&gt; 1: 2018-06-01 13:59:55            L &lt;data.table[2x4]&gt;         NA           NA</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a><span class="co">#&gt;    origprotein origprotein_id   patient           species strain subprotein</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a><span class="co">#&gt; 1:          NA              1 &lt;list[0]&gt; &lt;data.table[1x2]&gt;     NA         NA</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a><span class="co">#&gt;    subprotein_id           subtype table total_cite_count total_note_count</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a><span class="co">#&gt; 1:             1 &lt;data.table[2x2]&gt;    ab                1                2</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a><span class="co">#&gt;    vaccine_adjuvant vaccine_component    vaccine_strain      vaccine_type</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a><span class="co">#&gt; 1:        &lt;list[0]&gt; &lt;data.table[1x2]&gt; &lt;data.table[2x2]&gt; &lt;data.table[1x2]&gt;</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a><span class="co">#&gt; [[1]]$params</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true"></a><span class="co">#&gt; [[1]]$params$id</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;3219&quot;</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true"></a><span class="co">#&gt; [[1]]$params$table</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;ab&quot;</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true"></a><span class="co">#&gt; [[1]]$timestamp</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;2022-04-01 17:01:42z&quot;</span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true"></a><span class="co">#&gt; [[1]]$source</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;https://www.hiv.lanl.gov/mojo/immunology/api/v1/epitope/ab?id=3219&quot;</span></span></code></pre></div>
-</div>
-<div id="session-information" class="section level2">
-<h2>Session information</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">sessionInfo</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">#&gt; R version 4.1.2 (2021-11-01)</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co">#&gt; Running under: Ubuntu 18.04.5 LTS</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="co">#&gt; Matrix products: default</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="co">#&gt; locale:</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="co">#&gt;  [1] LC_CTYPE=en_US.utf8       LC_NUMERIC=C             </span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a><span class="co">#&gt;  [3] LC_TIME=en_US.utf8        LC_COLLATE=en_US.utf8    </span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a><span class="co">#&gt;  [5] LC_MONETARY=en_US.utf8    LC_MESSAGES=en_US.utf8   </span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a><span class="co">#&gt;  [7] LC_PAPER=en_US.utf8       LC_NAME=C                </span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a><span class="co">#&gt;  [9] LC_ADDRESS=C              LC_TELEPHONE=C           </span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.utf8 LC_IDENTIFICATION=C      </span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a><span class="co">#&gt; attached base packages:</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a><span class="co">#&gt; other attached packages:</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a><span class="co">#&gt; [1] data.table_1.14.2 DataSpaceR_0.7.5  knitr_1.37       </span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true"></a><span class="co">#&gt;  [1] Rcpp_1.0.8       digest_0.6.29    assertthat_0.2.1 R6_2.5.1        </span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true"></a><span class="co">#&gt;  [5] jsonlite_1.8.0   magrittr_2.0.2   evaluate_0.15    highr_0.9       </span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true"></a><span class="co">#&gt;  [9] httr_1.4.2       stringi_1.7.6    curl_4.3.2       tools_4.1.2     </span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true"></a><span class="co">#&gt; [13] stringr_1.4.0    Rlabkey_2.8.3    xfun_0.29        compiler_4.1.2</span></span></code></pre></div>
+<p>Each mab object has metadata associated with it that can be
+viewed.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>pgt121<span class="sc">$</span>mabMetadata</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; Key: &lt;mab_id&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt;        mab_id mab_name_std mab_lanl_id mab_hxb2_location mab_ab_binding_type mab_isotype mab_class_id assays_available</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;       &lt;char&gt;      &lt;char&gt;            &lt;char&gt;              &lt;char&gt;      &lt;char&gt;       &lt;char&gt;           &lt;char&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; 1: cds_mab_26       PGT121        2635               Env     glycan/gp120 V3         IgG         &lt;NA&gt;  NAB MAB, PK MAB</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;                         studies_available     donor_id sequences_available</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt;                                    &lt;char&gt;       &lt;char&gt;              &lt;lgcl&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; 1: cvd270, cvd471, cvd473, cvd554, cvd719 cds_donor_36                TRUE</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>pgt121<span class="sc">$</span>donorMetadata</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;        donor_id donor_lanl_id donor_code donor_species donor_clade lineage_sequences_available mab_count sequence_count</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt;        &lt;char&gt;     &lt;char&gt;        &lt;char&gt;      &lt;char&gt;                      &lt;lgcl&gt;     &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; 1: cds_donor_36            26   Donor 17         human           A                       FALSE         8              8</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>pgt121<span class="sc">$</span>mabMixMetadata</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; Key: &lt;mab_mix_id&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt;          mab_mix_id            mab_mix_name_std mab_mix_name_other mab_mix_type virus_count titer_50_geomean</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;                      &lt;char&gt;             &lt;char&gt;       &lt;char&gt;       &lt;int&gt;            &lt;num&gt;</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt;  1:  cds_mab_mix_36                      PGT121                      Single mAb         539       0.07817056</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt;  2: cds_mab_mix_459       PGT121 (Clinical BDS)             PGT121   Single mAb          36       0.09557637</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt;  3: cds_mab_mix_460           PGT121 (Catalant)             PGT121   Single mAb          35       0.09651576</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;  4: cds_mab_mix_461 PGT121 (Reference Standard)             PGT121   Single mAb           8       0.06997322</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt;  5: cds_mab_mix_476 PGT121 (Reference Standard)             PGT121   Single mAb          NA               NA</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt;  6: cds_mab_mix_477     PGT121 (STAB147.Tox 22)             PGT121   Single mAb           7       0.06212521</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co">#&gt;  7: cds_mab_mix_478     PGT121 (STAB150.GMP 20)             PGT121   Single mAb           7       0.07924972</span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt;  8: cds_mab_mix_479     PGT121 (STAB154.GMP 10)             PGT121   Single mAb           7       0.06973818</span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#&gt;  9: cds_mab_mix_588     PGT121 Parental (MS-42)             PGT121   Single mAb          NA               NA</span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt; 10: cds_mab_mix_589      PGT121 variant (MS-43)             PGT121   Single mAb          NA               NA</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt; 11: cds_mab_mix_590     PGT121 variant (MS-414)             PGT121   Single mAb          NA               NA</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt; 12: cds_mab_mix_591     PGT121 variant (MS-444)             PGT121   Single mAb          NA               NA</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt; 13:  cds_mab_mix_67           PGT121 + PGDM1400                     MAb mixture         293       0.01915122</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt; 14:  cds_mab_mix_68             PGT121 + PGT145                     MAb mixture         293       0.06146521</span></span></code></pre></div>
 </div>
 
 

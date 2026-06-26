@@ -11,8 +11,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Helen Miller" />
+<meta name="author" content="Jason Taylor" />
 
-<meta name="date" content="2022-06-15" />
+<meta name="date" content="2026-06-22" />
 
 <title>Accessing Publication Data</title>
 
@@ -29,46 +30,32 @@ document.addEventListener('DOMContentLoaded', function(e) {
   }
 });
 </script>
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
-
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
-  }
-});
-</script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -80,55 +67,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -356,617 +342,366 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Accessing Publication Data</h1>
 <h4 class="author">Helen Miller</h4>
-<h4 class="date">2022-06-15</h4>
+<h4 class="author">Jason Taylor</h4>
+<h4 class="date">2026-06-22</h4>
 
 
 
 <style>
-table {
-    max-width: 100%;
-    max-height: 600px;
-    overflow: scroll;
-}
-thead{
-    position: sticky;
-    top: 0px;
-    background-color: #fff;
+.sourceCode{
+overflow: clip;
 }
 </style>
-<p>DataSpace maintains a curated collection of relevant publications, which can be accessed through the <a href="https://dataspace.cavd.org/cds/CAVD/app.view?#learn/learn/Publication">Publications page</a> through the app. Some publications laos include datasets which can be downloaded as a zip file. <code>DataSpaceR</code> provides an interface for browsing publications in DataSpace and downloading publication data where available.</p>
+<p>DataSpace maintains a curated collection of relevant publications,
+which can be accessed through the <a href="https://dataspace.cavd.org/cds/CAVD/app.view?#learn/learn/Publication">Publications
+page</a> through the app. Some publications include datasets which can
+be downloaded as a zip file. <code>DataSpaceR</code> provides an
+interface for browsing publications in DataSpace and downloading
+publication data where available.</p>
 <div id="browsing-publications-in-dataspace" class="section level2">
 <h2>Browsing publications in DataSpace</h2>
-<p>The <code>DataSpaceConnection</code> object includes methods for browsing and downloading publications and publication data.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(DataSpaceR)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>con &lt;-<span class="st"> </span><span class="kw">connectDS</span>()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>con</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">#&gt; &lt;DataSpaceConnection&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">#&gt;   User: jmtaylor@scharp.org</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">#&gt;   Available studies: 273</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">#&gt;     - 77 studies with data</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">#&gt;     - 5049 subjects</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co">#&gt;     - 423195 data points</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co">#&gt;   Available groups: 3</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co">#&gt;   Available publications: 1530</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="co">#&gt;     - 12 publications with data</span></span></code></pre></div>
-<p>The <code>DataSpaceConnection</code> print method summarizes the publications and publication data. More details about publications can be accessed through <code>con$availablePublications</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(con<span class="op">$</span>availablePublications[, <span class="op">-</span><span class="st">&quot;link&quot;</span>]))</span></code></pre></div>
-<table style="width:100%;">
-<colgroup>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="47%"></col>
-<col width="26%"></col>
-<col width="5%"></col>
-<col width="3%"></col>
-<col width="1%"></col>
-<col width="2%"></col>
-<col width="3%"></col>
-<col width="4%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">publication_id</th>
-<th align="left">first_author</th>
-<th align="left">all_authors</th>
-<th align="left">title</th>
-<th align="left">journal</th>
-<th align="left">publication_date</th>
-<th align="left">pubmed_id</th>
-<th align="left">related_studies</th>
-<th align="left">studies_with_data</th>
-<th align="left">publication_data_available</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1006</td>
-<td align="left">Abbink P</td>
-<td align="left">Abbink P, Maxfield LF, Ng’ang’a D, Borducchi EN, Iampietro MJ, Bricault CA, Teigler JE, Blackmore S, Parenteau L, Wagh K, Handley SA, Zhao G, Virgin HW, Korber B, Barouch DH</td>
-<td align="left">Construction and evaluation of novel rhesus monkey adenovirus vaccine vectors</td>
-<td align="left">J Virol</td>
-<td align="left">2015 Feb</td>
-<td align="left">25410856</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">1303</td>
-<td align="left">Abbott RK</td>
-<td align="left">Abbott RK, Lee JH, Menis S, Skog P, Rossi M, Ota T, Kulp DW, Bhullar D, Kalyuzhniy O, Havenar-Daughton C, Schief WR, Nemazee D, Crotty S</td>
-<td align="left">Precursor frequency and affinity determine B Cell competitive fitness in germinal centers, tested with germline-targeting HIV vaccine immunogens</td>
-<td align="left">Immunity</td>
-<td align="left">2018 Jan 16</td>
-<td align="left">29287996</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">1136</td>
-<td align="left">Abu-Raddad LJ</td>
-<td align="left">Abu-Raddad LJ, Boily MC, Self S, Longini IM Jr</td>
-<td align="left">Analytic insights into the population level impact of imperfect prophylactic HIV vaccines</td>
-<td align="left">J Acquir Immune Defic Syndr</td>
-<td align="left">2007 Aug 1</td>
-<td align="left">17554215</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">1485</td>
-<td align="left">Abu-Raddad LJ</td>
-<td align="left">Abu-Raddad LJ, Barnabas RV, Janes H, Weiss HA, Kublin JG, Longini IM Jr, Wasserheit JN, HIV Viral Load Working Group</td>
-<td align="left">Have the explosive HIV epidemics in sub-Saharan Africa been driven by higher community viral load?</td>
-<td align="left">AIDS</td>
-<td align="left">2013 Mar 27</td>
-<td align="left">23196933</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">842</td>
-<td align="left">Acharya P</td>
-<td align="left">Acharya P, Tolbert WD, Gohain N, Wu X, Yu L, Liu T, Huang W, Huang CC, Kwon YD, Louder RK, Luongo TS, McLellan JS, Pancera M, Yang Y, Zhang B, Flinko R, Foulke JS Jr, Sajadi MM, Kamin-Lewis R, Robinson JE, Martin L, Kwong PD, Guan Y, DeVico AL, Lewis GK, Pazgier M</td>
-<td align="left">Structural definition of an antibody-dependent cellular cytotoxicity response implicated in reduced risk for HIV-1 infection</td>
-<td align="left">J Virol</td>
-<td align="left">2014 Nov</td>
-<td align="left">25165110</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">1067</td>
-<td align="left">Ackerman ME</td>
-<td align="left">Ackerman ME, Mikhailova A, Brown EP, Dowell KG, Walker BD, Bailey-Kellogg C, Suscovich TJ, Alter G</td>
-<td align="left">Polyfunctional HIV-specific antibody responses are associated with spontaneous HIV control</td>
-<td align="left">PLOS Pathog</td>
-<td align="left">2016 Jan</td>
-<td align="left">26745376</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-</tbody>
-</table>
-<p>This table summarizes all publications, providing some information like first author, journal where it was published, and title as a <code>data.table</code>. It also includes a pubmed url where available under <code>link</code>. Related studies under <code>related_studies</code>, and related studies with data available under <code>studies_with_data</code>. We can use <code>data.table</code> methods to filter and sort this table to browse available publications.</p>
-<p>For example, we can filter this table to view only publications related to a particular study:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>vtn096_pubs &lt;-<span class="st"> </span>con<span class="op">$</span>availablePublications[<span class="kw">grepl</span>(<span class="st">&quot;vtn096&quot;</span>, related_studies)]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(vtn096_pubs[, <span class="op">-</span><span class="st">&quot;link&quot;</span>])</span></code></pre></div>
-<table>
-<colgroup>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="43%"></col>
-<col width="31%"></col>
-<col width="3%"></col>
-<col width="2%"></col>
-<col width="1%"></col>
-<col width="4%"></col>
-<col width="3%"></col>
-<col width="4%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">publication_id</th>
-<th align="left">first_author</th>
-<th align="left">all_authors</th>
-<th align="left">title</th>
-<th align="left">journal</th>
-<th align="left">publication_date</th>
-<th align="left">pubmed_id</th>
-<th align="left">related_studies</th>
-<th align="left">studies_with_data</th>
-<th align="left">publication_data_available</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1466</td>
-<td align="left">Cram JA</td>
-<td align="left">Cram JA, Fiore-Gartland AJ, Srinivasan S, Karuna S, Pantaleo G, Tomaras GD, Fredricks DN, Kublin JG</td>
-<td align="left">Human gut microbiota is associated with HIV-reactive immunoglobulin at baseline and following HIV vaccination</td>
-<td align="left">PLoS One</td>
-<td align="left">2019</td>
-<td align="left">31869338</td>
-<td align="left">vtn096</td>
-<td align="left">NA</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">250</td>
-<td align="left">Huang Y</td>
-<td align="left">Huang Y, DiazGranados C, Janes H, Huang Y, deCamp A, Metch B, Grant S, Sanchez B, Phogat S, Koutsoukos M, Kanesa-Thasan N, Bourguignon P, Collard A, Buchbinder S, Tomaras GD, McElrath J, Gray G, Kublin J, Corey L, Gilbert PB</td>
-<td align="left">Selection of HIV vaccine candidates for concurrent testing in an efficacy trial</td>
-<td align="left">Curr Opin Virol</td>
-<td align="left">2016 Jan 28</td>
-<td align="left">26827165</td>
-<td align="left">mrv144, vtn096</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">267</td>
-<td align="left">Huang Y</td>
-<td align="left">Huang Y, Zhang L, Janes H, Frahm N, Isaacs A, Kim JH, Montefiori D, McElrath MJ, Tomaras GD, Gilbert PB</td>
-<td align="left">Predictors of durable immune responses six months after the last vaccination in preventive HIV vaccine trials</td>
-<td align="left">Vaccine</td>
-<td align="left">2017 Feb 22</td>
-<td align="left">28131393</td>
-<td align="left">mrv144, vtn096, vtn205</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">268</td>
-<td align="left">Huang Y</td>
-<td align="left">Huang Y, Gilbert P, Fu R, Janes H</td>
-<td align="left">Statistical methods for down-selection of treatment regimens based on multiple endpoints, with application to HIV vaccine trials</td>
-<td align="left">Biostatistics</td>
-<td align="left">2017 Apr 1</td>
-<td align="left">27649715</td>
-<td align="left">mrv144, vtn096</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">1392</td>
-<td align="left">Pantaleo G</td>
-<td align="left">Pantaleo G, Janes H, Karuna S, Grant S, Ouedraogo GL, Allen M, Tomaras GD, Frahm N, Montefiori DC, Ferrari G, Ding S, Lee C, Robb ML, Esteban M, Wagner R, Bart PA, Rettby N, McElrath MJ, Gilbert PB, Kublin JG, Corey L, NIAID HIV Vaccine Trials Network</td>
-<td align="left">Safety and immunogenicity of a multivalent HIV vaccine comprising envelope protein with either DNA or NYVAC vectors (HVTN 096): a phase 1b, double-blind, placebo-controlled trial</td>
-<td align="left">Lancet HIV</td>
-<td align="left">2019 Oct 7</td>
-<td align="left">31601541</td>
-<td align="left">mrv144, vtn096, vtn100</td>
-<td align="left">NA</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">1420</td>
-<td align="left">Westling T</td>
-<td align="left">Westling T, Juraska M, Seaton KE, Tomaras GD, Gilbert PB, Janes H</td>
-<td align="left">Methods for comparing durability of immune responses between vaccine regimens in early-phase trials</td>
-<td align="left">Stat Methods Med Res</td>
-<td align="left">2019 Jan 9</td>
-<td align="left">30623732</td>
-<td align="left">vtn094, vtn096</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">281</td>
-<td align="left">Yates NL</td>
-<td align="left">Yates NL, deCamp AC, Korber BT, Liao HX, Irene C, Pinter A, Peacock J, Harris LJ, Sawant S, Hraber P, Shen X, Rerks-Ngarm S, Pitisuttithum P, Nitayapan S, Berman PW, Robb ML, Pantaleo G, Zolla-Pazner S, Haynes BF, Alam SM, Montefiori DC, Tomaras GD</td>
-<td align="left">HIV-1 envelope glycoproteins from diverse clades differentiate antibody responses and durability among vaccinees</td>
-<td align="left">J Virol</td>
-<td align="left">2018 Mar 28</td>
-<td align="left">29386288</td>
-<td align="left">mrv144, vtn096</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-</tbody>
-</table>
-<p>or publications that have related studies with integrated data in DataSpace:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>pubs_with_study_data &lt;-<span class="st"> </span>con<span class="op">$</span>availablePublications[<span class="op">!</span><span class="kw">is.na</span>(studies_with_data)]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(pubs_with_study_data[, <span class="op">-</span><span class="st">&quot;link&quot;</span>]))</span></code></pre></div>
-<table style="width:100%;">
-<colgroup>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="50%"></col>
-<col width="20%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="1%"></col>
-<col width="11%"></col>
-<col width="2%"></col>
-<col width="3%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">publication_id</th>
-<th align="left">first_author</th>
-<th align="left">all_authors</th>
-<th align="left">title</th>
-<th align="left">journal</th>
-<th align="left">publication_date</th>
-<th align="left">pubmed_id</th>
-<th align="left">related_studies</th>
-<th align="left">studies_with_data</th>
-<th align="left">publication_data_available</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1540</td>
-<td align="left">Andersen-Nissen E</td>
-<td align="left">Andersen-Nissen E, Fiore-Gartland A, Ballweber Fleming L, Carpp LN, Naidoo AF, Harper MS, Voillet V, Grunenberg N, Laher F, Innes C, Bekker L-G, Kublin JG, Huang Y, Ferrari G, Tomaras GD, Gray G, Gilbert PB, McElrath MJ</td>
-<td align="left">Innate immune signatures to a partially-efficacious HIV vaccine predict correlates of HIV-1 infection risk</td>
-<td align="left">PLOS Pathog</td>
-<td align="left">2021</td>
-<td align="left">NA</td>
-<td align="left">vtn097</td>
-<td align="left">vtn097</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">213</td>
-<td align="left">Andrasik MP</td>
-<td align="left">Andrasik MP, Yoon R, Mooney J, Broder G, Bolton M, Votto T, Davis-Vogel A; HVTN 505 study team; NIAID HIV Vaccine Trials Network</td>
-<td align="left">Exploring barriers and facilitators to participation of male-to-female transgender persons in preventive HIV vaccine clinical trials.</td>
-<td align="left">Prev Sci</td>
-<td align="left">2014 Jun</td>
-<td align="left">23446435</td>
-<td align="left">vtn505</td>
-<td align="left">vtn505</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">218</td>
-<td align="left">Andrasik MP</td>
-<td align="left">Andrasik MP, Karuna ST, Nebergall M, Koblin BA, Kublin JG; NIAID HIV Vaccine Trials Network</td>
-<td align="left">Behavioral risk assessment in HIV Vaccine Trials Network (HVTN) clinical trials: A qualitative study exploring HVTN staff perspectives</td>
-<td align="left">Vaccine</td>
-<td align="left">2013 Sep 13</td>
-<td align="left">23859840</td>
-<td align="left">vtn069, vtn404, vtn502, vtn503, vtn504, vtn505, vtn802, vtn903, vtn906, vtn907</td>
-<td align="left">vtn505</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">225</td>
-<td align="left">Andrasik MP</td>
-<td align="left">Andrasik MP, Chandler C, Powell B, Humes D, Wakefield S, Kripke K, Eckstein D</td>
-<td align="left">Bridging the divide: HIV prevention research and Black men who have sex with men</td>
-<td align="left">Am J Public Health</td>
-<td align="left">2014 Apr</td>
-<td align="left">24524520</td>
-<td align="left">vtn505</td>
-<td align="left">vtn505</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">226</td>
-<td align="left">Arnold MP</td>
-<td align="left">Arnold MP, Andrasik M, Landers S, Karuna S, Mimiaga MJ, Wakefield S, Mayer K, Buchbinder S, Koblin BA</td>
-<td align="left">Sources of racial/ethnic differences in HIV vaccine trial awareness: Exposure, attention, or both?</td>
-<td align="left">Am J Public Health</td>
-<td align="left">2014 Aug</td>
-<td align="left">24922153</td>
-<td align="left">vtn505</td>
-<td align="left">vtn505</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">7</td>
-<td align="left">Asbach B</td>
-<td align="left">Asbach B, Kliche A, Köstler J, Perdiguero B, Esteban M, Jacobs BL, Montefiori DC, LaBranche CC, Yates NL, Tomaras GD, Ferrari G, Foulds KE, Roederer M, Landucci G, Forthal DN, Seaman MS, Hawkins N, Self SG, Sato A, Gottardo R, Phogat S, Tartaglia J, Barnett SW, Burke B, Cristillo AD, Weiss DE, Francis J, Galmin L, Ding S, Heeney JL, Pantaleo G, Wagner R</td>
-<td align="left">Potential to streamline heterologous DNA prime and NYVAC/protein boost HIV vaccine regimens in rhesus macaques by employing improved antigens</td>
-<td align="left">J Virol</td>
-<td align="left">2016 Mar 28</td>
-<td align="left">26865719</td>
-<td align="left">cvd277, cvd281</td>
-<td align="left">cvd277, cvd281</td>
-<td align="left">FALSE</td>
-</tr>
-</tbody>
-</table>
-<p>We can also use this information to connect to related studies and pull integrated data. Say we are interested in this Rouphael (2019) publication:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>rouphael2019 &lt;-<span class="st"> </span>con<span class="op">$</span>availablePublications[first_author <span class="op">==</span><span class="st"> &quot;Rouphael NG&quot;</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(rouphael2019[, <span class="op">-</span><span class="st">&quot;link&quot;</span>])</span></code></pre></div>
-<table>
-<colgroup>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="58%"></col>
-<col width="17%"></col>
-<col width="2%"></col>
-<col width="3%"></col>
-<col width="1%"></col>
-<col width="2%"></col>
-<col width="3%"></col>
-<col width="5%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">publication_id</th>
-<th align="left">first_author</th>
-<th align="left">all_authors</th>
-<th align="left">title</th>
-<th align="left">journal</th>
-<th align="left">publication_date</th>
-<th align="left">pubmed_id</th>
-<th align="left">related_studies</th>
-<th align="left">studies_with_data</th>
-<th align="left">publication_data_available</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1390</td>
-<td align="left">Rouphael NG</td>
-<td align="left">Rouphael NG, Morgan C, Li SS, Jensen R, Sanchez B, Karuna S, Swann E, Sobieszczyk ME, Frank I, Wilson GJ, Tieu HV, Maenza J, Norwood A, Kobie J, Sinangil F, Pantaleo G, Ding S, McElrath MJ, De Rosa SC, Montefiori DC, Ferrari G, Tomaras GD, Keefer MC, HVTN 105 Protocol Team and the NIAID HIV Vaccine Trials Network</td>
-<td align="left">DNA priming and gp120 boosting induces HIV-specific antibodies in a randomized clinical trial</td>
-<td align="left">J Clin Invest</td>
-<td align="left">2019 Sep 30</td>
-<td align="left">31566579</td>
-<td align="left">vtn105</td>
-<td align="left">vtn105</td>
-<td align="left">TRUE</td>
-</tr>
-</tbody>
-</table>
-<p>We can find this publication in the available publications table, determine related studies, and pull data for those studies where available.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>related_studies &lt;-<span class="st"> </span>rouphael2019<span class="op">$</span>related_studies</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>related_studies</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;vtn105&quot;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>rouphael2019_study &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(related_studies)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>rouphael2019_study</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">#&gt;   Study: vtn105</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD/vtn105</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="co">#&gt;   Available datasets:</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co">#&gt;     - Demographics</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co">#&gt;     - Intracellular Cytokine Staining</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="kw">dim</span>(rouphael2019_study<span class="op">$</span>availableDatasets)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="co">#&gt; [1] 4 4</span></span></code></pre></div>
-<p>We can see that there are datasets available for this study. We can pull any of them using <code>rouphael2019_study$getDataset()</code>.</p>
+<p>The <code>DataSpaceConnection</code> object includes methods for
+browsing and downloading publications and publication data.</p>
+<p>The examples below are meant to show abridged console output and are
+not intended to be exhaustive.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(DataSpaceR)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">connectDS</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>con</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt; &lt;DataSpaceConnection&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt;   User: jmtaylor@scharp.org</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt;   Available Studies: 397</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt;     - 79 studies with data</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt;     - 5074 subjects</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co">#&gt;     - 436354 data points</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co">#&gt;   Available Groups: 6</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#&gt;   Available Publications: 1910</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#&gt;     - 30 publications with data</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#&gt;   Available Connection objects:</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt;     - availableDonors</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co">#&gt;     - availableGroups</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co">#&gt;     - availableMabMixtures</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co">#&gt;     - availableMabs</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="co">#&gt;     - availablePublications</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co">#&gt;     - availableStudies</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="co">#&gt;     - availableViruses</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="co">#&gt;     - virusNameMappingTables</span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="co">#&gt;   Available Connection methods:</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co">#&gt;     - downloadPublicationData</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="co">#&gt;     - getDaash</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="co">#&gt;     - getDonors</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="co">#&gt;     - getGroups</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="co">#&gt;     - getMabs</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="co">#&gt;     - getStudies</span></span></code></pre></div>
+<p>The <code>DataSpaceConnection</code> print method summarizes the
+publications and publication data. More details about publications can
+be accessed through <code>con$availablePublications</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>con<span class="sc">$</span>availablePublications</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt;       publication_id  label   first_author</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt;               &lt;char&gt; &lt;char&gt;         &lt;char&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt;    1:           1006   &lt;NA&gt;       Abbink P</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt;    2:           1303   &lt;NA&gt;      Abbott RK</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt;    3:           1635   &lt;NA&gt;   Abernathy ME</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt;    4:           1636   &lt;NA&gt;   Abernathy ME</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt;    5:           1838   &lt;NA&gt;   Abernethy NF</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;   ---                                     </span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 1906:            276   &lt;NA&gt;      deCamp AC</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; 1907:           1029   &lt;NA&gt;    van Gils MJ</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 1908:           1613   &lt;NA&gt; van Schooten J</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 1909:           1618   &lt;NA&gt; van Schooten J</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 1910:           1743   &lt;NA&gt; van der Laan L</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               all_authors</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    &lt;char&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt;    1:                                                                                                                                                                                                                                                                                                                                                                       Abbink P, Maxfield LF, Ng&#39;ang&#39;a D, Borducchi EN, Iampietro MJ, Bricault CA, Teigler JE, Blackmore S, Parenteau L, Wagh K, Handley SA, Zhao G, Virgin HW, Korber B, Barouch DH</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;    2:                                                                                                                                                                                                                                                                                                                                                                                                            Abbott RK, Lee JH, Menis S, Skog P, Rossi M, Ota T, Kulp DW, Bhullar D, Kalyuzhniy O, Havenar-Daughton C, Schief WR, Nemazee D, Crotty S</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt;    3:                                                                                                                                                                                                                                                                                                                                                                                              Abernathy ME, Gristick HB, Vielmetter J, Keeffe JR, Gnanapragasam PNP, Lee YE, Escolano A, Gautam R, Seaman MS, Martin MA, Nussenzweig MC, Bjorkman PJ</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt;    4:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Abernathy ME, Dam KMA, Esswein SR, Jette CA, Bjorkman PJ</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt;    5:                                                                                                                                                                                                                                                                                                                                                                                                  Abernethy NF, McCloskey K, Trahey M, Rinn L, Broder G, Andrasik M, Laborde R, McGhan D, Spendolini S, Marimuthu S, Kanzmeier A, Hanes J, Kublin JG</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt;   ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt; 1906: deCamp AC, Rolland M, Edlefsen PT, Sanders-Buell E, Hall B, Magaret CA, Fiore-Gartland AJ, Juraska M, Carpp LN, Karuna ST, Bose M, LePore S, Miller S, O&#39;Sullivan A, Poltavee K, Bai H, Dommaraju K, Zhao H, Wong K, Chen L, Ahmed H, Goodman D, Tay MZ, Gottardo R, Koup RA, Bailer R, Mascola JR, Graham BS, Roederer M, O&#39;Connell RJ, Michael NL, Robb ML, Adams E, D&#39;Souza P, Kublin J, Corey L, Geraghty DE, Frahm N, Tomaras GD, McElrath MJ, Frenkel L, Styrchak S, Tovanabutra S, Sobieszczyk ME, Hammer SM, Kim JH, Mullins JI, Gilbert PB</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt; 1907:                                                                                                                                                                                                                         van Gils MJ, van den Kerkhof TL, Ozorowski G, Cottrell CA, Sok D, Pauthner M, Pallesen J, de Val N, Yasmeen A, de Taeye SW, Schorcht A, Gumbs S, Johanna I, Saye-Francisco K, Liang CH, Landais E, Nie X, Pritchard LK, Crispin M, Kelsoe G, Wilson IA, Schuitemaker H, Klasse PJ, Moore JP, Burton DR, Ward AB, Sanders RW</span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt; 1908:                                                                                                                                                                                                van Schooten J, Schorcht A, Farokhi E, Umotoy JC, Gao H, van den Kerkhof TLGM, Dorning J, Rijkhold Meesters TG, van der Woude P, Burger JA, Bijl T, Ghalaiyini R, Torrents de la Pena A, Turner HL, Labranche CC, Stanfield RL, Sok D, Schuitemaker H, Montefiori DC, Burton DR, Ozorowski G, Seaman MS, Wilson IA, Sanders RW, Ward AB, van Gils MJ</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co">#&gt; 1909:                                                                                                                                                                                                                  van Schooten J, Farokhi E, Schorcht A, van den Kerkhof TLGM, Gao H, van der Woude P, Burger JA, Rijkhold Meesters TG, Bijl T, Ghalaiyini R, Turner HL, Dorning J, van Schaik BDC, van Kampen AHC, Labranche CC, Stanfield RL, Sok D, Montefiori DC, Burton DR, Seaman MS, Ozorowski G, Wilson IA, Sanders RW, Ward AB, van Gils MJ</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co">#&gt; 1910:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 van der Laan L, Zhang W, Gilbert PB</span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                  title</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                 &lt;char&gt;</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt;    1:                                                                    Construction and evaluation of novel rhesus monkey adenovirus vaccine vectors</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="co">#&gt;    2: Precursor frequency and affinity determine B Cell competitive fitness in germinal centers, tested with germline-targeting HIV vaccine immunogens</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="co">#&gt;    3:                    Antibody elicited by HIV-1 immunogen vaccination in macaques displaces env fusion peptide and destroys a neutralizing epitope</span></span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="co">#&gt;    4:                     How antibodies recognize pathogenic viruses: Structural correlates of antibody neutralization of HIV-1, SARS-CoV-2, and Zika</span></span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a><span class="co">#&gt;    5:                                                                   Rapid development of a registry to accelerate COVID-19 vaccine clinical trials</span></span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a><span class="co">#&gt;   ---                                                                                                                                                 </span></span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a><span class="co">#&gt; 1906:               Sieve analysis of breakthrough HIV-1 sequences in HVTN 505 identifies vaccine pressure targeting the CD4 binding site of Env-gp120</span></span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a><span class="co">#&gt; 1907:                                             An HIV-1 antibody from an elite neutralizer implicates the fusion peptide as a site of vulnerability</span></span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a><span class="co">#&gt; 1908:                                            Complementary antibody lineages achieve neutralization breadth in an HIV-1 infected elite neutralizer</span></span>
+<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a><span class="co">#&gt; 1909:                           Identification of IOMA-class neutralizing antibodies targeting the CD4-binding site on the HIV-1 envelope glycoprotein</span></span>
+<span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a><span class="co">#&gt; 1910:                                                       Nonparametric estimation of the causal effect of a stochastic threshold-based intervention</span></span>
+<span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a><span class="co">#&gt;             journal publication_date                                         link pubmed_id related_studies studies_with_data</span></span>
+<span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;           &lt;char&gt;                                       &lt;char&gt;    &lt;char&gt;          &lt;char&gt;            &lt;char&gt;</span></span>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a><span class="co">#&gt;    1:       J Virol         2015 Feb https://www.ncbi.nlm.nih.gov/pubmed/25410856  25410856            &lt;NA&gt;              &lt;NA&gt;</span></span>
+<span id="cb2-44"><a href="#cb2-44" tabindex="-1"></a><span class="co">#&gt;    2:      Immunity      2018 Jan 16 https://www.ncbi.nlm.nih.gov/pubmed/29287996  29287996            &lt;NA&gt;              &lt;NA&gt;</span></span>
+<span id="cb2-45"><a href="#cb2-45" tabindex="-1"></a><span class="co">#&gt;    3:  NPJ Vaccines      2021 Oct 25     https://pubmed.ncbi.nlm.nih.gov/34697307  34697307            &lt;NA&gt;              &lt;NA&gt;</span></span>
+<span id="cb2-46"><a href="#cb2-46" tabindex="-1"></a><span class="co">#&gt;    4:       Viruses      2021 Oct 19     https://pubmed.ncbi.nlm.nih.gov/34696536  34696536            &lt;NA&gt;              &lt;NA&gt;</span></span>
+<span id="cb2-47"><a href="#cb2-47" tabindex="-1"></a><span class="co">#&gt;    5: NPJ Digit Med      2025 May 06     https://pubmed.ncbi.nlm.nih.gov/40328984  40328984            &lt;NA&gt;              &lt;NA&gt;</span></span>
+<span id="cb2-48"><a href="#cb2-48" tabindex="-1"></a><span class="co">#&gt;   ---                                                                                                                        </span></span>
+<span id="cb2-49"><a href="#cb2-49" tabindex="-1"></a><span class="co">#&gt; 1906:      PLOS ONE      2017 Nov 17 https://www.ncbi.nlm.nih.gov/pubmed/29149197  29149197          vtn505            vtn505</span></span>
+<span id="cb2-50"><a href="#cb2-50" tabindex="-1"></a><span class="co">#&gt; 1907: Nat Microbiol      2016 Nov 14 https://www.ncbi.nlm.nih.gov/pubmed/27841852  27841852            &lt;NA&gt;              &lt;NA&gt;</span></span>
+<span id="cb2-51"><a href="#cb2-51" tabindex="-1"></a><span class="co">#&gt; 1908:   PLoS Pathog         2022 Nov     https://pubmed.ncbi.nlm.nih.gov/36395347  36395347          cvd850              &lt;NA&gt;</span></span>
+<span id="cb2-52"><a href="#cb2-52" tabindex="-1"></a><span class="co">#&gt; 1909:    Nat Commun      2022 Aug 03     https://pubmed.ncbi.nlm.nih.gov/35922441  35922441          cvd850              &lt;NA&gt;</span></span>
+<span id="cb2-53"><a href="#cb2-53" tabindex="-1"></a><span class="co">#&gt; 1910:    Biometrics         2023 Jun     https://pubmed.ncbi.nlm.nih.gov/35526218  35526218            &lt;NA&gt;              &lt;NA&gt;</span></span>
+<span id="cb2-54"><a href="#cb2-54" tabindex="-1"></a><span class="co">#&gt;       publication_data_available</span></span>
+<span id="cb2-55"><a href="#cb2-55" tabindex="-1"></a><span class="co">#&gt;                           &lt;lgcl&gt;</span></span>
+<span id="cb2-56"><a href="#cb2-56" tabindex="-1"></a><span class="co">#&gt;    1:                      FALSE</span></span>
+<span id="cb2-57"><a href="#cb2-57" tabindex="-1"></a><span class="co">#&gt;    2:                      FALSE</span></span>
+<span id="cb2-58"><a href="#cb2-58" tabindex="-1"></a><span class="co">#&gt;    3:                      FALSE</span></span>
+<span id="cb2-59"><a href="#cb2-59" tabindex="-1"></a><span class="co">#&gt;    4:                      FALSE</span></span>
+<span id="cb2-60"><a href="#cb2-60" tabindex="-1"></a><span class="co">#&gt;    5:                      FALSE</span></span>
+<span id="cb2-61"><a href="#cb2-61" tabindex="-1"></a><span class="co">#&gt;   ---                           </span></span>
+<span id="cb2-62"><a href="#cb2-62" tabindex="-1"></a><span class="co">#&gt; 1906:                      FALSE</span></span>
+<span id="cb2-63"><a href="#cb2-63" tabindex="-1"></a><span class="co">#&gt; 1907:                      FALSE</span></span>
+<span id="cb2-64"><a href="#cb2-64" tabindex="-1"></a><span class="co">#&gt; 1908:                      FALSE</span></span>
+<span id="cb2-65"><a href="#cb2-65" tabindex="-1"></a><span class="co">#&gt; 1909:                      FALSE</span></span>
+<span id="cb2-66"><a href="#cb2-66" tabindex="-1"></a><span class="co">#&gt; 1910:                      FALSE</span></span></code></pre></div>
+<p>This table summarizes all publications, providing some information
+like first author, journal where it was published, and title as a
+<code>data.table</code>. It also includes a pubmed url where available
+under <code>link</code>. Related studies under
+<code>related_studies</code>, and related studies with data available
+under <code>studies_with_data</code>. We can use <code>data.table</code>
+methods to filter and sort this table to browse available
+publications.</p>
+<p>For example, we can filter this table to view only publications
+related to a particular study:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>vtn096_pubs <span class="ot">&lt;-</span> con<span class="sc">$</span>availablePublications[<span class="fu">grepl</span>(<span class="st">&quot;vtn096&quot;</span>, related_studies)]</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>vtn096_pubs</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt;     publication_id                       label       first_author</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt;             &lt;char&gt;                      &lt;char&gt;             &lt;char&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt;  1:           1466   Cram 2019 (PLOS One) Data            Cram JA</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt;  2:           1921                        &lt;NA&gt;            Huang Y</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt;  3:            250                        &lt;NA&gt;            Huang Y</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt;  4:            267                        &lt;NA&gt;            Huang Y</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt;  5:            268                        &lt;NA&gt;            Huang Y</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt;  6:           1728                        &lt;NA&gt;  Mayer-Blackwell K</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt;  7:           1392 Pantaleo 2019 (Lancet) Data         Pantaleo G</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt;  8:           1761                        &lt;NA&gt;          Seaton KE</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt;  9:           1753                        &lt;NA&gt; Stranix-Chibanda L</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt; 10:           1420                        &lt;NA&gt;         Westling T</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt; 11:            281                        &lt;NA&gt;           Yates NL</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                    all_authors</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                         &lt;char&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt;  1:                                                                                                                                                                                                                                                                                                        Cram JA, Fiore-Gartland AJ, Srinivasan S, Karuna S, Pantaleo G, Tomaras GD, Fredricks DN, Kublin JG</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co">#&gt;  2:                                                                                                                                                                                                                                                                                                                                                                                         Huang Y, Tarkhan A</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">#&gt;  3:                                                                                                                                                                          Huang Y, DiazGranados C, Janes H, Huang Y, deCamp A, Metch B, Grant S, Sanchez B, Phogat S,  Koutsoukos M, Kanesa-Thasan N, Bourguignon P, Collard A, Buchbinder S, Tomaras GD, McElrath J, Gray G, Kublin J, Corey L, Gilbert PB</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co">#&gt;  4:                                                                                                                                                                                                                                                                                                    Huang Y, Zhang L, Janes H, Frahm N, Isaacs A, Kim JH, Montefiori D, McElrath MJ, Tomaras GD, Gilbert PB</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="co">#&gt;  5:                                                                                                                                                                                                                                                                                                                                                                          Huang Y, Gilbert P, Fu R, Janes H</span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co">#&gt;  6:                                                                                                                                                                                                                                                                     Mayer-Blackwell K, Johnson AM, Potchen N, Minot SS, Heptinstall J, Seaton K, Sawant S, Shen X, Tomaras GD, Fiore-Gartland A, Kublin JG</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="co">#&gt;  7:                                                                                                                                                Pantaleo G, Janes H, Karuna S, Grant S, Ouedraogo GL, Allen M, Tomaras GD, Frahm N, Montefiori DC, Ferrari G, Ding S, Lee C, Robb ML, Esteban M, Wagner R, Bart PA, Rettby N, McElrath MJ, Gilbert PB, Kublin JG, Corey L, NIAID HIV Vaccine Trials Network</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co">#&gt;  8: Seaton KE, Deal A, Han X, Li SS, Clayton A, Heptinstall J, Duerr A, Allen MA, Shen X, Sawant S, Yates NL, Spearman P, Churchyard G, Goepfert PA, Maenza J, Gray G, Pantaleo G, Polakowski L, Robinson HL, Grant S,  Randhawa AK, Huang Y, Morgan C, Grunenberg N, Karuna S, Gilbert PB, McElrath MJ, Huang Y, Tomaras GD, NIAID HIV Vaccine Trials Network (HVTN) 076, 088, 086, 096, 097, 205 Study Teams</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co">#&gt;  9:                                                                                                                                                                                                                                                                                                                               Stranix-Chibanda L, Yu C, Brewinski Isaacs M, Allen M, Andriesen J, Walsh SR</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="co">#&gt; 10:                                                                                                                                                                                                                                                                                                                                          Westling T, Juraska M, Seaton KE, Tomaras GD, Gilbert PB, Janes H</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt; 11:                                                                                                                                                   Yates NL, deCamp AC, Korber BT, Liao HX, Irene C, Pinter A, Peacock J, Harris LJ, Sawant S, Hraber P, Shen X, Rerks-Ngarm S, Pitisuttithum P, Nitayapan S, Berman PW, Robb ML, Pantaleo G, Zolla-Pazner S, Haynes BF, Alam SM, Montefiori DC, Tomaras GD</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                  title</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                 &lt;char&gt;</span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co">#&gt;  1:                                                                      Human gut microbiota is associated with HIV-reactive immunoglobulin at baseline and following HIV vaccination</span></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">#&gt;  2:                                                                Methods for feature selection in down-selection of vaccine regimens based on multivariate immune response endpoints</span></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co">#&gt;  3:                                                                                                    Selection of HIV vaccine candidates for concurrent testing in an efficacy trial</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">#&gt;  4:                                                                      Predictors of durable immune responses six months after the last vaccination in preventive HIV vaccine trials</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="co">#&gt;  5:                                                   Statistical methods for down-selection of treatment regimens based on multiple endpoints, with application to HIV vaccine trials</span></span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co">#&gt;  6:                                                                Multi-trial analysis of HIV-1 envelope gp41-reactive antibodies among global recipients of candidate HIV-1 vaccines</span></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co">#&gt;  7: Safety and immunogenicity of a multivalent HIV vaccine comprising envelope protein with either DNA or NYVAC vectors (HVTN 096): a phase 1b, double-blind, placebo-controlled trial</span></span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="co">#&gt;  8:                                                                                                               Meta-analysis of HIV-1 vaccine elicited mucosal antibodies in humans</span></span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="co">#&gt;  9:                 A retrospective analysis of incident pregnancy in Phase 1 and 2a HIV-1 vaccine study participants does not support concern for adverse pregnancy or birth outcomes</span></span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="co">#&gt; 10:                                                                                Methods for comparing durability of immune responses between vaccine regimens in early-phase trials</span></span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="co">#&gt; 11:                                                                   HIV-1 envelope glycoproteins from diverse clades differentiate antibody responses and durability among vaccinees</span></span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="co">#&gt;                  journal publication_date                                         link pubmed_id</span></span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="co">#&gt;                   &lt;char&gt;           &lt;char&gt;                                       &lt;char&gt;    &lt;char&gt;</span></span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="co">#&gt;  1:             PLoS One             2019 https://www.ncbi.nlm.nih.gov/pubmed/31869338  31869338</span></span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="co">#&gt;  2:          Stat Biosci             2020     https://pubmed.ncbi.nlm.nih.gov/32421096  32421096</span></span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="co">#&gt;  3:      Curr Opin Virol      2016 Jan 28  http://www.ncbi.nlm.nih.gov/pubmed/26827165  26827165</span></span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="co">#&gt;  4:              Vaccine      2017 Feb 22 https://www.ncbi.nlm.nih.gov/pubmed/28131393  28131393</span></span>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="co">#&gt;  5:        Biostatistics       2017 Apr 1 https://www.ncbi.nlm.nih.gov/pubmed/27649715  27649715</span></span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co">#&gt;  6:        Front Immunol             2022     https://pubmed.ncbi.nlm.nih.gov/36311720  36311720</span></span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="co">#&gt;  7:           Lancet HIV       2019 Oct 7 https://www.ncbi.nlm.nih.gov/pubmed/31601541  31601541</span></span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="co">#&gt;  8:         NPJ Vaccines      2021 Apr 15     https://pubmed.ncbi.nlm.nih.gov/33859204  33859204</span></span>
+<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="co">#&gt;  9:       BMC Infect Dis      2021 Aug 11     https://pubmed.ncbi.nlm.nih.gov/34380464  34380464</span></span>
+<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="co">#&gt; 10: Stat Methods Med Res       2019 Jan 9 https://www.ncbi.nlm.nih.gov/pubmed/30623732  30623732</span></span>
+<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a><span class="co">#&gt; 11:              J Virol      2018 Mar 28 https://www.ncbi.nlm.nih.gov/pubmed/29386288  29386288</span></span>
+<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                     related_studies</span></span>
+<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                              &lt;char&gt;</span></span>
+<span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a><span class="co">#&gt;  1:                                                                                                                                                                                                                                                                                                                                                                                                                                          vtn096</span></span>
+<span id="cb3-58"><a href="#cb3-58" tabindex="-1"></a><span class="co">#&gt;  2:                                                                                                                                                                                                                                                                                                                                                                                                                                  mrv144, vtn096</span></span>
+<span id="cb3-59"><a href="#cb3-59" tabindex="-1"></a><span class="co">#&gt;  3:                                                                                                                                                                                                                                                                                                                                                                                                                                  mrv144, vtn096</span></span>
+<span id="cb3-60"><a href="#cb3-60" tabindex="-1"></a><span class="co">#&gt;  4:                                                                                                                                                                                                                                                                                                                                                                                                                          mrv144, vtn096, vtn205</span></span>
+<span id="cb3-61"><a href="#cb3-61" tabindex="-1"></a><span class="co">#&gt;  5:                                                                                                                                                                                                                                                                                                                                                                                                                                  mrv144, vtn096</span></span>
+<span id="cb3-62"><a href="#cb3-62" tabindex="-1"></a><span class="co">#&gt;  6:                                                                                                                                                                                                                                                                                                                                                  mrv144, vtn096, vtn097, vtn098, vtn100, vtn106, vtn107, vtn111, vtn122, vtn204, vtn205, vtn505</span></span>
+<span id="cb3-63"><a href="#cb3-63" tabindex="-1"></a><span class="co">#&gt;  7:                                                                                                                                                                                                                                                                                                                                                                                                                          mrv144, vtn096, vtn100</span></span>
+<span id="cb3-64"><a href="#cb3-64" tabindex="-1"></a><span class="co">#&gt;  8:                                                                                                                                                                                                                                                                                                                                                                                                  vtn076, vtn086, vtn088, vtn096, vtn097, vtn205</span></span>
+<span id="cb3-65"><a href="#cb3-65" tabindex="-1"></a><span class="co">#&gt;  9: vtn026, vtn039, vtn040, vtn041, vtn042, vtn044, vtn045, vtn048, vtn049, vtn050, vtn052, vtn054, vtn055, vtn056, vtn057, vtn059, vtn060, vtn063, vtn064, vtn065, vtn067, vtn068, vtn069, vtn070, vtn071, vtn072, vtn073, vtn073E, vtn076, vtn077, vtn078, vtn080, vtn082, vtn083, vtn084, vtn085, vtn086, vtn087, vtn088, vtn090, vtn092, vtn094, vtn096, vtn097, vtn098, vtn100, vtn105, vtn106, vtn110, vtn111, vtn112, vtn203, vtn204, vtn205</span></span>
+<span id="cb3-66"><a href="#cb3-66" tabindex="-1"></a><span class="co">#&gt; 10:                                                                                                                                                                                                                                                                                                                                                                                                                                  vtn094, vtn096</span></span>
+<span id="cb3-67"><a href="#cb3-67" tabindex="-1"></a><span class="co">#&gt; 11:                                                                                                                                                                                                                                                                                                                                                                                                                                  mrv144, vtn096</span></span>
+<span id="cb3-68"><a href="#cb3-68" tabindex="-1"></a><span class="co">#&gt;     studies_with_data publication_data_available</span></span>
+<span id="cb3-69"><a href="#cb3-69" tabindex="-1"></a><span class="co">#&gt;                &lt;char&gt;                     &lt;lgcl&gt;</span></span>
+<span id="cb3-70"><a href="#cb3-70" tabindex="-1"></a><span class="co">#&gt;  1:              &lt;NA&gt;                       TRUE</span></span>
+<span id="cb3-71"><a href="#cb3-71" tabindex="-1"></a><span class="co">#&gt;  2:              &lt;NA&gt;                      FALSE</span></span>
+<span id="cb3-72"><a href="#cb3-72" tabindex="-1"></a><span class="co">#&gt;  3:              &lt;NA&gt;                      FALSE</span></span>
+<span id="cb3-73"><a href="#cb3-73" tabindex="-1"></a><span class="co">#&gt;  4:              &lt;NA&gt;                      FALSE</span></span>
+<span id="cb3-74"><a href="#cb3-74" tabindex="-1"></a><span class="co">#&gt;  5:              &lt;NA&gt;                      FALSE</span></span>
+<span id="cb3-75"><a href="#cb3-75" tabindex="-1"></a><span class="co">#&gt;  6:    vtn097, vtn505                      FALSE</span></span>
+<span id="cb3-76"><a href="#cb3-76" tabindex="-1"></a><span class="co">#&gt;  7:              &lt;NA&gt;                       TRUE</span></span>
+<span id="cb3-77"><a href="#cb3-77" tabindex="-1"></a><span class="co">#&gt;  8:            vtn097                      FALSE</span></span>
+<span id="cb3-78"><a href="#cb3-78" tabindex="-1"></a><span class="co">#&gt;  9:    vtn097, vtn105                      FALSE</span></span>
+<span id="cb3-79"><a href="#cb3-79" tabindex="-1"></a><span class="co">#&gt; 10:              &lt;NA&gt;                      FALSE</span></span>
+<span id="cb3-80"><a href="#cb3-80" tabindex="-1"></a><span class="co">#&gt; 11:              &lt;NA&gt;                      FALSE</span></span></code></pre></div>
+<p>or publications that have related studies with integrated data in
+DataSpace:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>pubs_with_study_data <span class="ot">&lt;-</span> con<span class="sc">$</span>availablePublications[<span class="sc">!</span><span class="fu">is.na</span>(studies_with_data)]</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>pubs_with_study_data <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt;    publication_id                                   label      first_author</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt;            &lt;char&gt;                                  &lt;char&gt;            &lt;char&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt; 1:           1540 Andersen-Nissen 2021 (PLOS Pathog) Data Andersen-Nissen E</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; 2:            213                                    &lt;NA&gt;       Andrasik MP</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; 3:            218                                    &lt;NA&gt;       Andrasik MP</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; 4:            225                                    &lt;NA&gt;       Andrasik MP</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt; 5:            226                                    &lt;NA&gt;         Arnold MP</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; 6:              7                                    &lt;NA&gt;          Asbach B</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                            all_authors</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                 &lt;char&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; 1:                                                                                                                                         Andersen-Nissen E, Fiore-Gartland A, Ballweber Fleming L, Carpp LN, Naidoo AF, Harper MS, Voillet V, Grunenberg N, Laher F, Innes C, Bekker L-G, Kublin JG, Huang Y, Ferrari G, Tomaras GD, Gray G, Gilbert PB, McElrath MJ</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; 2:                                                                                                                                                                                                                                    Andrasik MP, Yoon R, Mooney J, Broder G, Bolton M, Votto T, Davis-Vogel A; HVTN 505 study team; NIAID HIV Vaccine Trials Network</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt; 3:                                                                                                                                                                                                                                                                         Andrasik MP, Karuna ST, Nebergall M, Koblin BA, Kublin JG; NIAID HIV Vaccine Trials Network</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt; 4:                                                                                                                                                                                                                                                                                       Andrasik MP, Chandler C, Powell B, Humes D, Wakefield S, Kripke K, Eckstein D</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt; 5:                                                                                                                                                                                                                                                               Arnold MP, Andrasik M, Landers S, Karuna S, Mimiaga MJ, Wakefield S, Mayer K, Buchbinder S, Koblin BA</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt; 6: Asbach B, Kliche A, Köstler J, Perdiguero B, Esteban M, Jacobs BL, Montefiori DC, LaBranche CC, Yates NL, Tomaras GD, Ferrari G, Foulds KE, Roederer M, Landucci G, Forthal DN, Seaman MS, Hawkins N, Self SG, Sato A, Gottardo R, Phogat S, Tartaglia J, Barnett SW, Burke B, Cristillo AD, Weiss DE, Francis J, Galmin L, Ding S, Heeney JL, Pantaleo G, Wagner R</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                            title</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                           &lt;char&gt;</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt; 1:                                    Innate immune signatures to a partially-efficacious HIV vaccine predict correlates of HIV-1 infection risk</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co">#&gt; 2:         Exploring barriers and facilitators to participation of male-to-female transgender persons in preventive HIV vaccine clinical trials.</span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt; 3:        Behavioral risk assessment in HIV Vaccine Trials Network (HVTN) clinical trials: A qualitative study exploring HVTN staff perspectives</span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#&gt; 4:                                                              Bridging the divide: HIV prevention research and Black men who have sex with men</span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt; 5:                                            Sources of racial/ethnic differences in HIV vaccine trial awareness: Exposure, attention, or both?</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt; 6: Potential to streamline heterologous DNA prime and NYVAC/protein boost HIV vaccine regimens in rhesus macaques by employing improved antigens</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt;               journal publication_date                                        link pubmed_id</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;                &lt;char&gt;           &lt;char&gt;                                      &lt;char&gt;    &lt;char&gt;</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt; 1:        PLOS Pathog             2021                                        &lt;NA&gt;  33720973</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#&gt; 2:           Prev Sci         2014 Jun http://www.ncbi.nlm.nih.gov/pubmed/23446435  23446435</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co">#&gt; 3:            Vaccine      2013 Sep 13 http://www.ncbi.nlm.nih.gov/pubmed/23859840  23859840</span></span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="co">#&gt; 4: Am J Public Health         2014 Apr http://www.ncbi.nlm.nih.gov/pubmed/24524520  24524520</span></span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="co">#&gt; 5: Am J Public Health         2014 Aug http://www.ncbi.nlm.nih.gov/pubmed/24922153  24922153</span></span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a><span class="co">#&gt; 6:            J Virol      2016 Mar 28 http://www.ncbi.nlm.nih.gov/pubmed/26865719  26865719</span></span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a><span class="co">#&gt;                                                                   related_studies studies_with_data publication_data_available</span></span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a><span class="co">#&gt;                                                                            &lt;char&gt;            &lt;char&gt;                     &lt;lgcl&gt;</span></span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a><span class="co">#&gt; 1:                                                                         vtn097            vtn097                       TRUE</span></span>
+<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a><span class="co">#&gt; 2:                                                                         vtn505            vtn505                      FALSE</span></span>
+<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a><span class="co">#&gt; 3: vtn069, vtn404, vtn502, vtn503, vtn504, vtn505, vtn802, vtn903, vtn906, vtn907            vtn505                      FALSE</span></span>
+<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a><span class="co">#&gt; 4:                                                                         vtn505            vtn505                      FALSE</span></span>
+<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a><span class="co">#&gt; 5:                                                                         vtn505            vtn505                      FALSE</span></span>
+<span id="cb4-43"><a href="#cb4-43" tabindex="-1"></a><span class="co">#&gt; 6:                                                                 cvd277, cvd281    cvd277, cvd281                      FALSE</span></span></code></pre></div>
+<p>We can also use this information to connect to related studies and
+pull integrated data. Say we are interested in this Rouphael (2019)
+publication:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>rouphael2019 <span class="ot">&lt;-</span> con<span class="sc">$</span>availablePublications[first_author <span class="sc">==</span> <span class="st">&quot;Rouphael NG&quot;</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>rouphael2019</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt;    publication_id                              label first_author</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;            &lt;char&gt;                             &lt;char&gt;       &lt;char&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt; 1:           1390 Rouphael 2019 (J Clin Invest) Data  Rouphael NG</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 2:           1887                               &lt;NA&gt;  Rouphael NG</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            all_authors</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 &lt;char&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 1:                                                                                                                                                                          Rouphael NG, Morgan C, Li SS, Jensen R, Sanchez B, Karuna S, Swann E, Sobieszczyk ME, Frank I, Wilson GJ, Tieu HV, Maenza J, Norwood A, Kobie J, Sinangil F, Pantaleo G, Ding S, McElrath MJ, De Rosa SC, Montefiori DC, Ferrari G, Tomaras GD, Keefer MC, HVTN 105 Protocol Team and the NIAID HIV Vaccine Trials Network</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 2: Rouphael NG, Branche AR, Diemert DJ, Falsey AR, Losada C, Baden LR,Frey SE, Whitaker JA, Little SJ, Kamidani S, Walter EB, Novak RM, Rupp R, Jackson LA, Babu TM, Kottkamp AC, Luetkemeyer AF, Immergluck LC, Presti RM, Bäcker M, Winokur PL, Mahgoub SM, Goepfert PA, Fusco DN, Atmar RL, Posavad CM, Netzl A, Smith DJ, Telu K, Mu J, McQuarrie LJ, Makowski M, Makhene MK, Crandon S, Montefiori DC, Roberts PC, Beigel JH; Coronavirus Variant Immunologic Landscape Trial (COVAIL) Study Team</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                 title</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                &lt;char&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt; 1:                                      DNA priming and gp120 boosting induces HIV-specific antibodies in a randomized clinical trial</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 2: Immunogenicity of a 2-dose regimen of Moderna mRNA beta/omicron BA.1 bivalent variant vaccine boost in a randomized clinical trial</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt;          journal publication_date                                         link pubmed_id related_studies studies_with_data</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;           &lt;char&gt;                                       &lt;char&gt;    &lt;char&gt;          &lt;char&gt;            &lt;char&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; 1: J Clin Invest      2019 Sep 30 https://www.ncbi.nlm.nih.gov/pubmed/31566579  31566579          vtn105            vtn105</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; 2:  J Infect Dis      2023 Dec 20     https://pubmed.ncbi.nlm.nih.gov/37561027  37561027            &lt;NA&gt;              &lt;NA&gt;</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt;    publication_data_available</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt;                        &lt;lgcl&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; 1:                       TRUE</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; 2:                      FALSE</span></span></code></pre></div>
+<p>We can find this publication in the available publications table,
+determine related studies, and pull data for those studies where
+available.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="do">## note here we are passing the column `related_studies` here where in</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="do">## this case has a single study_id. Other entries are comma separated</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="do">## and need to be split, for example:</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="do">## `con$availablePublications[,strsplit(related_studies, &quot;, &quot;) |&gt; unlist() |&gt; unique()]`</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>rouphael2019_study <span class="ot">&lt;-</span> rouphael2019<span class="sc">$</span>related_studies <span class="sc">|&gt;</span>  </span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  con<span class="sc">$</span><span class="fu">getStudies</span>()</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>rouphael2019_study</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; &lt;DataSpaceStudies&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt;   Studies: vtn105</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt;   Available integrated datasets:</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt;     - Demographics</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt;     - Intracellular Cytokine Staining</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt;   Available publication datasets:</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt;     - Rouphael 2019 (J Clin Invest) Data</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt;   Available Studies objects:</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt;     - availableDatasets</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt;     - datasets</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt;     - studies</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt;     - studyInfo</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt;     - treatmentArm</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt;     - variableDefinitions</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt;   Available Studies methods:</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt;     - loadAvailableDatasets</span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co">#&gt;   Available Connection objects:</span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co">#&gt;     - availableDonors</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co">#&gt;     - availableGroups</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="co">#&gt;     - availableMabMixtures</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co">#&gt;     - availableMabs</span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co">#&gt;     - availablePublications</span></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co">#&gt;     - availableStudies</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co">#&gt;     - availableViruses</span></span>
+<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a><span class="co">#&gt;     - virusNameMappingTables</span></span>
+<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="co">#&gt;   Available Connection methods:</span></span>
+<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a><span class="co">#&gt;     - downloadPublicationData</span></span>
+<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a><span class="co">#&gt;     - getDaash</span></span>
+<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="co">#&gt;     - getDonors</span></span>
+<span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a><span class="co">#&gt;     - getGroups</span></span>
+<span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a><span class="co">#&gt;     - getMabs</span></span>
+<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="co">#&gt;     - getStudies</span></span>
+<span id="cb6-43"><a href="#cb6-43" tabindex="-1"></a>rouphael2019_study<span class="sc">$</span>availableDatasets</span>
+<span id="cb6-44"><a href="#cb6-44" tabindex="-1"></a><span class="co">#&gt;    study_id     dataset_type assay_identifier                     assay_label</span></span>
+<span id="cb6-45"><a href="#cb6-45" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;           &lt;char&gt;           &lt;char&gt;                          &lt;char&gt;</span></span>
+<span id="cb6-46"><a href="#cb6-46" tabindex="-1"></a><span class="co">#&gt; 1:   vtn105 Integrated Assay             BAMA      Binding Ab multiplex assay</span></span>
+<span id="cb6-47"><a href="#cb6-47" tabindex="-1"></a><span class="co">#&gt; 2:   vtn105 Integrated Assay     Demographics                    Demographics</span></span>
+<span id="cb6-48"><a href="#cb6-48" tabindex="-1"></a><span class="co">#&gt; 3:   vtn105 Integrated Assay              ICS Intracellular Cytokine Staining</span></span>
+<span id="cb6-49"><a href="#cb6-49" tabindex="-1"></a><span class="co">#&gt; 4:   vtn105 Integrated Assay              NAb           Neutralizing antibody</span></span></code></pre></div>
+<p>We can see that there are datasets available for this study. We can
+pull any of them using <code>rouphael2019_study$getDataset()</code>.</p>
 </div>
 <div id="downloading-publication-data" class="section level2">
 <h2>Downloading Publication Data</h2>
-<p>DataSpace also includes publication datasets for some publications. The format of this data will vary from publication to publication, and is stored in a zip file. The <code>publication_data_available</code> field specifies publications where publication data is available.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>pubs_with_data &lt;-<span class="st"> </span>con<span class="op">$</span>availablePublications[publication_data_available <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(pubs_with_data[, <span class="op">-</span><span class="st">&quot;link&quot;</span>]))</span></code></pre></div>
-<table style="width:100%;">
-<colgroup>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="57%"></col>
-<col width="24%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="1%"></col>
-<col width="2%"></col>
-<col width="2%"></col>
-<col width="3%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">publication_id</th>
-<th align="left">first_author</th>
-<th align="left">all_authors</th>
-<th align="left">title</th>
-<th align="left">journal</th>
-<th align="left">publication_date</th>
-<th align="left">pubmed_id</th>
-<th align="left">related_studies</th>
-<th align="left">studies_with_data</th>
-<th align="left">publication_data_available</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1540</td>
-<td align="left">Andersen-Nissen E</td>
-<td align="left">Andersen-Nissen E, Fiore-Gartland A, Ballweber Fleming L, Carpp LN, Naidoo AF, Harper MS, Voillet V, Grunenberg N, Laher F, Innes C, Bekker L-G, Kublin JG, Huang Y, Ferrari G, Tomaras GD, Gray G, Gilbert PB, McElrath MJ</td>
-<td align="left">Innate immune signatures to a partially-efficacious HIV vaccine predict correlates of HIV-1 infection risk</td>
-<td align="left">PLOS Pathog</td>
-<td align="left">2021</td>
-<td align="left">NA</td>
-<td align="left">vtn097</td>
-<td align="left">vtn097</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">136</td>
-<td align="left">Bekker LG</td>
-<td align="left">Bekker LG, Moodie Z, Grunenberg N, Laher F, Tomaras GD, Cohen KW, Allen M, Malahleha M, Mngadi K, Daniels B, Innes C, Bentley C, Frahm N, Morris DE, Morris L, Mkhize NN, Montefiori DC, Sarzotti-Kelsoe M, Grant S, Yu C, Mehra VL, Pensiero MN, Phogat S, DiazGranados CA, Barnett SW, Kanesa-thasan N, Koutsoukos M, Michael NL, Robb ML, Kublin JG, Gilbert PB, Corey L, Gray GE, McElrath MJ on behalf of the HVTN 100 Protocol Team</td>
-<td align="left">A phase 1/2 HIV-1 vaccine trial of a Subtype C ALVAC-HIV and Bivalent Subtype C gp120/MF59 vaccine regimen in low risk HIV uninfected South African adults</td>
-<td align="left">Lancet HIV</td>
-<td align="left">2018 Jul</td>
-<td align="left">29898870</td>
-<td align="left">mrv144, vtn100</td>
-<td align="left">NA</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="left">1466</td>
-<td align="left">Cram JA</td>
-<td align="left">Cram JA, Fiore-Gartland AJ, Srinivasan S, Karuna S, Pantaleo G, Tomaras GD, Fredricks DN, Kublin JG</td>
-<td align="left">Human gut microbiota is associated with HIV-reactive immunoglobulin at baseline and following HIV vaccination</td>
-<td align="left">PLoS One</td>
-<td align="left">2019</td>
-<td align="left">31869338</td>
-<td align="left">vtn096</td>
-<td align="left">NA</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">80</td>
-<td align="left">Fong Y</td>
-<td align="left">Fong Y, Shen X, Ashley VC, Deal A, Seaton KE, Yu C, Grant SP, Ferrari G, deCamp AC, Bailer RT, Koup RA, Montefiori D, Haynes BF, Sarzotti-Kelsoe M, Graham BS, Carpp LN, Hammer SM, Sobieszczyk M, Karuna S, Swann E, DeJesus E, Mulligan M, Frank I, Buchbinder S, Novak RM, McElrath MJ, Kalams S, Keefer M, Frahm NA, Janes HE, Gilbert PB, Tomaras GD</td>
-<td align="left">Modification of the association between T-Cell immune responses and human immunodeficiency virus type 1 infection risk by vaccine-induced antibody responses in the HVTN 505 trial</td>
-<td align="left">J Infect Dis</td>
-<td align="left">2018 Mar 28</td>
-<td align="left">29325070</td>
-<td align="left">vtn505</td>
-<td align="left">vtn505</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="left">79</td>
-<td align="left">Hammer SM</td>
-<td align="left">Hammer SC, Sobieszczyk ME, Janes H, Karuna ST, Mulligan MJ, Grove D, Koblin BA, Buchbinder SP, Keefer MC, Tomaras GD, Frahm N, Hural J, Anude C, Graham BS, Enama ME, Adams E, DeJesus E, Novak RM, Frank I, Bentley C, Ramirez S, Fu R, Koup RA, Mascola JR, Nabel GJ, Montefiori DC, Kublin J, McElrath MJ, Corey L, Gilbert PB</td>
-<td align="left">Efficacy trial of a DNA/rAd5 HIV-1 preventive vaccine</td>
-<td align="left">N Engl J Med</td>
-<td align="left">2013 Nov 28</td>
-<td align="left">24099601</td>
-<td align="left">vtn505</td>
-<td align="left">vtn505</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">1467</td>
-<td align="left">Hosseinipour MC</td>
-<td align="left">Hosseinipour MC, Innes C, Naidoo S, Mann P, Hutter J, Ramjee G, Sebe M, Maganga L, Herce ME, deCamp AC, Marshall K, Dintwe O, Andersen-Nissen E, Tomaras GD, Mkhize N, Morris L, Jensen R, Miner MD, Pantaleo G, Ding S, Van Der Meeren O, Barnett SW, McElrath MJ, Corey L, Kublin JG</td>
-<td align="left">Phase 1 HIV vaccine trial to evaluate the safety and immunogenicity of HIV subtype C DNA and MF59-adjuvanted subtype C Env protein</td>
-<td align="left">Clin Infect Dis</td>
-<td align="left">2020 Jan 4</td>
-<td align="left">31900486</td>
-<td align="left">vtn111</td>
-<td align="left">NA</td>
-<td align="left">TRUE</td>
-</tr>
-</tbody>
-</table>
-<p>Data for a publication can be accessed through <code>DataSpaceR</code> with <code>con$downloadPublicationData()</code>. The publication ID must be specified, as found under <code>publication_id</code> in <code>con$availablePublications</code>. The file is presented as a zip file. The <code>unzip</code> argument gives us the option whether to unzip this file. By default, the file will be unzipped. You may also specify the directory to download the file. By default, it will be saved to your <code>Downloads</code> directory. This function invisibly returns the paths to the downloaded files.</p>
-<p>Here, we download data for publication with ID 1461 (Westling, 2020), and view the resulting downloads.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>publicationDataFiles &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">downloadPublicationData</span>(<span class="st">&quot;1461&quot;</span>, <span class="dt">outputDir =</span> <span class="kw">tempdir</span>(), <span class="dt">unzip =</span> <span class="ot">TRUE</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">basename</span>(publicationDataFiles)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;causal.isoreg.fns.R&quot;           &quot;CD.SuperLearner.R&quot;            </span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="co">#&gt; [3] &quot;cd4_analysis.R&quot;                &quot;cd4_data.csv&quot;                 </span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co">#&gt; [5] &quot;cd8_analysis.R&quot;                &quot;cd8_data.csv&quot;                 </span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">#&gt; [7] &quot;README.txt&quot;                    &quot;Westling_1461_file_format.pdf&quot;</span></span></code></pre></div>
-<p>All zip files will include a file format document as a PDF, as well as a README. These documents will give an overview of the remaining contents of the files. In this case, data is separated by CD8+ T-cell responses and CD4+ T-cell responses, as described in the <code>README.txt</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>cd4 &lt;-<span class="st"> </span><span class="kw">fread</span>(publicationDataFiles[<span class="kw">grepl</span>(<span class="st">&quot;cd4_data&quot;</span>, publicationDataFiles)])</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>cd4</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co">#&gt;       pub_id age    sex      bmi   prot num_vacc dose response sexFemale</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">#&gt;   1: 069-071  23   Male 33.31000 vtn069        3  4.0        0         0</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co">#&gt;   2: 069-068  20 Female 32.74000 vtn069        3  4.0        1         1</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co">#&gt;   3: 069-020  19   Male 20.24000 vtn069        3  4.0        0         0</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co">#&gt;   4: 069-008  19   Male 29.98000 vtn069        3  4.0        0         0</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co">#&gt;   5: 069-058  27   Male 31.48000 vtn069        3  4.0        0         0</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="co">#&gt;  ---                                                                    </span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="co">#&gt; 368: 100-182  36 Female 24.32323 vtn100        4  1.5        0         1</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co">#&gt; 369: 100-034  20   Male 25.15590 vtn100        4  1.5        1         0</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="co">#&gt; 370: 100-115  20   Male 22.94812 vtn100        4  1.5        1         0</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a><span class="co">#&gt; 371: 100-144  19   Male 20.95661 vtn100        4  1.5        0         0</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a><span class="co">#&gt; 372: 100-189  24   Male 19.03114 vtn100        4  1.5        1         0</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a><span class="co">#&gt;      studyHVTN052 studyHVTN068 studyHVTN069 studyHVTN204 studyHVTN100 vacc_type</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a><span class="co">#&gt;   1:            0            0            1            0            0   VRC4or6</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a><span class="co">#&gt;   2:            0            0            1            0            0   VRC4or6</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a><span class="co">#&gt;   3:            0            0            1            0            0   VRC4or6</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a><span class="co">#&gt;   4:            0            0            1            0            0   VRC4or6</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a><span class="co">#&gt;   5:            0            0            1            0            0   VRC4or6</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a><span class="co">#&gt;  ---                                                                           </span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true"></a><span class="co">#&gt; 368:            0            0            0            0            1   VRC4or6</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true"></a><span class="co">#&gt; 369:            0            0            0            0            1   VRC4or6</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true"></a><span class="co">#&gt; 370:            0            0            0            0            1   VRC4or6</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true"></a><span class="co">#&gt; 371:            0            0            0            0            1   VRC4or6</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true"></a><span class="co">#&gt; 372:            0            0            0            0            1   VRC4or6</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true"></a><span class="co">#&gt;      vacc_typeSinglePlasmid vacc_typeVRC4or6</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true"></a><span class="co">#&gt;   1:                      0                1</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true"></a><span class="co">#&gt;   2:                      0                1</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true"></a><span class="co">#&gt;   3:                      0                1</span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true"></a><span class="co">#&gt;   4:                      0                1</span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true"></a><span class="co">#&gt;   5:                      0                1</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true"></a><span class="co">#&gt;  ---                                        </span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true"></a><span class="co">#&gt; 368:                      0                1</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true"></a><span class="co">#&gt; 369:                      0                1</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true"></a><span class="co">#&gt; 370:                      0                1</span></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true"></a><span class="co">#&gt; 371:                      0                1</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true"></a><span class="co">#&gt; 372:                      0                1</span></span></code></pre></div>
-<p>This publication also includes analysis scripts used for the publication, which can allow users to reproduce the analysis and results.</p>
-</div>
-<div id="session-information" class="section level2">
-<h2>Session information</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">sessionInfo</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">#&gt; R version 4.1.2 (2021-11-01)</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co">#&gt; Running under: Ubuntu 18.04.5 LTS</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="co">#&gt; Matrix products: default</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="co">#&gt; locale:</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="co">#&gt;  [1] LC_CTYPE=en_US.utf8       LC_NUMERIC=C             </span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a><span class="co">#&gt;  [3] LC_TIME=en_US.utf8        LC_COLLATE=en_US.utf8    </span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a><span class="co">#&gt;  [5] LC_MONETARY=en_US.utf8    LC_MESSAGES=en_US.utf8   </span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a><span class="co">#&gt;  [7] LC_PAPER=en_US.utf8       LC_NAME=C                </span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a><span class="co">#&gt;  [9] LC_ADDRESS=C              LC_TELEPHONE=C           </span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.utf8 LC_IDENTIFICATION=C      </span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a><span class="co">#&gt; attached base packages:</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a><span class="co">#&gt; other attached packages:</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a><span class="co">#&gt; [1] data.table_1.14.2 DataSpaceR_0.7.5  knitr_1.37       </span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true"></a><span class="co">#&gt;  [1] Rcpp_1.0.8       digest_0.6.29    assertthat_0.2.1 R6_2.5.1        </span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true"></a><span class="co">#&gt;  [5] jsonlite_1.8.0   magrittr_2.0.2   evaluate_0.15    highr_0.9       </span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true"></a><span class="co">#&gt;  [9] httr_1.4.2       stringi_1.7.6    curl_4.3.2       tools_4.1.2     </span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true"></a><span class="co">#&gt; [13] stringr_1.4.0    Rlabkey_2.8.3    xfun_0.29        compiler_4.1.2</span></span></code></pre></div>
+<p>DataSpace also includes publication datasets for some publications.
+The format of this data will vary from publication to publication, and
+is stored in a zip file. The <code>publication_data_available</code>
+field specifies publications where publication data is available.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>pubs_with_data <span class="ot">&lt;-</span> con<span class="sc">$</span>availablePublications[publication_data_available <span class="sc">==</span> <span class="cn">TRUE</span>]</span></code></pre></div>
+<p>Data for a publication can be accessed through by either passing a
+<code>publication_id</code> value or an
+<code>availablePublications</code> object to the
+<code>downloadPublicationData</code> connection method.</p>
+<p>Here, we download data for publication with ID 1461 (Westling, 2020),
+and view the resulting downloads. Like the <code>get...</code> methods,
+you may pass the <code>availablePublications</code> object to download
+publication data listed in that table.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>publicationDataFiles <span class="ot">&lt;-</span> con<span class="sc">$</span>availablePublications[label <span class="sc">%like%</span> <span class="st">&quot;Westling 2020&quot;</span>] <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  con<span class="sc">$</span><span class="fu">downloadPublicationData</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">basename</span>(publicationDataFiles)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Westling1461_publicationData.zip&quot;</span></span></code></pre></div>
+<p>All zip files will include a file format document as a PDF, as well
+as a README. These documents will give an overview of the remaining
+contents of the files. In this case, data is separated by CD8+ T-cell
+responses and CD4+ T-cell responses, as described in the
+<code>README.txt</code>.</p>
 </div>
 
 

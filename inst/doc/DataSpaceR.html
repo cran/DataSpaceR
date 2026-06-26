@@ -11,8 +11,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Ju Yeong Kim" />
+<meta name="author" content="Jason Taylor" />
 
-<meta name="date" content="2022-06-15" />
+<meta name="date" content="2026-06-22" />
 
 <title>Introduction to DataSpaceR</title>
 
@@ -29,46 +30,32 @@ document.addEventListener('DOMContentLoaded', function(e) {
   }
 });
 </script>
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
-
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
-  }
-});
-</script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -80,55 +67,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -356,1030 +342,559 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Introduction to DataSpaceR</h1>
 <h4 class="author">Ju Yeong Kim</h4>
-<h4 class="date">2022-06-15</h4>
+<h4 class="author">Jason Taylor</h4>
+<h4 class="date">2026-06-22</h4>
 
 
 
 <style>
-table {
-    display: block;
-    max-width: 100%;
-    max-height: 600px;
-    overflow: scroll;
-}
-thead{
-    position: sticky;
-    top: 0px;
-    background-color: #fff;
+.sourceCode{
+overflow: clip;
 }
 </style>
-<p>This package provides a thin wrapper around <a href="https://cran.r-project.org/package=Rlabkey">Rlabkey</a> and connects to the the <a href="https://dataspace.cavd.org">CAVD DataSpace</a> database, making it easier to fetch datasets from specific studies.</p>
+<p>The DataSpaceR package enables connecting to the CAVD DataSpace (CDS)
+database in R, making it easier to fetch datasets (NAB, BAMA, MAB,
+BCRseq, etc.) from specific CAVD (Collaboration for AIDS Vaccine
+Discovery) studies. The package is a wrapper around Rlabkey.</p>
+<p>The examples below are meant to show abridged console output and are
+not intended to be exhaustive. In order to view the latest and most
+complete data, please follow the steps below to configure and use
+DataSpaceR.</p>
+<div id="dataspacer-version-1.0-update" class="section level3">
+<h3>DataSpaceR Version 1.0 Update</h3>
+<blockquote>
+<p>There have been some significant changes to DataSpaceR for version
+1.0. All instantiated objects can host data from multiple members, for
+example, studies can be queried in bulk rather than as individual
+studies. The general API is similar, but users may now pass subsets of
+tables showing available data to methods that fetch those data instead
+of passing filter objects or IDs. This new method is similar to
+filtering the mAb grid in previous versions, which allowed us to
+supersede that method for getting mAb data, using our new method for
+getting mAbs across all object types.</p>
+</blockquote>
+</div>
 <div id="configuration" class="section level2">
 <h2>Configuration</h2>
-<p>First, go to <a href="https://dataspace.cavd.org">DataSpace</a> now and set yourself up with an account.</p>
-<p>In order to connect to the CAVD DataSpace via <code>DataSpaceR</code>, you will need a <code>netrc</code> file in your home directory that will contain a <code>machine</code> name (hostname of DataSpace), and <code>login</code> and <code>password</code>. There are two ways to create a <code>netrc</code> file.</p>
+<p>You will need a DataSpace account to get started. if you do not have
+one yet, first go to <a href="https://dataspace.cavd.org">DataSpace</a>
+to set up your account. Note that access restrictions may be in place
+for certain datasets.</p>
+<p>In order to connect to the CAVD DataSpace via
+<code>DataSpaceR</code>, you will need a <code>netrc</code> file in your
+home directory that will contain a <code>machine</code> name (hostname
+of DataSpace), and <code>login</code> and <code>password</code>. There
+are two ways to create a <code>netrc</code> file.</p>
 <div id="creating-a-netrc-file-with-writenetrc" class="section level3">
 <h3>Creating a netrc file with <code>writeNetrc</code></h3>
-<p>On your R console, create a <code>netrc</code> file using a function from <code>DataSpaceR</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">writeNetrc</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="dt">login =</span> <span class="st">&quot;yourEmail@address.com&quot;</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="dt">password =</span> <span class="st">&quot;yourSecretPassword&quot;</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="dt">netrcFile =</span> <span class="st">&quot;/your/home/directory/.netrc&quot;</span> <span class="co"># use getNetrcPath() to get the default path</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>)</span></code></pre></div>
-<p>This will create a <code>netrc</code> file in your home directory. Make sure you have a valid login and password.</p>
+<p>On your R console, create a <code>netrc</code> file using a function
+from <code>DataSpaceR</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">writeNetrc</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="at">login =</span> <span class="st">&quot;yourEmail@address.com&quot;</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="at">password =</span> <span class="st">&quot;yourSecretPassword&quot;</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="at">netrcFile =</span> <span class="st">&quot;/your/home/directory/.netrc&quot;</span> <span class="co"># use getNetrcPath() to get the default path</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>)</span></code></pre></div>
+<p>This will create a <code>netrc</code> file in your home directory.
+Make sure you have a valid login and password.</p>
 </div>
 <div id="manually-creating-a-netrc-file" class="section level3">
 <h3>Manually creating a netrc file</h3>
-<p><strong><em>Alternatively</em></strong>, you can manually create a netrc file.</p>
+<p><strong><em>Alternatively</em></strong>, you can manually create a
+netrc file.</p>
 <ul>
 <li>On Windows, this file should be named <code>_netrc</code></li>
-<li>On UNIX/Mac, it should be named <code>.netrc</code></li>
-<li>The file should be located in the user’s home directory, and the permissions on the file should be unreadable for everybody except the owner</li>
-<li>To determine your home directory, run <code>Sys.getenv(&quot;HOME&quot;)</code> in R</li>
+<li>On Linux/Mac, it should be named <code>.netrc</code></li>
+<li>The file should be located in the user’s home directory, and the
+permissions on the file should be unreadable for everybody except the
+owner.</li>
+<li>To determine your home directory, run
+<code>Sys.getenv(&quot;HOME&quot;)</code> in R</li>
 </ul>
-<p>The following three lines must be included in the <code>.netrc</code> or <code>_netrc</code> file either separated by white space (spaces, tabs, or newlines) or commas. Multiple such blocks can exist in one file.</p>
+<p>The following three lines must be included in the <code>.netrc</code>
+or <code>_netrc</code> file either separated by white space (spaces,
+tabs, or newlines) or commas. Multiple such blocks can exist in one
+file.</p>
 <pre><code>machine dataspace.cavd.org
 login myuser@domain.com
 password supersecretpassword</code></pre>
-<p>See <a href="https://www.labkey.org/wiki/home/Documentation/page.view?name=netrc">here</a> for more information about <code>netrc</code>.</p>
+<p>See <a href="https://www.labkey.org/wiki/home/Documentation/page.view?name=netrc">here</a>
+for more information about <code>netrc</code>.</p>
 </div>
+</div>
+<div id="about-dataspacer-objects" class="section level2">
+<h2>About DataSpaceR objects</h2>
+<p>The <em>cvd256</em> object shown above is an <a href="https://cran.r-project.org/package=R6"><code>R6</code></a> class,
+so it behaves like a true object. Functions, that we will call
+“methods”, like <code>loadAvailableDatasets()</code>, are members of the
+object, and are accessed using the <code>$</code> semantic.</p>
+<p>In DataSpaceR, <code>get...</code> methods will return an new object,
+and <code>load...</code> methods will add some data to an existing
+object. There is also the <code>download...</code> verbage used to
+descibe a method that will download something from DataSpace to your
+computer.</p>
+<p>Users can connect to DataSpace using the <code>connectDS()</code>
+function described below. This will return a connection object with data
+and methods. All objects returned from <code>get...</code> methods from
+a connection object inherit the connection object’s data and methods as
+well. This makes data operations across objects faster and more
+flexible.</p>
 </div>
 <div id="initiate-a-connection" class="section level2">
 <h2>Initiate a connection</h2>
-<p>We’ll be looking at study <code>cvd256</code>. If you want to use a different study, change that string. You can instantiate multiple connections to different studies simultaneously.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(DataSpaceR)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>con &lt;-<span class="st"> </span><span class="kw">connectDS</span>()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>con</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">#&gt; &lt;DataSpaceConnection&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">#&gt;   User: jmtaylor@scharp.org</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">#&gt;   Available studies: 273</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">#&gt;     - 77 studies with data</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">#&gt;     - 5049 subjects</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">#&gt;     - 423195 data points</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">#&gt;   Available groups: 3</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">#&gt;   Available publications: 1530</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">#&gt;     - 12 publications with data</span></span></code></pre></div>
-<p>The call to <code>connectDS</code> instantiates the connection. Printing the object shows where it’s connected and the available studies.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(con<span class="op">$</span>availableStudies))</span></code></pre></div>
-<table style="width:100%;">
-<colgroup>
-<col width="2%"></col>
-<col width="6%"></col>
-<col width="56%"></col>
-<col width="4%"></col>
-<col width="1%"></col>
-<col width="3%"></col>
-<col width="4%"></col>
-<col width="2%"></col>
-<col width="8%"></col>
-<col width="1%"></col>
-<col width="3%"></col>
-<col width="4%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">study_name</th>
-<th align="left">short_name</th>
-<th align="left">title</th>
-<th align="left">type</th>
-<th align="left">status</th>
-<th align="left">stage</th>
-<th align="left">species</th>
-<th align="left">start_date</th>
-<th align="left">strategy</th>
-<th align="left">network</th>
-<th align="left">data_availability</th>
-<th align="left">ni_data_availability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">cor01</td>
-<td align="left">NA</td>
-<td align="left">The correlate of risk targeted intervention study (CORTIS): A randomized, partially-blinded, clinical trial of isoniazid and rifapentine (3HP) therapy to prevent pulmonary tuberculosis in high-risk individuals identified by a transcriptomic correlate of risk</td>
-<td align="left">Phase III</td>
-<td align="left">Inactive</td>
-<td align="left">Assays Completed</td>
-<td align="left">Human</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">GH-VAP</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">cvd232</td>
-<td align="left">Parks_RV_232</td>
-<td align="left">​Limiting Dose Vaginal SIVmac239 Challenge of RhCMV-SIV vaccinated Indian rhesus macaques.</td>
-<td align="left">Pre-Clinical NHP</td>
-<td align="left">Inactive</td>
-<td align="left">Assays Completed</td>
-<td align="left">Rhesus macaque</td>
-<td align="left">2009-11-24</td>
-<td align="left">Vector vaccines (viral or bacterial)</td>
-<td align="left">CAVD</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">cvd234</td>
-<td align="left">Zolla-Pazner_Mab_test1 Study</td>
-<td align="left">Zolla-Pazner_Mab_Test1</td>
-<td align="left">Antibody Screening</td>
-<td align="left">Inactive</td>
-<td align="left">Assays Completed</td>
-<td align="left">Non-Organism Study</td>
-<td align="left">2009-02-03</td>
-<td align="left">Prophylactic neutralizing Ab</td>
-<td align="left">CAVD</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">cvd235</td>
-<td align="left">mAbs potency</td>
-<td align="left">Weiss mAbs potency</td>
-<td align="left">Antibody Screening</td>
-<td align="left">Inactive</td>
-<td align="left">Assays Completed</td>
-<td align="left">Non-Organism Study</td>
-<td align="left">2008-08-21</td>
-<td align="left">Prophylactic neutralizing Ab</td>
-<td align="left">CAVD</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">cvd236</td>
-<td align="left">neutralization assays</td>
-<td align="left">neutralization assays</td>
-<td align="left">Antibody Screening</td>
-<td align="left">Active</td>
-<td align="left">In Progress</td>
-<td align="left">Non-Organism Study</td>
-<td align="left">2009-02-03</td>
-<td align="left">Prophylactic neutralizing Ab</td>
-<td align="left">CAVD</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">cvd238</td>
-<td align="left">Gallo_PA_238</td>
-<td align="left">HIV-1 neutralization responses in chronically infected individuals</td>
-<td align="left">Antibody Screening</td>
-<td align="left">Inactive</td>
-<td align="left">Assays Completed</td>
-<td align="left">Non-Organism Study</td>
-<td align="left">2009-01-08</td>
-<td align="left">Prophylactic neutralizing Ab</td>
-<td align="left">CAVD</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<p><code>con$availableStudies</code> shows the available studies in the CAVD DataSpace. Check out <a href="https://docs.ropensci.org/DataSpaceR/reference/DataSpaceConnection.html">the reference page</a> of <code>DataSpaceConnection</code> for all available fields and methods.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>cvd256 &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(<span class="st">&quot;cvd256&quot;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>cvd256</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">#&gt;   Study: cvd256</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD/cvd256</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">#&gt;   Available datasets:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">#&gt;     - Demographics</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span></code></pre></div>
-<p><code>con$getStudy</code> creates a connection to the study <code>cvd256</code>. Printing the object shows where it’s connected, to what study, and the available datasets.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(cvd256<span class="op">$</span>availableDatasets)</span></code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">name</th>
-<th align="left">label</th>
-<th align="right">n</th>
-<th align="left">integrated</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">BAMA</td>
-<td align="left">Binding Ab multiplex assay</td>
-<td align="right">6740</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">Demographics</td>
-<td align="left">Demographics</td>
-<td align="right">121</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="left">NAb</td>
-<td align="left">Neutralizing antibody</td>
-<td align="right">1419</td>
-<td align="left">TRUE</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(cvd256<span class="op">$</span>treatmentArm)</span></code></pre></div>
-<table>
-<colgroup>
-<col width="7%"></col>
-<col width="4%"></col>
-<col width="5%"></col>
-<col width="4%"></col>
-<col width="7%"></col>
-<col width="8%"></col>
-<col width="4%"></col>
-<col width="55%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">arm_id</th>
-<th align="left">arm_part</th>
-<th align="left">arm_group</th>
-<th align="left">arm_name</th>
-<th align="left">randomization</th>
-<th align="left">coded_label</th>
-<th align="right">last_day</th>
-<th align="left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">cvd256-NA-A-A</td>
-<td align="left">NA</td>
-<td align="left">A</td>
-<td align="left">A</td>
-<td align="left">Vaccine</td>
-<td align="left">Group A Vaccine</td>
-<td align="right">168</td>
-<td align="left">DNA-C 4 mg administered IM at weeks 0, 4, and 8 AND NYVAC-C 10^7pfu/mL administered IM at week 24</td>
-</tr>
-<tr class="even">
-<td align="left">cvd256-NA-B-B</td>
-<td align="left">NA</td>
-<td align="left">B</td>
-<td align="left">B</td>
-<td align="left">Vaccine</td>
-<td align="left">Group B Vaccine</td>
-<td align="right">168</td>
-<td align="left">DNA-C 4 mg administered IM at weeks 0 and 4 AND NYVAC-C 10^7pfu/mL administered IM at weeks 20 and 24</td>
-</tr>
-</tbody>
-</table>
-<p>Available datasets and treatment arm information for the connection can be accessed by <code>availableDatasets</code> and <code>treatmentArm</code>.</p>
+<p>A call to connectDS instantiates the connection to DataSpace.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(DataSpaceR)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">connectDS</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>con</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; &lt;DataSpaceConnection&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt;   User: jmtaylor@scharp.org</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt;   Available Studies: 397</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt;     - 79 studies with data</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt;     - 5074 subjects</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt;     - 436354 data points</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt;   Available Groups: 6</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt;   Available Publications: 1910</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt;     - 30 publications with data</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt;   Available Connection objects:</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt;     - availableDonors</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt;     - availableGroups</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt;     - availableMabMixtures</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt;     - availableMabs</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co">#&gt;     - availablePublications</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">#&gt;     - availableStudies</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co">#&gt;     - availableViruses</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="co">#&gt;     - virusNameMappingTables</span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co">#&gt;   Available Connection methods:</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="co">#&gt;     - downloadPublicationData</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co">#&gt;     - getDaash</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co">#&gt;     - getDonors</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="co">#&gt;     - getGroups</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt;     - getMabs</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">#&gt;     - getStudies</span></span></code></pre></div>
+<p>The call to <code>connectDS</code> instantiates the connection.
+Printing the object shows where it’s connected and the available
+studies.</p>
+<p>From here, we can choose to preview one of the available objects
+and/or apply one of the available connection methods. For example, the
+<code>con$availableStudies</code> object contains information about all
+the available studies in the CAVD DataSpace. Check out the <a href="https://docs.ropensci.org/DataSpaceR/reference/DataSpaceConnection.html">the
+reference page</a> DataSpaceConnection for all available fields and
+methods.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>con<span class="sc">$</span>availableStudies</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; Key: &lt;study_id&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt;      study_id                   short_name</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;                       &lt;char&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt;   1:    cor01                         &lt;NA&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;   2:   cvd232                 Parks_RV_232</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt;   3:   cvd234 Zolla-Pazner_Mab_test1 Study</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt;   4:   cvd235                 mAbs potency</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt;   5:   cvd236        neutralization assays</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;  ---                                      </span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; 393:   vtn910                         &lt;NA&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; 394:   vtn913                         &lt;NA&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt; 395:   vtn914                         &lt;NA&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; 396:   vtn915                         &lt;NA&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; 397:     x001                         &lt;NA&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                    title</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                                                                                                                   &lt;char&gt;</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt;   1: The correlate of risk targeted intervention study (CORTIS):  A randomized, partially-blinded, clinical trial of isoniazid and rifapentine (3HP) therapy to prevent pulmonary tuberculosis in high-risk individuals identified by a transcriptomic correlate of risk</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt;   2:                                                                                                                                                                           ​Limiting Dose Vaginal SIVmac239 Challenge of RhCMV-SIV vaccinated Indian rhesus macaques.</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;   3:                                                                                                                                                                                                                                              Zolla-Pazner_Mab_Test1</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt;   4:                                                                                                                                                                                                                                                  Weiss mAbs potency</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt;   5:                                                                                                                                                                                                                                               neutralization assays</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co">#&gt;  ---                                                                                                                                                                                                                                                                    </span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt; 393:                                                                                                           A protocol to assess the persistence of vaccine-induced seropositivity in participants who received vaccine in DAIDS-funded preventive HIV vaccine trials</span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#&gt; 394:                                                                                                                                              Follow-up to an adolescent HIV vaccine preparedness study in South Africa: retention, risk behavior, and HIV incidence</span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt; 395:                                                                                                   A pilot cohort study to evaluate immune responses and activation at the foreskin and rectosigmoid mucosa in Ad5 seropositive HIV-negative Step Study participants</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt; 396:                                                                                                                A prospective study evaluating the use of self-administered vaginal swabs for the detection of HIV-1 virions among 18 to 25 year-old women in Soweto</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt; 397:                                                                                                                                                                                                                                                                &lt;NA&gt;</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;                           type   status                                   stage            species start_date</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt;                         &lt;char&gt;   &lt;char&gt;                                  &lt;char&gt;             &lt;char&gt;     &lt;Date&gt;</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#&gt;   1:                 Phase III Inactive                         Assays complete              Human       &lt;NA&gt;</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co">#&gt;   2:          Pre-Clinical NHP Inactive                         Assays complete     Rhesus macaque 2009-11-24</span></span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="co">#&gt;   3: Antibody Characterization Inactive                         Assays complete Non-organism study 2009-02-03</span></span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="co">#&gt;   4: Antibody Characterization Inactive                         Assays complete Non-organism study 2008-08-21</span></span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a><span class="co">#&gt;   5: Antibody Characterization   Active                             In progress Non-organism study 2009-02-03</span></span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a><span class="co">#&gt;  ---                                                                                                         </span></span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a><span class="co">#&gt; 393:             Observational Inactive                      Follow up complete              Human       &lt;NA&gt;</span></span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a><span class="co">#&gt; 394:              Preparedness Inactive Concluded, no further activity expected              Human       &lt;NA&gt;</span></span>
+<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a><span class="co">#&gt; 395:             Developmental Inactive               Primary analysis complete              Human       &lt;NA&gt;</span></span>
+<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a><span class="co">#&gt; 396:             Developmental Inactive                      Follow up complete              Human       &lt;NA&gt;</span></span>
+<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a><span class="co">#&gt; 397:                      &lt;NA&gt;     &lt;NA&gt;                                    &lt;NA&gt;               &lt;NA&gt;       &lt;NA&gt;</span></span>
+<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a><span class="co">#&gt;                                  strategy network data_availability                   ni_data_availability</span></span>
+<span id="cb4-43"><a href="#cb4-43" tabindex="-1"></a><span class="co">#&gt;                                    &lt;char&gt;  &lt;char&gt;            &lt;char&gt;                                 &lt;char&gt;</span></span>
+<span id="cb4-44"><a href="#cb4-44" tabindex="-1"></a><span class="co">#&gt;   1:                                 &lt;NA&gt;    GHDC              &lt;NA&gt;                                   &lt;NA&gt;</span></span>
+<span id="cb4-45"><a href="#cb4-45" tabindex="-1"></a><span class="co">#&gt;   2: Vector vaccines (viral or bacterial)    CAVD              &lt;NA&gt; Microarray Data, Treatment assignments</span></span>
+<span id="cb4-46"><a href="#cb4-46" tabindex="-1"></a><span class="co">#&gt;   3:         Prophylactic neutralizing Ab    CAVD              &lt;NA&gt;                                   &lt;NA&gt;</span></span>
+<span id="cb4-47"><a href="#cb4-47" tabindex="-1"></a><span class="co">#&gt;   4:         Prophylactic neutralizing Ab    CAVD              &lt;NA&gt;                                   &lt;NA&gt;</span></span>
+<span id="cb4-48"><a href="#cb4-48" tabindex="-1"></a><span class="co">#&gt;   5:         Prophylactic neutralizing Ab    CAVD              &lt;NA&gt;                                   &lt;NA&gt;</span></span>
+<span id="cb4-49"><a href="#cb4-49" tabindex="-1"></a><span class="co">#&gt;  ---                                                                                                      </span></span>
+<span id="cb4-50"><a href="#cb4-50" tabindex="-1"></a><span class="co">#&gt; 393:                                 &lt;NA&gt;    HVTN              &lt;NA&gt;                                   &lt;NA&gt;</span></span>
+<span id="cb4-51"><a href="#cb4-51" tabindex="-1"></a><span class="co">#&gt; 394:                                 &lt;NA&gt;    HVTN              &lt;NA&gt;                                   &lt;NA&gt;</span></span>
+<span id="cb4-52"><a href="#cb4-52" tabindex="-1"></a><span class="co">#&gt; 395:                                 &lt;NA&gt;    HVTN              &lt;NA&gt;                                   &lt;NA&gt;</span></span>
+<span id="cb4-53"><a href="#cb4-53" tabindex="-1"></a><span class="co">#&gt; 396:                                 &lt;NA&gt;    HVTN              &lt;NA&gt;                                   &lt;NA&gt;</span></span>
+<span id="cb4-54"><a href="#cb4-54" tabindex="-1"></a><span class="co">#&gt; 397:                                 &lt;NA&gt;    VISC              &lt;NA&gt;                                   &lt;NA&gt;</span></span></code></pre></div>
+<p>The available connection methods can be applied to get data
+associated with one or more objects (e.g., studies or mAbs). For
+example, we can use <code>con$getStudies</code> to create a connection
+to the study <code>cvd256</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>cvd256 <span class="ot">&lt;-</span> con<span class="sc">$</span><span class="fu">getStudies</span>(<span class="st">&quot;cvd256&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>cvd256</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; &lt;DataSpaceStudies&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;   Studies: cvd256</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;   Available integrated datasets:</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt;     - Demographics</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt;   Available publication datasets:</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;   Available Studies objects:</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;     - availableDatasets</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;     - datasets</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt;     - studies</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt;     - studyInfo</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt;     - treatmentArm</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt;     - variableDefinitions</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt;   Available Studies methods:</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt;     - loadAvailableDatasets</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt;   Available Connection objects:</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt;     - availableDonors</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt;     - availableGroups</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt;     - availableMabMixtures</span></span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt;     - availableMabs</span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="co">#&gt;     - availablePublications</span></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co">#&gt;     - availableStudies</span></span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="co">#&gt;     - availableViruses</span></span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co">#&gt;     - virusNameMappingTables</span></span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="co">#&gt;   Available Connection methods:</span></span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="co">#&gt;     - downloadPublicationData</span></span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="co">#&gt;     - getDaash</span></span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="co">#&gt;     - getDonors</span></span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a><span class="co">#&gt;     - getGroups</span></span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a><span class="co">#&gt;     - getMabs</span></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="co">#&gt;     - getStudies</span></span></code></pre></div>
+<p>Printing the object shows where it’s connected, to what study, and
+the available datasets.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>cvd256<span class="sc">$</span>availableDatasets</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt;    study_id     dataset_type assay_identifier                assay_label</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;           &lt;char&gt;           &lt;char&gt;                     &lt;char&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; 1:   cvd256 Integrated Assay             BAMA Binding Ab multiplex assay</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; 2:   cvd256 Integrated Assay     Demographics               Demographics</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; 3:   cvd256 Integrated Assay              NAb      Neutralizing antibody</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>cvd256<span class="sc">$</span>treatmentArm</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; Key: &lt;arm_id&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt;    study_id        arm_id arm_part arm_group arm_name randomization     coded_label last_day</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;        &lt;char&gt;   &lt;char&gt;    &lt;char&gt;   &lt;char&gt;        &lt;char&gt;          &lt;char&gt;    &lt;int&gt;</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 1:   cvd256 cvd256-NA-A-A       NA         A        A       Vaccine Group A Vaccine      168</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 2:   cvd256 cvd256-NA-B-B       NA         B        B       Vaccine Group B Vaccine      168</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt;                                                                                              description</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt;                                                                                                   &lt;char&gt;</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; 1:     DNA-C 4 mg administered IM at weeks 0, 4, and 8 AND NYVAC-C 10^7pfu/mL administered IM at week 24</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; 2: DNA-C 4 mg administered IM at weeks 0 and 4 AND NYVAC-C 10^7pfu/mL administered IM at weeks 20 and 24</span></span></code></pre></div>
+<p>Available datasets and treatment arm information for the connection
+can be accessed by <code>availableDatasets</code> and
+<code>treatmentArm</code>.</p>
+<p>You may also query <code>availableStudies</code> and pass its results
+to the <code>getStudies</code> method.</p>
+<p>You may also query <code>availableStudies</code> (or any of the other
+<code>availableXXX</code> objects) and pass its results to
+<code>getStudies</code> (or any of the other methods). For example, if
+you want all available BAMA data from studies in rhesus macaques:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>macaqueBama <span class="ot">&lt;-</span> con<span class="sc">$</span>availableStudies[</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  species <span class="sc">==</span> <span class="st">&quot;Rhesus macaque&quot;</span> <span class="sc">&amp;</span>  <span class="fu">grepl</span>(<span class="st">&quot;BAMA&quot;</span>, data_availability)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>] <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  con<span class="sc">$</span><span class="fu">getStudies</span>()</span></code></pre></div>
 </div>
-<div id="fetching-datasets" class="section level2">
-<h2>Fetching datasets</h2>
-<p>We can grab any of the datasets listed in the connection (<code>availableDatasets</code>).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>NAb &lt;-<span class="st"> </span>cvd256<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;NAb&quot;</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">dim</span>(NAb)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co">#&gt; [1] 1419   33</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">colnames</span>(NAb)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co">#&gt;  [1] &quot;participant_id&quot;      &quot;participant_visit&quot;   &quot;visit_day&quot;          </span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">#&gt;  [4] &quot;assay_identifier&quot;    &quot;summary_level&quot;       &quot;specimen_type&quot;      </span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co">#&gt;  [7] &quot;antigen&quot;             &quot;antigen_type&quot;        &quot;virus&quot;              </span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co">#&gt; [10] &quot;virus_type&quot;          &quot;virus_insert_name&quot;   &quot;clade&quot;              </span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a><span class="co">#&gt; [13] &quot;neutralization_tier&quot; &quot;tier_clade_virus&quot;    &quot;target_cell&quot;        </span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="co">#&gt; [16] &quot;initial_dilution&quot;    &quot;titer_ic50&quot;          &quot;titer_ic80&quot;         </span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co">#&gt; [19] &quot;response_call&quot;       &quot;nab_lab_source_key&quot;  &quot;lab_code&quot;           </span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="co">#&gt; [22] &quot;exp_assayid&quot;         &quot;titer_id50&quot;          &quot;titer_id80&quot;         </span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="co">#&gt; [25] &quot;nab_response_id50&quot;   &quot;nab_response_id80&quot;   &quot;slope&quot;              </span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a><span class="co">#&gt; [28] &quot;vaccine_matched&quot;     &quot;study_prot&quot;          &quot;virus_full_name&quot;    </span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a><span class="co">#&gt; [31] &quot;virus_species&quot;       &quot;virus_host_cell&quot;     &quot;virus_backbone&quot;</span></span></code></pre></div>
-<p>The <em>cvd256</em> object is an <a href="https://cran.r-project.org/package=R6"><code>R6</code></a> class, so it behaves like a true object. Functions (like <code>getDataset</code>) are members of the object, thus the <code>$</code> semantics to access member functions.</p>
-<p>We can get detailed variable information using <code>getDatasetDescription</code>. <code>getDataset</code> and <code>getDatasetDescription</code> accept either the <code>name</code> or <code>label</code> field listed in <code>availableDatasets</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(cvd256<span class="op">$</span><span class="kw">getDatasetDescription</span>(<span class="st">&quot;NAb&quot;</span>))</span></code></pre></div>
-<table>
-<colgroup>
-<col width="7%"></col>
-<col width="17%"></col>
-<col width="8%"></col>
-<col width="66%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">fieldName</th>
-<th align="left">caption</th>
-<th align="left">type</th>
-<th align="left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">ParticipantId</td>
-<td align="left">Participant ID</td>
-<td align="left">Text (String)</td>
-<td align="left">Subject identifier</td>
-</tr>
-<tr class="even">
-<td align="left">antigen</td>
-<td align="left">Antigen name</td>
-<td align="left">Text (String)</td>
-<td align="left">The name of the antigen (virus) being tested.</td>
-</tr>
-<tr class="odd">
-<td align="left">antigen_type</td>
-<td align="left">Antigen type</td>
-<td align="left">Text (String)</td>
-<td align="left">The standardized term for the type of virus used in the construction of the nAb antigen.</td>
-</tr>
-<tr class="even">
-<td align="left">assay_identifier</td>
-<td align="left">Assay identifier</td>
-<td align="left">Text (String)</td>
-<td align="left">Name identifying assay</td>
-</tr>
-<tr class="odd">
-<td align="left">clade</td>
-<td align="left">Virus clade</td>
-<td align="left">Text (String)</td>
-<td align="left">The clade (gene subtype) of the virus (antigen) being tested.</td>
-</tr>
-<tr class="even">
-<td align="left">exp_assayid</td>
-<td align="left">Experimental Assay Design Code</td>
-<td align="left">Integer</td>
-<td align="left">Unique ID assigned to the experiment design of the assay for tracking purposes.</td>
-</tr>
-<tr class="odd">
-<td align="left">initial_dilution</td>
-<td align="left">Initial dilution</td>
-<td align="left">Number (Double)</td>
-<td align="left">Indicates the initial specimen dilution.</td>
-</tr>
-<tr class="even">
-<td align="left">lab_code</td>
-<td align="left">Lab ID</td>
-<td align="left">Text (String)</td>
-<td align="left">A code indicating the lab performing the assay.</td>
-</tr>
-<tr class="odd">
-<td align="left">nab_lab_source_key</td>
-<td align="left">Data provenance</td>
-<td align="left">Integer</td>
-<td align="left">Details regarding the provenance of the assay results.</td>
-</tr>
-<tr class="even">
-<td align="left">nab_response_ID50</td>
-<td align="left">Response call ID50</td>
-<td align="left">True/False (Boolean)</td>
-<td align="left">Indicates if neutralization is detected based on ID50 titer.</td>
-</tr>
-<tr class="odd">
-<td align="left">nab_response_ID80</td>
-<td align="left">Response call ID80</td>
-<td align="left">True/False (Boolean)</td>
-<td align="left">Indicates if neutralization is detected based on ID80 titer.</td>
-</tr>
-<tr class="even">
-<td align="left">neutralization_tier</td>
-<td align="left">Neutralization tier</td>
-<td align="left">Text (String)</td>
-<td align="left">A classification specific to HIV NAb assay design, in which an antigen is assessed for its ease of neutralization (1=most easily neutralized, 3=least easily neutralized)</td>
-</tr>
-<tr class="odd">
-<td align="left">response_call</td>
-<td align="left">Response call</td>
-<td align="left">True/False (Boolean)</td>
-<td align="left">Indicates if neutralization is detected.</td>
-</tr>
-<tr class="even">
-<td align="left">slope</td>
-<td align="left">Slope</td>
-<td align="left">Number (Double)</td>
-<td align="left">The slope calculated using the difference between 50% and 80% neutralization.</td>
-</tr>
-<tr class="odd">
-<td align="left">specimen_type</td>
-<td align="left">Specimen type</td>
-<td align="left">Text (String)</td>
-<td align="left">The type of specimen used in the assay. For nAb assays, this is generally serum or plasma.</td>
-</tr>
-<tr class="even">
-<td align="left">study_prot</td>
-<td align="left">Study Protocol</td>
-<td align="left">Text (String)</td>
-<td align="left">Study protocol</td>
-</tr>
-<tr class="odd">
-<td align="left">summary_level</td>
-<td align="left">Data summary level</td>
-<td align="left">Text (String)</td>
-<td align="left">Defines the level at which the magnitude or response has been summarized (e.g. summarized at the isolate level).</td>
-</tr>
-<tr class="even">
-<td align="left">target_cell</td>
-<td align="left">Target cell</td>
-<td align="left">Text (String)</td>
-<td align="left">The cell line used in the assay to determine infection (lack of neutralization). Generally TZM-bl or A3R5, but can also be other cell lines or non-engineered cells.</td>
-</tr>
-<tr class="odd">
-<td align="left">tier_clade_virus</td>
-<td align="left">Neutralization tier + Antigen clade + Virus</td>
-<td align="left">Text (String)</td>
-<td align="left">A combination of neutralization tier, antigen clade, and virus used for filtering.</td>
-</tr>
-<tr class="even">
-<td align="left">titer_ID50</td>
-<td align="left">Titer ID50</td>
-<td align="left">Number (Double)</td>
-<td align="left">The adjusted value of 50% maximal inhibitory dilution (ID50).</td>
-</tr>
-<tr class="odd">
-<td align="left">titer_ID80</td>
-<td align="left">Titer ID80</td>
-<td align="left">Number (Double)</td>
-<td align="left">The adjusted value of 80% maximal inhibitory dilution (ID80).</td>
-</tr>
-<tr class="even">
-<td align="left">titer_ic50</td>
-<td align="left">Titer IC50</td>
-<td align="left">Number (Double)</td>
-<td align="left">The half maximal inhibitory concentration (IC50).</td>
-</tr>
-<tr class="odd">
-<td align="left">titer_ic80</td>
-<td align="left">Titer IC80</td>
-<td align="left">Number (Double)</td>
-<td align="left">The 80% maximal inhibitory concentration (IC80).</td>
-</tr>
-<tr class="even">
-<td align="left">vaccine_matched</td>
-<td align="left">Antigen vaccine match indicator</td>
-<td align="left">True/False (Boolean)</td>
-<td align="left">Indicates if the interactive part of the antigen was designed to match the immunogen in the vaccine.</td>
-</tr>
-<tr class="odd">
-<td align="left">virus</td>
-<td align="left">Virus name</td>
-<td align="left">Text (String)</td>
-<td align="left">The term for the virus (antigen) being tested.</td>
-</tr>
-<tr class="even">
-<td align="left">virus_backbone</td>
-<td align="left">Virus backbone</td>
-<td align="left">Text (String)</td>
-<td align="left">Indicates the backbone used to generate the virus if from a different plasmid than the envelope.</td>
-</tr>
-<tr class="odd">
-<td align="left">virus_full_name</td>
-<td align="left">Virus full name</td>
-<td align="left">Text (String)</td>
-<td align="left">The full name of the virus used in the construction of the nAb antigen.</td>
-</tr>
-<tr class="even">
-<td align="left">virus_host_cell</td>
-<td align="left">Virus host cell</td>
-<td align="left">Text (String)</td>
-<td align="left">The host cell used to incubate the virus stock.</td>
-</tr>
-<tr class="odd">
-<td align="left">virus_insert_name</td>
-<td align="left">Virus insert name</td>
-<td align="left">Text (String)</td>
-<td align="left">The amino acid sequence inserted in the virus construct.</td>
-</tr>
-<tr class="even">
-<td align="left">virus_species</td>
-<td align="left">Virus species</td>
-<td align="left">Text (String)</td>
-<td align="left">A classification for virus species using informal taxonomy.</td>
-</tr>
-<tr class="odd">
-<td align="left">virus_type</td>
-<td align="left">Virus type</td>
-<td align="left">Text (String)</td>
-<td align="left">The type of virus used in the construction of the nAb antigen.</td>
-</tr>
-<tr class="even">
-<td align="left">visit_day</td>
-<td align="left">Visit Day</td>
-<td align="left">Integer</td>
-<td align="left">Target study day defined for a study visit. Study days are relative to Day 0, where Day 0 is typically defined as enrollment and/or first injection.</td>
-</tr>
-</tbody>
-</table>
-<p>To get only a subset of the data and speed up the download, filters can be passed to <code>getDataset</code>. The filters are created using the <code>makeFilter</code> function of the <code>Rlabkey</code> package.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>cvd256Filter &lt;-<span class="st"> </span><span class="kw">makeFilter</span>(<span class="kw">c</span>(<span class="st">&quot;visit_day&quot;</span>, <span class="st">&quot;EQUAL&quot;</span>, <span class="st">&quot;0&quot;</span>))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>NAb_day0 &lt;-<span class="st"> </span>cvd256<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;NAb&quot;</span>, <span class="dt">colFilter =</span> cvd256Filter)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="kw">dim</span>(NAb_day0)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co">#&gt; [1] 709  33</span></span></code></pre></div>
-<p>See <code>?makeFilter</code> for more information on the syntax.</p>
-</div>
-<div id="creating-a-connection-to-all-studies" class="section level2">
-<h2>Creating a connection to all studies</h2>
-<p>To fetch data from multiple studies, create a connection at the project level.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>cavd &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getStudy</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p>This will instantiate a connection at the <code>CAVD</code> level. Most functions work cross study connections just like they do on single studies.</p>
-<p>You can get a list of datasets available across all studies.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>cavd</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co">#&gt;   Study: CAVD</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">#&gt;   Available datasets:</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co">#&gt;     - Demographics</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co">#&gt;     - Enzyme-Linked ImmunoSpot</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co">#&gt;     - Intracellular Cytokine Staining</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="co">#&gt;     - PK MAb</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(cavd<span class="op">$</span>availableDatasets)</span></code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">name</th>
-<th align="left">label</th>
-<th align="right">n</th>
-<th align="left">integrated</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">BAMA</td>
-<td align="left">Binding Ab multiplex assay</td>
-<td align="right">170320</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">Demographics</td>
-<td align="left">Demographics</td>
-<td align="right">5049</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="left">ELISPOT</td>
-<td align="left">Enzyme-Linked ImmunoSpot</td>
-<td align="right">5610</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">ICS</td>
-<td align="left">Intracellular Cytokine Staining</td>
-<td align="right">195883</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="left">NAb</td>
-<td align="left">Neutralizing antibody</td>
-<td align="right">51382</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">PKMAb</td>
-<td align="left">PK MAb</td>
-<td align="right">3217</td>
-<td align="left">TRUE</td>
-</tr>
-</tbody>
-</table>
-<p>In all-study connection, <code>getDataset</code> will combine the requested datasets. Note that in most cases, the datasets will have too many subjects for quick data transfer, making filtering of the data a necessity. The <code>colFilter</code> argument can be used here, as described in the <code>getDataset</code> section.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>conFilter &lt;-<span class="st"> </span><span class="kw">makeFilter</span>(<span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;EQUAL&quot;</span>, <span class="st">&quot;Human&quot;</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>human &lt;-<span class="st"> </span>cavd<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;Demographics&quot;</span>, <span class="dt">colFilter =</span> conFilter)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="kw">dim</span>(human)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="co">#&gt; [1] 3142   36</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="kw">colnames</span>(human)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="co">#&gt;  [1] &quot;subject_id&quot;                      &quot;subject_visit&quot;                  </span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="co">#&gt;  [3] &quot;species&quot;                         &quot;subspecies&quot;                     </span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="co">#&gt;  [5] &quot;sexatbirth&quot;                      &quot;race&quot;                           </span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a><span class="co">#&gt;  [7] &quot;ethnicity&quot;                       &quot;country_enrollment&quot;             </span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a><span class="co">#&gt;  [9] &quot;circumcised_enrollment&quot;          &quot;bmi_enrollment&quot;                 </span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a><span class="co">#&gt; [11] &quot;agegroup_range&quot;                  &quot;agegroup_enrollment&quot;            </span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="co">#&gt; [13] &quot;age_enrollment&quot;                  &quot;study_label&quot;                    </span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a><span class="co">#&gt; [15] &quot;study_start_date&quot;                &quot;study_first_enr_date&quot;           </span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a><span class="co">#&gt; [17] &quot;study_fu_complete_date&quot;          &quot;study_public_date&quot;              </span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a><span class="co">#&gt; [19] &quot;study_network&quot;                   &quot;study_last_vaccination_day&quot;     </span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true"></a><span class="co">#&gt; [21] &quot;study_type&quot;                      &quot;study_part&quot;                     </span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true"></a><span class="co">#&gt; [23] &quot;study_group&quot;                     &quot;study_arm&quot;                      </span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true"></a><span class="co">#&gt; [25] &quot;study_arm_summary&quot;               &quot;study_arm_coded_label&quot;          </span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true"></a><span class="co">#&gt; [27] &quot;study_randomization&quot;             &quot;study_product_class_combination&quot;</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true"></a><span class="co">#&gt; [29] &quot;study_product_combination&quot;       &quot;study_short_name&quot;               </span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true"></a><span class="co">#&gt; [31] &quot;study_grant_pi_name&quot;             &quot;study_strategy&quot;                 </span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true"></a><span class="co">#&gt; [33] &quot;study_prot&quot;                      &quot;genderidentity&quot;                 </span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true"></a><span class="co">#&gt; [35] &quot;studycohort&quot;                     &quot;bmi_category&quot;</span></span></code></pre></div>
-<p>Check out <a href="https://docs.ropensci.org/DataSpaceR/reference/DataSpaceStudy.html">the reference page</a> of <code>DataSpaceStudy</code> for all available fields and methods.</p>
+<div id="loading-assay-datasets" class="section level2">
+<h2>Loading Assay Datasets</h2>
+<p>We can load any of the datasets listed in the connection
+(<code>availableDatasets</code>). These are loaded to the study
+object.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>cvd256<span class="sc">$</span><span class="fu">loadAvailableDatasets</span>(<span class="st">&quot;NAb&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">dim</span>(cvd256<span class="sc">$</span>datasets<span class="sc">$</span>NAb)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">#&gt; [1] 1419   33</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">colnames</span>(cvd256<span class="sc">$</span>datasets<span class="sc">$</span>NAb)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;participant_id&quot;      &quot;participant_visit&quot;   &quot;visit_day&quot;           &quot;assay_identifier&quot;    &quot;summary_level&quot;      </span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;specimen_type&quot;       &quot;antigen&quot;             &quot;antigen_type&quot;        &quot;virus&quot;               &quot;virus_type&quot;         </span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt; [11] &quot;virus_insert_name&quot;   &quot;clade&quot;               &quot;neutralization_tier&quot; &quot;tier_clade_virus&quot;    &quot;target_cell&quot;        </span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; [16] &quot;initial_dilution&quot;    &quot;titer_ic50&quot;          &quot;titer_ic80&quot;          &quot;response_call&quot;       &quot;nab_lab_source_key&quot; </span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt; [21] &quot;lab_code&quot;            &quot;exp_assayid&quot;         &quot;titer_id50&quot;          &quot;titer_id80&quot;          &quot;nab_response_id50&quot;  </span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt; [26] &quot;nab_response_id80&quot;   &quot;slope&quot;               &quot;vaccine_matched&quot;     &quot;study_id&quot;            &quot;virus_full_name&quot;    </span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt; [31] &quot;virus_species&quot;       &quot;virus_host_cell&quot;     &quot;virus_backbone&quot;</span></span></code></pre></div>
+<p>We may also pass the <code>availableDatasets</code> object to load
+datasets to the studies object.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>cvd256<span class="sc">$</span>availableDatasets[assay_identifier <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;BAMA&quot;</span>, <span class="st">&quot;Demographics&quot;</span>)] <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  cvd256<span class="sc">$</span><span class="fu">loadAssayDatasets</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co">#&gt; Error: attempt to apply non-function</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">names</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  cvd256<span class="sc">$</span>datasets</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;NAb&quot;</span></span></code></pre></div>
+<p>We can view detailed variable information for all datasets loaded
+from the <code>variableDefinitions</code> field.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>cvd256<span class="sc">$</span>variableDefinitions</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">#&gt; $NAb</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt;              field_name                                     caption</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt;                  &lt;char&gt;                                      &lt;char&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt;  1:           visit_day                                   Visit Day</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt;  2:    assay_identifier                            Assay identifier</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt;  3:       summary_level                          Data summary level</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt;  4:       specimen_type                               Specimen type</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt;  5:             antigen                                Antigen name</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt;  6:        antigen_type                                Antigen type</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt;  7:               virus                                  Virus name</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt;  8:          virus_type                                  Virus type</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt;  9:   virus_insert_name                           Virus insert name</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt; 10:               clade                                 Virus clade</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt; 11: neutralization_tier                         Neutralization tier</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt; 12:    tier_clade_virus Neutralization tier + Antigen clade + Virus</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt; 13:         target_cell                                 Target cell</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt; 14:    initial_dilution                            Initial dilution</span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; 15:          titer_ic50                                  Titer IC50</span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt; 16:          titer_ic80                                  Titer IC80</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt; 17:       response_call                               Response call</span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt; 18:  nab_lab_source_key                             Data provenance</span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt; 19:            lab_code                                      Lab ID</span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt; 20:         exp_assayid              Experimental Assay Design Code</span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt; 21:               slope                                       Slope</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt; 22:     vaccine_matched             Antigen vaccine match indicator</span></span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt; 23:     virus_full_name                             Virus full name</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt; 24:       virus_species                               Virus species</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt; 25:     virus_host_cell                             Virus host cell</span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt; 26:      virus_backbone                              Virus backbone</span></span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt;              field_name                                     caption</span></span>
+<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                   description</span></span>
+<span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                        &lt;char&gt;</span></span>
+<span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="co">#&gt;  1:                      Target study day defined for a study visit. Study days are relative to Day 0, where Day 0 is typically defined as enrollment and/or first injection.</span></span>
+<span id="cb10-35"><a href="#cb10-35" tabindex="-1"></a><span class="co">#&gt;  2:                                                                                                                                                    Name identifying assay</span></span>
+<span id="cb10-36"><a href="#cb10-36" tabindex="-1"></a><span class="co">#&gt;  3:                                                          Defines the level at which the magnitude or response has been summarized (e.g. summarized at the isolate level).</span></span>
+<span id="cb10-37"><a href="#cb10-37" tabindex="-1"></a><span class="co">#&gt;  4:                                                                                The type of specimen used in the assay. For nAb assays, this is generally serum or plasma.</span></span>
+<span id="cb10-38"><a href="#cb10-38" tabindex="-1"></a><span class="co">#&gt;  5:                                                                                                                             The name of the antigen (virus) being tested.</span></span>
+<span id="cb10-39"><a href="#cb10-39" tabindex="-1"></a><span class="co">#&gt;  6:                                                                                  The standardized term for the type of virus used in the construction of the nAb antigen.</span></span>
+<span id="cb10-40"><a href="#cb10-40" tabindex="-1"></a><span class="co">#&gt;  7:                                                                                                                            The term for the virus (antigen) being tested.</span></span>
+<span id="cb10-41"><a href="#cb10-41" tabindex="-1"></a><span class="co">#&gt;  8:                                                                                                            The type of virus used in the construction of the nAb antigen.</span></span>
+<span id="cb10-42"><a href="#cb10-42" tabindex="-1"></a><span class="co">#&gt;  9:                                                                                                                  The amino acid sequence inserted in the virus construct.</span></span>
+<span id="cb10-43"><a href="#cb10-43" tabindex="-1"></a><span class="co">#&gt; 10:                                                                                                             The clade (gene subtype) of the virus (antigen) being tested.</span></span>
+<span id="cb10-44"><a href="#cb10-44" tabindex="-1"></a><span class="co">#&gt; 11: A classification specific to HIV NAb assay design, in which an antigen is assessed for its ease of neutralization (1=most easily neutralized, 3=least easily neutralized)</span></span>
+<span id="cb10-45"><a href="#cb10-45" tabindex="-1"></a><span class="co">#&gt; 12:                                                                                        A combination of neutralization tier, antigen clade, and virus used for filtering.</span></span>
+<span id="cb10-46"><a href="#cb10-46" tabindex="-1"></a><span class="co">#&gt; 13:     The cell line used in the assay to determine infection (lack of neutralization).  Generally TZM-bl or A3R5, but can also be other cell lines or non-engineered cells.</span></span>
+<span id="cb10-47"><a href="#cb10-47" tabindex="-1"></a><span class="co">#&gt; 14:                                                                                                                                  Indicates the initial specimen dilution.</span></span>
+<span id="cb10-48"><a href="#cb10-48" tabindex="-1"></a><span class="co">#&gt; 15:                                                                                                                         The half maximal inhibitory concentration (IC50).</span></span>
+<span id="cb10-49"><a href="#cb10-49" tabindex="-1"></a><span class="co">#&gt; 16:                                                                                                                          The 80% maximal inhibitory concentration (IC80).</span></span>
+<span id="cb10-50"><a href="#cb10-50" tabindex="-1"></a><span class="co">#&gt; 17:                                                                                                                                  Indicates if neutralization is detected.</span></span>
+<span id="cb10-51"><a href="#cb10-51" tabindex="-1"></a><span class="co">#&gt; 18:                                                                                                                    Details regarding the provenance of the assay results.</span></span>
+<span id="cb10-52"><a href="#cb10-52" tabindex="-1"></a><span class="co">#&gt; 19:                                                                                                                           A code indicating the lab performing the assay.</span></span>
+<span id="cb10-53"><a href="#cb10-53" tabindex="-1"></a><span class="co">#&gt; 20:                                                                                           Unique ID assigned to the experiment design of the assay for tracking purposes.</span></span>
+<span id="cb10-54"><a href="#cb10-54" tabindex="-1"></a><span class="co">#&gt; 21:                                                                                             The slope calculated using the difference between 50% and 80% neutralization.</span></span>
+<span id="cb10-55"><a href="#cb10-55" tabindex="-1"></a><span class="co">#&gt; 22:                                                                      Indicates if the interactive part of the antigen was designed to match the immunogen in the vaccine.</span></span>
+<span id="cb10-56"><a href="#cb10-56" tabindex="-1"></a><span class="co">#&gt; 23:                                                                                                   The full name of the virus used in the construction of the nAb antigen.</span></span>
+<span id="cb10-57"><a href="#cb10-57" tabindex="-1"></a><span class="co">#&gt; 24:                                                                                                               A classification for virus species using informal taxonomy.</span></span>
+<span id="cb10-58"><a href="#cb10-58" tabindex="-1"></a><span class="co">#&gt; 25:                                                                                                                           The host cell used to incubate the virus stock.</span></span>
+<span id="cb10-59"><a href="#cb10-59" tabindex="-1"></a><span class="co">#&gt; 26:                                                                          Indicates the backbone used to generate the virus if from a different plasmid than the envelope.</span></span>
+<span id="cb10-60"><a href="#cb10-60" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                   description</span></span></code></pre></div>
 </div>
 <div id="connect-to-a-saved-group" class="section level2">
 <h2>Connect to a saved group</h2>
-<p>A group is a curated collection of participants from filtering of treatments, products, studies, or species, and it is created in <a href="https://dataspace.cavd.org/cds/CAVD/app.view">the DataSpace App</a>.</p>
-<p>Let’s say you are using the App to filter and visualize data and want to save them for later or explore in R with <code>DataSpaceR</code>. You can save a group by clicking the Save button on the Active Filter Panel.</p>
-<p>We can browse available the saved groups or the curated groups by DataSpace Team via <code>availableGroups</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(con<span class="op">$</span>availableGroups)</span></code></pre></div>
-<table style="width:100%;">
-<colgroup>
-<col width="3%"></col>
-<col width="13%"></col>
-<col width="13%"></col>
-<col width="48%"></col>
-<col width="4%"></col>
-<col width="2%"></col>
-<col width="1%"></col>
-<col width="12%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="right">group_id</th>
-<th align="left">label</th>
-<th align="left">original_label</th>
-<th align="left">description</th>
-<th align="left">created_by</th>
-<th align="left">shared</th>
-<th align="right">n</th>
-<th align="left">studies</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">220</td>
-<td align="left">NYVAC durability comparison</td>
-<td align="left">NYVAC_durability</td>
-<td align="left">Compare durability in 4 NHP studies using NYVAC-C (vP2010) and NYVAC-KC-gp140 (ZM96) products.</td>
-<td align="left">ehenrich</td>
-<td align="left">TRUE</td>
-<td align="right">78</td>
-<td align="left">cvd281, cvd434, cvd259, cvd277</td>
-</tr>
-<tr class="even">
-<td align="right">228</td>
-<td align="left">HVTN 505 case control subjects</td>
-<td align="left">HVTN 505 case control subjects</td>
-<td align="left">Participants from HVTN 505 included in the case-control analysis</td>
-<td align="left">drienna</td>
-<td align="left">TRUE</td>
-<td align="right">189</td>
-<td align="left">vtn505</td>
-</tr>
-<tr class="odd">
-<td align="right">230</td>
-<td align="left">HVTN 505 polyfunctionality vs BAMA</td>
-<td align="left">HVTN 505 polyfunctionality vs BAMA</td>
-<td align="left">Compares ICS polyfunctionality (CD8+, Any Env) to BAMA mfi-delta (single Env antigen) in the HVTN 505 case control cohort</td>
-<td align="left">drienna</td>
-<td align="left">TRUE</td>
-<td align="right">170</td>
-<td align="left">vtn505</td>
-</tr>
-</tbody>
-</table>
-<p>To fetch data from a saved group, create a connection at the project level with a group ID. For example, we can connect to the “NYVAC durability comparison” group which has group ID 220 by <code>getGroup</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>nyvac &lt;-<span class="st"> </span>con<span class="op">$</span><span class="kw">getGroup</span>(<span class="dv">220</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a>nyvac</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="co">#&gt; &lt;DataSpaceStudy&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="co">#&gt;   Group: NYVAC durability comparison</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a><span class="co">#&gt;   URL: https://dataspace.cavd.org/CAVD</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="co">#&gt;   Available datasets:</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a><span class="co">#&gt;     - Demographics</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a><span class="co">#&gt;     - Enzyme-Linked ImmunoSpot</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a><span class="co">#&gt;     - Intracellular Cytokine Staining</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a><span class="co">#&gt;   Available non-integrated datasets:</span></span></code></pre></div>
-<p>Retrieving a dataset is the same as before.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>NAb_nyvac &lt;-<span class="st"> </span>nyvac<span class="op">$</span><span class="kw">getDataset</span>(<span class="st">&quot;NAb&quot;</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">dim</span>(NAb_nyvac)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="co">#&gt; [1] 4281   33</span></span></code></pre></div>
+<p>A group is a curated collection of participants from filtering of
+treatments, products, studies, or species, and it is created in <a href="https://dataspace.cavd.org/cds/CAVD/app.view">the DataSpace
+App</a>.</p>
+<p>Using the DataSpace application, you may filter and visualize data
+and save them for later as a “group” using the application Active
+Filters dialog. You may also explore those groups in R with
+<code>DataSpaceR</code></p>
+<p>We can browse saved groups via <code>availableGroups</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>con<span class="sc">$</span>availableGroups</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt; Key: &lt;group_id&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co">#&gt;    group_id                              label                     original_label</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt;       &lt;int&gt;                             &lt;char&gt;                             &lt;char&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt; 1:      220        NYVAC durability comparison                   NYVAC_durability</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt; 2:      228     HVTN 505 case control subjects     HVTN 505 case control subjects</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; 3:      230 HVTN 505 polyfunctionality vs BAMA HVTN 505 polyfunctionality vs BAMA</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; 4:      256           CAVD 239 integrated data           CAVD 239 integrated data</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; 5:      292                            testing                            testing</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 6:      293                           testing2                           testing2</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt;                                                                                                                  description</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt;                                                                                                                       &lt;char&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt; 1:                           Compare durability in 4 NHP studies using NYVAC-C (vP2010)  and NYVAC-KC-gp140 (ZM96) products.</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt; 2:                                                          Participants from HVTN 505 included in the case-control analysis</span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt; 3: Compares ICS polyfunctionality (CD8+, Any Env) to BAMA mfi-delta (single Env antigen) in the HVTN 505 case control cohort</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt; 4:       Integrated study data for CAVD 239, including integrated assay data, demographics, and treatment group information.</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt; 5:                                                                                                                      &lt;NA&gt;</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt; 6:                                                                                                                      &lt;NA&gt;</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt;    created_by shared     n                        studies</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt; &lt;lgcl&gt; &lt;int&gt;                         &lt;char&gt;</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt; 1:   ehenrich   TRUE    78 cvd281, cvd434, cvd259, cvd277</span></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt; 2:    drienna   TRUE   189                         vtn505</span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt; 3:    drienna   TRUE   170                         vtn505</span></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co">#&gt; 4:    drienna   TRUE    38                         cvd239</span></span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="co">#&gt; 5:   jmtaylor  FALSE   238                         vtn505</span></span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a><span class="co">#&gt; 6:   jmtaylor  FALSE  1253                         vtn505</span></span></code></pre></div>
+<p>To fetch data from a saved group, create a connection at the project
+level with a group ID. For example, we can connect to the “NYVAC
+durability comparison” group which has group ID 220 by
+<code>getGroup</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>nyvac <span class="ot">&lt;-</span> con<span class="sc">$</span><span class="fu">getGroups</span>(<span class="dv">220</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>nyvac</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">#&gt; &lt;DataSpaceGroups&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co">#&gt;   Groups: NYVAC durability comparison</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt;   Available integrated datasets:</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt;     - Demographics</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt;     - Enzyme-Linked ImmunoSpot</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt;     - Intracellular Cytokine Staining</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt;   Available Groups objects:</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt;     - datasets</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt;     - donorMetadata</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt;     - mabMetadata</span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt;     - mabMix</span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="co">#&gt;     - mabMixMetadata</span></span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co">#&gt;     - variableDefinitions</span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="co">#&gt;   Available Connection objects:</span></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co">#&gt;     - availableDonors</span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="co">#&gt;     - availableGroups</span></span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="co">#&gt;     - availableMabMixtures</span></span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="co">#&gt;     - availableMabs</span></span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="co">#&gt;     - availablePublications</span></span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="co">#&gt;     - availableStudies</span></span>
+<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a><span class="co">#&gt;     - availableViruses</span></span>
+<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a><span class="co">#&gt;     - virusNameMappingTables</span></span>
+<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a><span class="co">#&gt;   Available Connection methods:</span></span>
+<span id="cb12-28"><a href="#cb12-28" tabindex="-1"></a><span class="co">#&gt;     - downloadPublicationData</span></span>
+<span id="cb12-29"><a href="#cb12-29" tabindex="-1"></a><span class="co">#&gt;     - getDaash</span></span>
+<span id="cb12-30"><a href="#cb12-30" tabindex="-1"></a><span class="co">#&gt;     - getDonors</span></span>
+<span id="cb12-31"><a href="#cb12-31" tabindex="-1"></a><span class="co">#&gt;     - getGroups</span></span>
+<span id="cb12-32"><a href="#cb12-32" tabindex="-1"></a><span class="co">#&gt;     - getMabs</span></span>
+<span id="cb12-33"><a href="#cb12-33" tabindex="-1"></a><span class="co">#&gt;     - getStudies</span></span></code></pre></div>
+<p>Or passing a filtered <code>availableGroups</code> object to
+<code>getGroup</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>nyvac <span class="ot">&lt;-</span>  con<span class="sc">$</span>availableGroups[label <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;NYVAC durability comparison&quot;</span>)] <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  con<span class="sc">$</span><span class="fu">getGroups</span>()</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>nyvac</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">#&gt; &lt;DataSpaceGroups&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">#&gt;   Groups: NYVAC durability comparison</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co">#&gt;   Available integrated datasets:</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co">#&gt;     - Binding Ab multiplex assay</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">#&gt;     - Demographics</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co">#&gt;     - Enzyme-Linked ImmunoSpot</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co">#&gt;     - Intracellular Cytokine Staining</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co">#&gt;     - Neutralizing antibody</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="co">#&gt;   Available Groups objects:</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="co">#&gt;     - datasets</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co">#&gt;     - donorMetadata</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="co">#&gt;     - mabMetadata</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="co">#&gt;     - mabMix</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="co">#&gt;     - mabMixMetadata</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co">#&gt;     - variableDefinitions</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co">#&gt;   Available Connection objects:</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="co">#&gt;     - availableDonors</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="co">#&gt;     - availableGroups</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="co">#&gt;     - availableMabMixtures</span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="co">#&gt;     - availableMabs</span></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="co">#&gt;     - availablePublications</span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="co">#&gt;     - availableStudies</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a><span class="co">#&gt;     - availableViruses</span></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a><span class="co">#&gt;     - virusNameMappingTables</span></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a><span class="co">#&gt;   Available Connection methods:</span></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="co">#&gt;     - downloadPublicationData</span></span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a><span class="co">#&gt;     - getDaash</span></span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a><span class="co">#&gt;     - getDonors</span></span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="co">#&gt;     - getGroups</span></span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a><span class="co">#&gt;     - getMabs</span></span>
+<span id="cb13-34"><a href="#cb13-34" tabindex="-1"></a><span class="co">#&gt;     - getStudies</span></span></code></pre></div>
+<p>Unlike the studies object, a group object automatically loads any
+datasets associated with the groups retrieved from DataSpace.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>nyvac<span class="sc">$</span>datasets <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="fu">names</span>()</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;BAMA&quot;         &quot;Demographics&quot; &quot;ELISPOT&quot;      &quot;ICS&quot;          &quot;NAb&quot;</span></span></code></pre></div>
 </div>
-<div id="access-virus-metadata" class="section level2">
-<h2>Access Virus Metadata</h2>
-<p>DataSpace maintains metadata about all viruses used in Neutralizing Antibody (NAb) assays. This data can be accessed through the app on the <a href="https://dataspace.cavd.org/cds/CAVD/app.view#learn/learn/Assay/NAB/antigens">NAb antigen page</a> and <a href="https://dataspace.cavd.org/cds/CAVD/app.view#learn/learn/Assay/NAB%20MAB/antigens">NAb MAb antigen page</a>.</p>
-<p>We can access this metadata in <code>DataSpaceR</code> with <code>con$virusMetadata</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(con<span class="op">$</span>virusMetadata))</span></code></pre></div>
-<table style="width:100%;">
-<colgroup>
-<col width="7%"></col>
-<col width="6%"></col>
-<col width="6%"></col>
-<col width="7%"></col>
-<col width="9%"></col>
-<col width="2%"></col>
-<col width="7%"></col>
-<col width="14%"></col>
-<col width="7%"></col>
-<col width="6%"></col>
-<col width="7%"></col>
-<col width="7%"></col>
-<col width="9%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">assay_identifier</th>
-<th align="left">cds_virus_id</th>
-<th align="left">virus</th>
-<th align="left">virus_type</th>
-<th align="left">neutralization_tier</th>
-<th align="left">clade</th>
-<th align="left">antigen_control</th>
-<th align="left">virus_full_name</th>
-<th align="left">virus_name_other</th>
-<th align="left">virus_species</th>
-<th align="left">virus_host_cell</th>
-<th align="left">virus_backbone</th>
-<th align="left">panel_names</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">NAB MAB</td>
-<td align="left">cds_1</td>
-<td align="left">0013095-2.11</td>
-<td align="left">Env Pseudotype</td>
-<td align="left">2</td>
-<td align="left">NA</td>
-<td align="left">0</td>
-<td align="left">0013095-2.11 [SG3Δenv] 293T/17</td>
-<td align="left">NA</td>
-<td align="left">HIV</td>
-<td align="left">293T/17</td>
-<td align="left">SG3Δenv</td>
-<td align="left">Tiered diverse panel</td>
-</tr>
-<tr class="even">
-<td align="left">NAB MAB</td>
-<td align="left">cds_2</td>
-<td align="left">001428-2.42</td>
-<td align="left">Env Pseudotype</td>
-<td align="left">2</td>
-<td align="left">C</td>
-<td align="left">0</td>
-<td align="left">001428-2.42 [SG3Δenv] 293T/17</td>
-<td align="left">NA</td>
-<td align="left">HIV</td>
-<td align="left">293T/17</td>
-<td align="left">SG3Δenv</td>
-<td align="left">Tiered diverse panel</td>
-</tr>
-<tr class="odd">
-<td align="left">NAB MAB</td>
-<td align="left">cds_3</td>
-<td align="left">0041.v3.c18</td>
-<td align="left">Env Pseudotype</td>
-<td align="left">2</td>
-<td align="left">C</td>
-<td align="left">0</td>
-<td align="left">0041.v3.c18 [SG3Δenv] 293T/17</td>
-<td align="left">0041.V3.C18</td>
-<td align="left">HIV</td>
-<td align="left">293T/17</td>
-<td align="left">SG3Δenv</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">NAB MAB</td>
-<td align="left">cds_4</td>
-<td align="left">0077.v1.c16</td>
-<td align="left">Env Pseudotype</td>
-<td align="left">2</td>
-<td align="left">C</td>
-<td align="left">0</td>
-<td align="left">0077.v1.c16 [SG3Δenv] 293T/17</td>
-<td align="left">0077.v1.c16</td>
-<td align="left">HIV</td>
-<td align="left">293T/17</td>
-<td align="left">SG3Δenv</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">NAB</td>
-<td align="left">cds_252</td>
-<td align="left">00836-2.5</td>
-<td align="left">Env Pseudotype</td>
-<td align="left">1B</td>
-<td align="left">C</td>
-<td align="left">0</td>
-<td align="left">00836-2.5 [SG3Δenv] 293T/17</td>
-<td align="left">NA</td>
-<td align="left">HIV</td>
-<td align="left">293T/17</td>
-<td align="left">SG3Δenv</td>
-<td align="left">Tiered diverse panel</td>
-</tr>
-<tr class="even">
-<td align="left">NAB MAB</td>
-<td align="left">cds_5</td>
-<td align="left">0260.v5.c1</td>
-<td align="left">Env Pseudotype</td>
-<td align="left">2</td>
-<td align="left">A</td>
-<td align="left">0</td>
-<td align="left">0260.v5.c1 [SG3Δenv] 293T/17</td>
-<td align="left">0260.V5.C1</td>
-<td align="left">HIV</td>
-<td align="left">293T/17</td>
-<td align="left">SG3Δenv</td>
-<td align="left">Tiered diverse panel</td>
-</tr>
-</tbody>
-</table>
+<div id="accessing-virus-metadata" class="section level2">
+<h2>Accessing Virus Metadata</h2>
+<p>DataSpace maintains metadata about all viruses used in Neutralizing
+Antibody (NAb) assays. This data can be accessed through the app on the
+<a href="https://dataspace.cavd.org/cds/CAVD/app.view#learn/learn/Assay/NAB/antigens">NAb
+antigen page</a> and <a href="https://dataspace.cavd.org/cds/CAVD/app.view#learn/learn/Assay/NAB%20MAB/antigens">NAb
+MAb antigen page</a>.</p>
+<p>We can access this metadata in <code>DataSpaceR</code> with
+<code>availableViruses</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>con<span class="sc">$</span>availableViruses</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co">#&gt; Key: &lt;cds_virus_id&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co">#&gt;      cds_virus_id          virus                  virus_full_name virus_backbone virus_host_cell virus_plot_label</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co">#&gt;            &lt;char&gt;         &lt;char&gt;                           &lt;char&gt;         &lt;char&gt;          &lt;char&gt;           &lt;char&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="co">#&gt;   1:        cds_1   0013095-2.11   0013095-2.11 [SG3Δenv] 293T/17        SG3Δenv         293T/17     0013095-2.11</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co">#&gt;   2:       cds_10     0984.V2.C2     0984.V2.C2 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co">#&gt;   3:      cds_100 B005018-8_F6.3 B005018-8_F6.3 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co">#&gt;   4:      cds_101 B005582-7_G7.8 B005582-7_G7.8 [SG3Δenv] 293T/17        SG3Δenv         293T/17          B005582</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="co">#&gt;   5:      cds_102         BaL.26         BaL.26 [SG3Δenv] 293T/17        SG3Δenv         293T/17           BaL.26</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co">#&gt;  ---                                                                                                             </span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="co">#&gt; 799:       cds_94      92BR025.9      92BR025.9 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="co">#&gt; 800:       cds_95      933.v4.c4      933.v4.c4 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="co">#&gt; 801:       cds_97    98-F4_H5_13    98-F4_H5_13 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="co">#&gt; 802:       cds_98 A07412M1.vrc12 A07412M1.vrc12 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="co">#&gt; 803:       cds_99      AC10.0.29      AC10.0.29 [SG3Δenv] 293T/17        SG3Δenv         293T/17        AC10.0.29</span></span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a><span class="co">#&gt;          virus_type virus_species  clade neutralization_tier</span></span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;        &lt;char&gt; &lt;char&gt;              &lt;char&gt;</span></span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a><span class="co">#&gt;   1: Env Pseudotype           HIV   &lt;NA&gt;                   2</span></span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a><span class="co">#&gt;   2: Env Pseudotype           HIV      C                   3</span></span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a><span class="co">#&gt;   3: Env Pseudotype           HIV      C                   2</span></span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="co">#&gt;   4: Env Pseudotype           HIV      C                &lt;NA&gt;</span></span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a><span class="co">#&gt;   5: Env Pseudotype           HIV      B                  1B</span></span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a><span class="co">#&gt;  ---                                                        </span></span>
+<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a><span class="co">#&gt; 799: Env Pseudotype           HIV      C                &lt;NA&gt;</span></span>
+<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a><span class="co">#&gt; 800: Env Pseudotype           HIV      C                   3</span></span>
+<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a><span class="co">#&gt; 801: Env Pseudotype           HIV      C                   3</span></span>
+<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a><span class="co">#&gt; 802: Env Pseudotype           HIV      D                   2</span></span>
+<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a><span class="co">#&gt; 803: Env Pseudotype           HIV      B                   2</span></span>
+<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                           virus_name_other</span></span>
+<span id="cb15-30"><a href="#cb15-30" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                     &lt;char&gt;</span></span>
+<span id="cb15-31"><a href="#cb15-31" tabindex="-1"></a><span class="co">#&gt;   1:                                                                                                                                                                  &lt;NA&gt;</span></span>
+<span id="cb15-32"><a href="#cb15-32" tabindex="-1"></a><span class="co">#&gt;   2:                                                                                                                                                            0984.v2.c2</span></span>
+<span id="cb15-33"><a href="#cb15-33" tabindex="-1"></a><span class="co">#&gt;   3:                                                                                                                                                                  &lt;NA&gt;</span></span>
+<span id="cb15-34"><a href="#cb15-34" tabindex="-1"></a><span class="co">#&gt;   4:                                                                                                                                              B005582, B005582-27_G7.8</span></span>
+<span id="cb15-35"><a href="#cb15-35" tabindex="-1"></a><span class="co">#&gt;   5: BaL.26_TM, Bal.26, Bal.26 [SG3&lt;94&gt;~env] 293T/17, Bal.26 [SG3Δenv] 293T, HIV Bal.26, HIV Bal.26[-Luc]293T, HIV Bal.26[SG3&lt;94&gt;~env]293T/17, SG3�~env, SHIV 1157ipd3N4.3</span></span>
+<span id="cb15-36"><a href="#cb15-36" tabindex="-1"></a><span class="co">#&gt;  ---                                                                                                                                                                      </span></span>
+<span id="cb15-37"><a href="#cb15-37" tabindex="-1"></a><span class="co">#&gt; 799:             92BR025.9 [SG3&lt;94&gt;~env] 293T, 92BR025.9 [SG3&lt;94&gt;~env] 293T/17, HIV 92BR025.9, HIV 92BR025.9[SG3&lt;94&gt;~env]293T, HIV 92BR025.9[SG3&lt;94&gt;~env]293T/17, SG3�~env</span></span>
+<span id="cb15-38"><a href="#cb15-38" tabindex="-1"></a><span class="co">#&gt; 800:                                                                                                                                                                  &lt;NA&gt;</span></span>
+<span id="cb15-39"><a href="#cb15-39" tabindex="-1"></a><span class="co">#&gt; 801:                                                                                                                                                           98-F4_H5-13</span></span>
+<span id="cb15-40"><a href="#cb15-40" tabindex="-1"></a><span class="co">#&gt; 802:                                                                                                                                  A07412M1.vrc12---349, A07412M1_VRC12</span></span>
+<span id="cb15-41"><a href="#cb15-41" tabindex="-1"></a><span class="co">#&gt; 803:                                                                    AC10.0.29 [SG3&lt;94&gt;~env] 293T/17, AC10.0.29---451, HIV AC10.0.29, HIV AC10.0.29[SG3&lt;94&gt;~env]293T/17</span></span></code></pre></div>
 </div>
-<div id="access-monoclonal-antibody-data" class="section level2">
-<h2>Access monoclonal antibody data</h2>
-<p>See other vignette for a tutorial on accessing monoclonal antibody data with <code>DataSpaceR</code>:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">vignette</span>(<span class="st">&quot;Monoconal_Antibody_Data&quot;</span>)</span></code></pre></div>
+<div id="accessing-mab-and-mab-donor-data" class="section level2">
+<h2>Accessing MAb and MAb Donor Data</h2>
+<p>Connection objects can return <code>DataSpaceMab</code> and
+<code>DataSpaceDonor</code> objects which are used to access mAb related
+data. See the vignette <a href="Monoconal_Antibody_Data.html">Accessing
+Monoclonal Antibody Data</a> for more information.</p>
 </div>
-<div id="browse-and-download-publication-data" class="section level2">
-<h2>Browse and Download Publication Data</h2>
-<p>DataSpace maintains a curated collection of relevant publications, which can be accessed through the <a href="https://dataspace.cavd.org/cds/CAVD/app.view?#learn/learn/Publication">Publications page</a> through the app. Metadata about these publications can be accessed through <code>DataSpaceR</code> with <code>con$availablePublications</code>.</p>
-<p>See Publication Data vignette for a tutorial on accessing publication data through DataSpaceR.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">vignette</span>(<span class="st">&quot;Publication_Data&quot;</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="co">#&gt; Warning: vignette &#39;Publication_Data&#39; not found</span></span></code></pre></div>
+<div id="accessing-dataspace-daash" class="section level2">
+<h2>Accessing DataSpace DAASH</h2>
+<p>The Database of Annotation Antibodies for HIV-1, or DAASH for short,
+can be accessed though mAb objects, or donor objects, or more directly
+via a <code>DataSpaceDaash</code> object. See the vigette <a href="Accessing_CDS_DAASH.html">Accessing CDS DAASH</a> for more
+information.</p>
 </div>
-<div id="reference-tables" class="section level2">
-<h2>Reference Tables</h2>
-<p>The followings are the tables of all fields and methods that work on <code>DataSpaceConnection</code> and <code>DataSpaceStudy</code> objects and could be used as a quick reference.</p>
-<div id="dataspaceconnection" class="section level3">
-<h3><code>DataSpaceConnection</code></h3>
-<table>
-<colgroup>
-<col width="50%"></col>
-<col width="50%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>availableStudies</code></td>
-<td>The table of available studies.</td>
-</tr>
-<tr class="even">
-<td><code>availableGroups</code></td>
-<td>The table of available groups.</td>
-</tr>
-<tr class="odd">
-<td><code>availablePublications</code></td>
-<td>The table of available publications.</td>
-</tr>
-<tr class="even">
-<td><code>mabGrid</code></td>
-<td>The filtered mAb grid.</td>
-</tr>
-<tr class="odd">
-<td><code>mabGridSummary</code></td>
-<td>The summarized mAb grid with updated <code>n_</code> columns and <code>geometric_mean_curve_ic50</code>.</td>
-</tr>
-<tr class="even">
-<td><code>virusMetadata</code></td>
-<td>Metadata about all viruses in the DataSpace.</td>
-</tr>
-<tr class="odd">
-<td><code>filterMabGrid</code></td>
-<td>Filter rows in the mAb grid by specifying the values to keep in the columns found in the <code>mabGrid</code> field.</td>
-</tr>
-<tr class="even">
-<td><code>resetMabGrid</code></td>
-<td>Reset the mAb grid to the unfiltered state.</td>
-</tr>
-<tr class="odd">
-<td><code>getMab</code></td>
-<td>Create a <code>DataSpaceMab</code> object by filtered <code>mabGrid</code>.</td>
-</tr>
-<tr class="even">
-<td><code>getStudy</code></td>
-<td>Create a <code>DataSpaceStudy</code> object by study.</td>
-</tr>
-<tr class="odd">
-<td><code>getGroup</code></td>
-<td>Create a <code>DataSpaceStudy</code> object by group.</td>
-</tr>
-<tr class="even">
-<td><code>downloadPublicationData</code></td>
-<td>Download data from a chosen publication.</td>
-</tr>
-</tbody>
-</table>
+<div id="accessing-publication-data" class="section level2">
+<h2>Accessing Publication Data</h2>
+<p>DataSpace maintains a curated collection of relevant publications,
+which can be accessed through the <a href="https://dataspace.cavd.org/cds/CAVD/app.view?#learn/learn/Publication">Publications
+page</a> through the app. Metadata about these publications can be
+accessed through <code>DataSpaceR</code> with
+<code>con$availablePublications</code>.</p>
+<p>See the vignette <a href="Publication_Data.html">Accessing
+Publication Data</a> for a tutorial on accessing publication data with
+DataSpaceR.</p>
 </div>
-<div id="dataspacestudy" class="section level3">
-<h3><code>DataSpaceStudy</code></h3>
-<table>
-<colgroup>
-<col width="50%"></col>
-<col width="50%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>study</code></td>
-<td>The study name.</td>
-</tr>
-<tr class="even">
-<td><code>group</code></td>
-<td>The group name.</td>
-</tr>
-<tr class="odd">
-<td><code>availableDatasets</code></td>
-<td>The table of datasets available in the study object.</td>
-</tr>
-<tr class="even">
-<td><code>treatmentArm</code></td>
-<td>The table of treatment arm information for the connected study. Not available for all study connection.</td>
-</tr>
-<tr class="odd">
-<td><code>dataDir</code></td>
-<td>The default target directory for downloading non-integrated datasets.</td>
-</tr>
-<tr class="even">
-<td><code>studyInfo</code></td>
-<td>Stores the information about the study.</td>
-</tr>
-<tr class="odd">
-<td><code>getDataset</code></td>
-<td>Get a dataset from the connection.</td>
-</tr>
-<tr class="even">
-<td><code>getDatasetDescription</code></td>
-<td>Get variable information.</td>
-</tr>
-<tr class="odd">
-<td><code>setDataDir</code></td>
-<td>Set default target directory for downloading non-integrated datasets.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="dataspacemab" class="section level3">
-<h3><code>DataSpaceMab</code></h3>
-<table>
-<colgroup>
-<col width="50%"></col>
-<col width="50%"></col>
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>studyAndMabs</code></td>
-<td>The table of available mAbs by study.</td>
-</tr>
-<tr class="even">
-<td><code>mabs</code></td>
-<td>The table of available mAbs and their attributes.</td>
-</tr>
-<tr class="odd">
-<td><code>nabMab</code></td>
-<td>The table of mAbs and their neutralizing measurements against viruses.</td>
-</tr>
-<tr class="even">
-<td><code>studies</code></td>
-<td>The table of available studies.</td>
-</tr>
-<tr class="odd">
-<td><code>assays</code></td>
-<td>The table of assay status by study.</td>
-</tr>
-<tr class="even">
-<td><code>variableDefinitions</code></td>
-<td>The table of variable definitions.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="session-information" class="section level2">
-<h2>Session information</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">sessionInfo</span>()</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="co">#&gt; R version 4.1.2 (2021-11-01)</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a><span class="co">#&gt; Running under: Ubuntu 18.04.5 LTS</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a><span class="co">#&gt; Matrix products: default</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a><span class="co">#&gt; locale:</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a><span class="co">#&gt;  [1] LC_CTYPE=en_US.utf8       LC_NUMERIC=C             </span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true"></a><span class="co">#&gt;  [3] LC_TIME=en_US.utf8        LC_COLLATE=en_US.utf8    </span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true"></a><span class="co">#&gt;  [5] LC_MONETARY=en_US.utf8    LC_MESSAGES=en_US.utf8   </span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true"></a><span class="co">#&gt;  [7] LC_PAPER=en_US.utf8       LC_NAME=C                </span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true"></a><span class="co">#&gt;  [9] LC_ADDRESS=C              LC_TELEPHONE=C           </span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.utf8 LC_IDENTIFICATION=C      </span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true"></a><span class="co">#&gt; attached base packages:</span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true"></a><span class="co">#&gt; other attached packages:</span></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true"></a><span class="co">#&gt; [1] data.table_1.14.2 DataSpaceR_0.7.5  knitr_1.37       </span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true"></a><span class="co">#&gt;  [1] Rcpp_1.0.8       digest_0.6.29    assertthat_0.2.1 R6_2.5.1        </span></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true"></a><span class="co">#&gt;  [5] jsonlite_1.8.0   magrittr_2.0.2   evaluate_0.15    highr_0.9       </span></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true"></a><span class="co">#&gt;  [9] httr_1.4.2       stringi_1.7.6    curl_4.3.2       tools_4.1.2     </span></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true"></a><span class="co">#&gt; [13] stringr_1.4.0    Rlabkey_2.8.3    xfun_0.29        compiler_4.1.2</span></span></code></pre></div>
+<div id="accessing-help-files" class="section level2">
+<h2>Accessing Help Files</h2>
+<p>Help files for each of the objects and each’s documented public
+methods can be accessed using the help operator:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>?DataSpaceConnection</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>?DataSpaceStudies</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>?DataSpaceGroups</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>?DataSpaceMabs</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>?DataSpaceDonors</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>?DataSpaceDaash</span></code></pre></div>
 </div>
 
 

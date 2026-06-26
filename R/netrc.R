@@ -20,6 +20,7 @@
 #' @return A character vector containing the netrc file path
 #' @seealso \code{\link{connectDS}} \code{\link{checkNetrc}}
 #' @examples
+#' \dontrun{
 #' # First, create an account in the DataSpace App and read the terms of use
 #' # Next, create a netrc file using writeNetrc()
 #' writeNetrc(
@@ -27,6 +28,7 @@
 #'   password = "yourSecretPassword"
 #' )
 #' # Specify `netrcFile = getNetrcPath()` to write netrc in the default path
+#' }
 #' @export
 writeNetrc <- function(login,
                        password,
@@ -73,7 +75,9 @@ writeNetrc <- function(login,
 #' @return The name of the netrc file
 #' @seealso \code{\link{connectDS}} \code{\link{writeNetrc}}
 #' @examples
-#' try(checkNetrc())
+#' \dontrun{
+#' checkNetrc()
+#' }
 #' @export
 checkNetrc <- function(netrcFile = getNetrcPath(),
                        onStaging = FALSE,
@@ -89,12 +93,12 @@ checkNetrc <- function(netrcFile = getNetrcPath(),
     )
   }
 
-  lines <- readLines(netrcFile)
-  lines <- gsub("http.*//", "", lines)
-  machine <- ifelse(onStaging, STAGING, PRODUCTION)
-  if (length(grep(paste0("machine\\s", machine), lines)) == 0) {
+  netrc <- readNetrc(netrcFile)
+
+  server <- ifelse(onStaging, STAGING, PRODUCTION)
+  if(nrow(netrc[machine == server]) == 0) {
     stop(
-      "No entry found for '", machine, "' in '", netrcFile, "'.",
+      "No entry found for '", server, "' in '", netrcFile, "'. Do you have an account at '", server, "' and have you updated you netrc file? See '?writeNetrc'.",
       call. = FALSE
     )
   }
@@ -113,7 +117,9 @@ checkNetrc <- function(netrcFile = getNetrcPath(),
 #' @return A character vector containing the default netrc file path
 #'
 #' @examples
+#' \dontrun{
 #' getNetrcPath()
+#' }
 #' @export
 getNetrcPath <- function() {
   home <- Sys.getenv("HOME")
