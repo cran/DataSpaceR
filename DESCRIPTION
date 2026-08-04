@@ -1,7 +1,7 @@
 Package: DataSpaceR
 Type: Package
 Title: Interface to 'the CAVD DataSpace'
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person("Ju Yeong", "Kim", role = "aut"),
              person("Sean", "Hughes", role = "rev"),
              person("Jason", "Taylor", email = "jmtaylor@fredhutch.org", role = c("aut", "cre")),
@@ -22,9 +22,9 @@ Imports: utils, R6, Rlabkey (>= 3.4.5), curl, httr, assertthat, digest,
         jsonlite, data.table
 Suggests: testthat, covr, knitr, rmarkdown
 VignetteBuilder: knitr
-RoxygenNote: 7.3.2
+Config/roxygen2/version: 8.0.0
 NeedsCompilation: no
-Packaged: 2026-06-26 21:24:46 UTC; jmtaylor
+Packaged: 2026-08-04 18:35:18 UTC; jmtaylor
 Author: Ju Yeong Kim [aut],
   Sean Hughes [rev],
   Jason Taylor [aut, cre],
@@ -33,4 +33,4 @@ Author: Ju Yeong Kim [aut],
   CAVD DataSpace [cph]
 Maintainer: Jason Taylor <jmtaylor@fredhutch.org>
 Repository: CRAN
-Date/Publication: 2026-06-26 21:40:02 UTC
+Date/Publication: 2026-08-04 22:40:13 UTC
