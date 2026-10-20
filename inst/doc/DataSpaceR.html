@@ -13,7 +13,7 @@
 <meta name="author" content="Ju Yeong Kim" />
 <meta name="author" content="Jason Taylor" />
 
-<meta name="date" content="2026-08-03" />
+<meta name="date" content="2026-10-16" />
 
 <title>Introduction to DataSpaceR</title>
 
@@ -343,7 +343,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Introduction to DataSpaceR</h1>
 <h4 class="author">Ju Yeong Kim</h4>
 <h4 class="author">Jason Taylor</h4>
-<h4 class="date">2026-08-03</h4>
+<h4 class="date">2026-10-16</h4>
 
 
 
@@ -462,47 +462,7 @@ antigen page</a> and <a href="https://dataspace.cavd.org/cds/CAVD/app.view#learn
 MAb antigen page</a>.</p>
 <p>We can access this metadata in <code>DataSpaceR</code> with
 <code>availableViruses</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>con<span class="sc">$</span>availableViruses</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; Key: &lt;cds_virus_id&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt;      cds_virus_id          virus                  virus_full_name virus_backbone virus_host_cell virus_plot_label</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt;            &lt;char&gt;         &lt;char&gt;                           &lt;char&gt;         &lt;char&gt;          &lt;char&gt;           &lt;char&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt;   1:        cds_1   0013095-2.11   0013095-2.11 [SG3Δenv] 293T/17        SG3Δenv         293T/17     0013095-2.11</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt;   2:       cds_10     0984.V2.C2     0984.V2.C2 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt;   3:      cds_100 B005018-8_F6.3 B005018-8_F6.3 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt;   4:      cds_101 B005582-7_G7.8 B005582-7_G7.8 [SG3Δenv] 293T/17        SG3Δenv         293T/17          B005582</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt;   5:      cds_102         BaL.26         BaL.26 [SG3Δenv] 293T/17        SG3Δenv         293T/17           BaL.26</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt;  ---                                                                                                             </span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt; 799:       cds_94      92BR025.9      92BR025.9 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; 800:       cds_95      933.v4.c4      933.v4.c4 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt; 801:       cds_97    98-F4_H5_13    98-F4_H5_13 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt; 802:       cds_98 A07412M1.vrc12 A07412M1.vrc12 [SG3Δenv] 293T/17        SG3Δenv         293T/17             &lt;NA&gt;</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt; 803:       cds_99      AC10.0.29      AC10.0.29 [SG3Δenv] 293T/17        SG3Δenv         293T/17        AC10.0.29</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt;          virus_type virus_species  clade neutralization_tier</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;        &lt;char&gt; &lt;char&gt;              &lt;char&gt;</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt;   1: Env Pseudotype           HIV   &lt;NA&gt;                   2</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co">#&gt;   2: Env Pseudotype           HIV      C                   3</span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">#&gt;   3: Env Pseudotype           HIV      C                   2</span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co">#&gt;   4: Env Pseudotype           HIV      C                &lt;NA&gt;</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="co">#&gt;   5: Env Pseudotype           HIV      B                  1B</span></span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co">#&gt;  ---                                                        </span></span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="co">#&gt; 799: Env Pseudotype           HIV      C                &lt;NA&gt;</span></span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co">#&gt; 800: Env Pseudotype           HIV      C                   3</span></span>
-<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co">#&gt; 801: Env Pseudotype           HIV      C                   3</span></span>
-<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="co">#&gt; 802: Env Pseudotype           HIV      D                   2</span></span>
-<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt; 803: Env Pseudotype           HIV      B                   2</span></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                           virus_name_other</span></span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co">#&gt;                                                                                                                                                                     &lt;char&gt;</span></span>
-<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co">#&gt;   1:                                                                                                                                                                  &lt;NA&gt;</span></span>
-<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">#&gt;   2:                                                                                                                                                            0984.v2.c2</span></span>
-<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co">#&gt;   3:                                                                                                                                                                  &lt;NA&gt;</span></span>
-<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">#&gt;   4:                                                                                                                                              B005582, B005582-27_G7.8</span></span>
-<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="co">#&gt;   5: BaL.26_TM, Bal.26, Bal.26 [SG3&lt;94&gt;~env] 293T/17, Bal.26 [SG3Δenv] 293T, HIV Bal.26, HIV Bal.26[-Luc]293T, HIV Bal.26[SG3&lt;94&gt;~env]293T/17, SG3�~env, SHIV 1157ipd3N4.3</span></span>
-<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co">#&gt;  ---                                                                                                                                                                      </span></span>
-<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co">#&gt; 799:             92BR025.9 [SG3&lt;94&gt;~env] 293T, 92BR025.9 [SG3&lt;94&gt;~env] 293T/17, HIV 92BR025.9, HIV 92BR025.9[SG3&lt;94&gt;~env]293T, HIV 92BR025.9[SG3&lt;94&gt;~env]293T/17, SG3�~env</span></span>
-<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="co">#&gt; 800:                                                                                                                                                                  &lt;NA&gt;</span></span>
-<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="co">#&gt; 801:                                                                                                                                                           98-F4_H5-13</span></span>
-<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="co">#&gt; 802:                                                                                                                                  A07412M1.vrc12---349, A07412M1_VRC12</span></span>
-<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="co">#&gt; 803:                                                                    AC10.0.29 [SG3&lt;94&gt;~env] 293T/17, AC10.0.29---451, HIV AC10.0.29, HIV AC10.0.29[SG3&lt;94&gt;~env]293T/17</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>con<span class="sc">$</span>availableViruses</span></code></pre></div>
 </div>
 <div id="accessing-help-files" class="section level2">
 <h2>Accessing Help Files</h2>
